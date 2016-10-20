@@ -1,26 +1,23 @@
 package project.persistence.entities;
 
-import java.util.Date;
-
-public class HeadOnTournament extends Tournament {
-
+public class HeadOnTournament {
+	
 	boolean areBrackets;
+	Bracket[] brackets;
+	PlayOffTree playOffs;
 	
-	
-	public HeadOnTournament(String course, Date startDate, int numberOfRounds, Golfer[] players) {
-		super(course, startDate, numberOfRounds, players);
+	public HeadOnTournament(boolean areBrackets, Bracket[] brackets, PlayOffTree playOffs){
+		this.areBrackets = areBrackets;
+		this.brackets = brackets;
+		this.playOffs = playOffs;
 	}
+
 	
 	public static void main(String[] args) {
-		HeadOnTournament ht = new HeadOnTournament("mammmaaaaa'in", new Date(), 4, null);
-		System.out.println(ht.getCourse());
+		HeadOnTournament headOnTournament = new HeadOnTournament(Null,Null,Null);
+		
 	}
 
-	public boolean isAreBrackets() {
-		return areBrackets;
-	}
-
-	public void setAreBrackets(boolean areBrackets) {
-		this.areBrackets = areBrackets;
-	}
 }
+
+
