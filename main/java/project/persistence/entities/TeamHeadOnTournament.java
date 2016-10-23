@@ -2,11 +2,11 @@ package project.persistence.entities;
 
 import java.util.Date;
 
-public class TeamHeadOn extends HeadOnTournament {
+public class TeamHeadOnTournament extends HeadOnTournament {
 
 	Team[] teams;
 	
-	public TeamHeadOn(String course, Date startDate, int numberOfRounds, Golfer[] players) {
+	public TeamHeadOnTournament(String course, Date startDate, int numberOfRounds, Golfer[] players) {
 		super(course, startDate, numberOfRounds, players);
 	}
 
