@@ -2,9 +2,9 @@ package project.persistence.entities;
 
 public class Bracket {
 	
-	Match[] match;
-	Golfer[] players;
-	String name;
+	private Match[] match;
+	private Golfer[] players;
+	private String name;
 	
 	public Bracket(Match[] match, Golfer[] players, String name){
 		this.match = match;

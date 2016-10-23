@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Match {
 	
-	Golfer[] players;
-	String results;
-	Date date;
+	private Golfer[] players;
+	private String results;
+	private Date date;
 	
 	public Match (Golfer[] players, String results, Date date){
 		this.players = players;
