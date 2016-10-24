@@ -1,4 +1,6 @@
-package project.persistence.entities;
+package project.controller;
+
+import project.persistence.entities.Golfer;
 
 public class ScoreboardCreator {
 

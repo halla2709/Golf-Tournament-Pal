@@ -1,6 +1,8 @@
 package project.persistence.entities;
 
-public class Golfer {
+import java.util.Arrays;
+
+public class Golfer implements Comparable<Golfer>{
 	
 	private String name;
 	private int social;
@@ -16,7 +18,10 @@ public class Golfer {
 	
 	public static void main(String[] args) {
 		Golfer halla = new Golfer("Halla", 93939393, 4.3, "hallamammain");
-		System.out.println(halla.social);
+		Golfer Elvar = new Golfer("Elvar", 93939393, 5.0, "ilvar");
+		Golfer[] golfers = {Elvar, halla};
+		Arrays.sort(golfers);	
+		System.out.println(golfers[0].getName() + " " + golfers[1].getName());
 	}
 
 	public String getName() {
@@ -49,5 +54,11 @@ public class Golfer {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public int compareTo(Golfer g1) {
+		Double handicap = (Double) this.getHandicap();
+		return handicap.compareTo(g1.getHandicap());
 	}
 }
