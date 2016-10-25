@@ -22,5 +22,35 @@ public class DemoController {
         // file that has the same name
         return "index";
     }
+    
+    @RequestMapping(value = "/tournament", method = RequestMethod.GET)
+    public String tournament(){
+
+        return "tournament";
+    }
+    
+    @RequestMapping(value = "/results", method = RequestMethod.GET)
+    public String results(){
+
+        return "results";
+    }
+    
+    @RequestMapping(value = "/mypage", method = RequestMethod.GET)
+    public String mypage(){
+
+        return "mypage";
+    }
+    
+    @RequestMapping(value = "/matchplay", method = RequestMethod.GET)
+    public String matchplay(){
+
+        return "matchplay";
+    }
+    
+    @RequestMapping(value = "/scoreboard", method = RequestMethod.GET)
+    public String scoreboard(){
+
+        return "scoreboard";
+    }
 
 }
