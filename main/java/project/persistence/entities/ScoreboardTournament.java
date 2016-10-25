@@ -5,9 +5,11 @@ import java.util.Date;
 public class ScoreboardTournament extends Tournament {
 	
 	private int[][] scores;
+	private int numberOfRounds;
 	
 	public ScoreboardTournament(String course, Date startDate, int numberOfRounds, Golfer[] players, int[][] scores){
-		super(course, startDate, numberOfRounds, players);
+		super(course, startDate, players);
+		this.setNumberOfRounds(numberOfRounds);
 	}
 	
 	public static void main(String[] args){
@@ -21,6 +23,14 @@ public class ScoreboardTournament extends Tournament {
 
 	public void setScores(int[][] scores) {
 		this.scores = scores;
+	}
+
+	public int getNumberOfRounds() {
+		return numberOfRounds;
+	}
+
+	public void setNumberOfRounds(int numberOfRounds) {
+		this.numberOfRounds = numberOfRounds;
 	}
 
 }

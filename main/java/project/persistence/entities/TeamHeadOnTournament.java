@@ -8,7 +8,7 @@ public class TeamHeadOnTournament extends HeadOnTournament {
 	
 	public TeamHeadOnTournament(String course, Date startDate, int numberOfRounds, Golfer[] players, 
 			boolean areBrackets, Bracket[] brackets, PlayOffTree playOffs) {
-		super(course, startDate, numberOfRounds, players, areBrackets, brackets, playOffs);
+		super(course, startDate, players, areBrackets, brackets, playOffs);
 	}
 	
 	public static void main(String[] args){

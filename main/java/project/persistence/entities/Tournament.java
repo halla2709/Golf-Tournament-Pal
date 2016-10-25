@@ -7,19 +7,17 @@ public class Tournament {
 	private String course;
 	private Golfer[] players;
 	private Date startDate;
-	private int numberOfRounds;
 	
-	public Tournament(String course, Date startDate, int numberOfRounds, Golfer[] players) {
+	public Tournament(String course, Date startDate, Golfer[] players) {
 		this.course = course;
 		this.startDate = startDate;
-		this.numberOfRounds = numberOfRounds;
 		this.players = players;
 	}
 	
 	
 	
 	public static void main(String[] args) {
-		Tournament tour = new Tournament("mamma'in", new Date(), 5, null);
+		Tournament tour = new Tournament("mamma'in", new Date(), null);
 		
 		System.out.println(tour.getCourse());
 	}
@@ -61,14 +59,4 @@ public class Tournament {
 	}
 
 
-
-	public int getNumberOfRounds() {
-		return numberOfRounds;
-	}
-
-
-
-	public void setNumberOfRounds(int numberOfRounds) {
-		this.numberOfRounds = numberOfRounds;
-	}
 }

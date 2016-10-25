@@ -1,5 +1,6 @@
 package project.persistence.entities;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Match {
@@ -12,6 +13,12 @@ public class Match {
 		this.players = players;
 		this.results = results;
 		this.date = date;
+	}
+	
+	public Match() { 
+		players = null;
+		results = null;
+		date = null;
 	}
 	
 	public static void main(String[] args){
@@ -41,5 +48,10 @@ public class Match {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	@Override
+	public String toString() {
+		return "Match [players=" + Arrays.toString(players) + ", results=" + results + ", date=" + date + "]";
 	}
 }

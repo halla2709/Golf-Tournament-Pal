@@ -61,4 +61,10 @@ public class Golfer implements Comparable<Golfer>{
 		Double handicap = (Double) this.getHandicap();
 		return handicap.compareTo(g1.getHandicap());
 	}
+	
+	@Override
+	public String toString() {
+		return "Golfer [name=" + name + " handicap=" + handicap + "]";
+	}
+
 }

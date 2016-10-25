@@ -8,14 +8,22 @@ public class HeadOnTournament extends Tournament{
 	private Bracket[] brackets;
 	private PlayOffTree playOffs;
 	
-	public HeadOnTournament(String course, Date startDate, int numberOfRounds, Golfer[] players, 
+	public HeadOnTournament(String course, Date startDate, Golfer[] players, 
 			boolean areBrackets, Bracket[] brackets, PlayOffTree playOffs) {
-		super(course, startDate, numberOfRounds, players);
+		super(course, startDate, players);
+		this.areBrackets = areBrackets;
+		this.brackets = brackets;
+		this.playOffs = playOffs;
 	}
 	
 	public static void main(String[] args) {
-		HeadOnTournament ht = new HeadOnTournament("mammmaaaaa'in", new Date(), 4, null, true, null, null);
+		HeadOnTournament ht = new HeadOnTournament("mammmaaaaa'in", new Date(), null, true, null, null);
 		System.out.println(ht.getCourse());
+	}
+
+	@Override
+	public String toString() {
+		return "HeadOnTournament [playOffs=" + playOffs + "]";
 	}
 
 	public boolean isAreBrackets() {
@@ -35,6 +43,7 @@ public class HeadOnTournament extends Tournament{
 	}
 
 	public PlayOffTree getPlayOffs() {
+		System.out.println(playOffs);
 		return playOffs;
 	}
 
