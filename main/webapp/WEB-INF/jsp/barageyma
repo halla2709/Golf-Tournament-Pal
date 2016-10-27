@@ -1,3 +1,18 @@
+<script src="/wp-includes/js/addInput.js" language="Javascript" type="text/javascript"></script>
+<form method="POST">
+     <div id="dynamicInput">
+          Entry 1<br><input type="text" name="myInputs[]">
+     </div>
+     <input type="button" value="Add another player" onClick="addInput('dynamicInput');">
+</form>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>

@@ -23,6 +23,12 @@ public class DemoController {
         return "index";
     }
     
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index(){
+
+        return "index";
+    }
+    
     @RequestMapping(value = "/tournament", method = RequestMethod.GET)
     public String tournament(){
 
