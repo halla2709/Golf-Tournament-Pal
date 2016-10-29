@@ -3,8 +3,19 @@ package project.persistence.entities;
 import java.util.Arrays;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Match") 
 public class Match {
 	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 	private Golfer[] players;
 	private String results;
 	private Date date;

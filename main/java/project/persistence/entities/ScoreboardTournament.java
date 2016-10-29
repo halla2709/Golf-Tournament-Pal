@@ -2,8 +2,16 @@ package project.persistence.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ScoreboardTournament") 
 public class ScoreboardTournament extends Tournament {
-	
+
 	private int[][] scores;
 	private int numberOfRounds;
 	

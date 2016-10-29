@@ -2,10 +2,22 @@ package project.persistence.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "HeadOnTournament") 
 public class HeadOnTournament extends Tournament{
 	
+
 	private boolean areBrackets;
 	private Bracket[] brackets;
+	
+	@OneToOne()
 	private PlayOffTree playOffs;
 	
 	public HeadOnTournament(String course, Date startDate, Golfer[] players, 
@@ -42,8 +54,8 @@ public class HeadOnTournament extends Tournament{
 		this.brackets = brackets;
 	}
 
+	@OneToOne()
 	public PlayOffTree getPlayOffs() {
-		System.out.println(playOffs);
 		return playOffs;
 	}
 

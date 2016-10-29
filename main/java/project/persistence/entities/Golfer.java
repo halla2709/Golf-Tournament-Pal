@@ -1,11 +1,22 @@
 package project.persistence.entities;
 
 import java.util.Arrays;
+import java.io.Serializable;
 
-public class Golfer implements Comparable<Golfer>{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Golfer") 
+public class Golfer implements Comparable<Golfer>, Serializable{
 	
 	private String name;
+	
+    @Id
 	private int social;
+    
 	private double handicap;
 	private String email;
 	
@@ -24,6 +35,7 @@ public class Golfer implements Comparable<Golfer>{
 		System.out.println(golfers[0].getName() + " " + golfers[1].getName());
 	}
 
+	@Column(name="golfer_name")
 	public String getName() {
 		return name;
 	}

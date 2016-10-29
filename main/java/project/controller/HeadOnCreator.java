@@ -1,13 +1,20 @@
 package project.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Scanner;
 
 import project.persistence.entities.Bracket;
 import project.persistence.entities.Golfer;
 import project.persistence.entities.HeadOnTournament;
 import project.persistence.entities.Match;
 import project.persistence.entities.PlayOffTree;
+import project.persistence.repositories.HeadOnCreatorRepository;
+import project.service.HeadOnService;
+import project.service.Implementation.HeadOnServiceImplementation;
 
 public class HeadOnCreator {
 	
@@ -19,6 +26,7 @@ public class HeadOnCreator {
 	private int numOutOfBrackets;
 	
 	public HeadOnCreator(boolean areBrackets, Golfer[] players, int numInBracket, int numOutOfBrackets){
+		System.out.println("Creating creator");
 		this.areBrackets = areBrackets;
 		this.players = players;
 		numOfBrackets = 0;
@@ -41,7 +49,8 @@ public class HeadOnCreator {
 		HeadOnCreator headOnCreator = new HeadOnCreator(false, unsorted, 3, 2);
 		
 		HeadOnTournament tournament = headOnCreator.createTournament();
-		System.out.println(tournament.getPlayOffs());
+		
+		headOnCreator.saveTournament(tournament);
 	}
 
 	private Golfer[] sortByHandicap(Golfer[] unsorted) {
@@ -150,14 +159,26 @@ public class HeadOnCreator {
 		// Búum til útsláttatréð
 		playoffs = createPlayOffTree(numInPlayoffs);
 		
-		
-		return new HeadOnTournament(getCourse(), getStartDate(), players, areBrackets, brackets, playoffs);
+		Scanner scan = new Scanner(System.in);
+		String course = scan.nextLine();
+		String s = scan.nextLine();
+	    DateFormat df = new SimpleDateFormat("dd MM yyyy");
+	    Date result = null;
+	    Date start = new Date();
+		try {
+			start = df.parse(s);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		scan.close();
+		return new HeadOnTournament(course, start, players, areBrackets, brackets, playoffs);
 		
 	}
 	
 
 	public boolean saveTournament(HeadOnTournament tournament) {
-		// Tenging við gagnagrunn.
+		// Tenging við gagnagrunn
 		return true;
 	}
 	
@@ -167,12 +188,34 @@ public class HeadOnCreator {
 	
 	private String getCourse() {
 		// get info from view
-		return null;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Course ");
+		String s = "";
+		if(scan.hasNextLine()) s = scan.nextLine();
+		scan.nextInt();
+		System.out.print(s);
+		scan.close();
+		return s;
 	}
 	
 	private Date getStartDate() {
 		// get info from view
-		return null;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("StartDate ");
+		String s = "";
+		if(scan.hasNextLine()) s = scan.nextLine();
+		System.out.print(s);
+	    DateFormat df = new SimpleDateFormat("dd MM yyyy");
+	    Date result = null;
+		try {
+			result = df.parse(s);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	    System.out.println(result);
+	    scan.close();
+		return result;
 	}
 		
 	public boolean areBrackets() {
