@@ -5,6 +5,12 @@
 <link rel="stylesheet" href="css/style.css" type="text/css"/>
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-colors-highway.css">
 <link rel="shortcut icon" href="../images/images.jpg" />
+<script src="/js/cloneForm.js" language="Javascript" type="text/javascript"></script>
+<script src="/js/checkbox.js" language="Javascript" type="text/javascript"></script>
+<script src="/js/addInput.js" language="Javascript" type="text/javascript"></script>
+
+
+
 
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -62,7 +68,6 @@
 			  	</div>
 			</form>
 			  	<p>
-			  	<script src="/js/cloneForm.js" language="Javascript" type="text/javascript"></script>
 			  	<input class="w3-btn w3-theme" type="button" value="Add another player" onClick="CloneForm('participants');">
 		  		<br>
 			
@@ -71,6 +76,7 @@
 	
 	<div class="w3-col s6" style="margin-left:5em;">
 	<h3>2. Fill out information about the tournament:</h3>
+		<script src="/js/addInput.js" language="Javascript" type="text/javascript"></script>
 		<form>
 			<div class="w3-card-8" style="padding:2em;">
 				<input class="w3-input w3-animate-input" type="text" required style="width:50%" name="myInputs[]">
@@ -85,14 +91,15 @@
 	  		<input class="w3-check" type="checkbox" id="brackets">	
 				<label>Brackets</label>
 	  		<p>
-	  		<script src="/js/checkbox.js" language="Javascript" type="text/javascript"></script>	
-		  		<select class="w3-select" name="option" style="width:50%; display:none;" id="numberofbrackets">
+	  			<p id="numOfBrackets">HALLO</p>
+		  		<select class="w3-select" style="width:50%" id="numOfBracketssss">
 		  		  <option value="" disabled selected>How many participant exit the bracket? </option>
 				  <option value="1">1 participant</option>
 				  <option value="2">2 participants</option>
-				</select>
+				</select> 
+					
 	  		<br>
-	  		<button class="w3-btn w3-theme w3-large w3-right">Create Tournament!</button>
+	  		<button class="w3-btn w3-theme w3-large w3-right" onClick="addInput('dynamicInput');">Create Tournament!</button>
 	  		<br>
 	  		</div>
 
