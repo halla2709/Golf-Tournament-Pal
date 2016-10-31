@@ -1,9 +1,13 @@
 package project.persistence.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,30 +17,32 @@ public class PlayOffTree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	private Match[][] match;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+	private List<PlayOffRound> rounds;
 	
-	public PlayOffTree(Match[][] match){
-		this.match = match;
+	public List<PlayOffRound> getRounds() {
+		return rounds;
+	}
+
+	public void setRounds(List<PlayOffRound> rounds) {
+		this.rounds = rounds;
+	}
+
+	public PlayOffTree(List<PlayOffRound> rounds){
+		this.rounds = rounds;
 	}
 	
 	public static void main(String[] args){
 		PlayOffTree playOffTree = new PlayOffTree(null);
-		System.out.println(playOffTree.match);
 
 	}
 
 	@Override
 	public String toString() {
 		System.out.println("ddd");
-		String s = "This playofftree has " + match.length + " matches";
-		return s;
-	}
-
-	public Match[][] getMatch() {
-		return match;
-	}
-
-	public void setMatch(Match[][] match) {
-		this.match = match;
+		return "aaa";
 	}
 }
+
+

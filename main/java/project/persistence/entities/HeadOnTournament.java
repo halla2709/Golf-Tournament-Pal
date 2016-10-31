@@ -1,27 +1,38 @@
 package project.persistence.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "HeadOnTournament") 
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="TeamTournament")
 public class HeadOnTournament extends Tournament{
-	
+
 
 	private boolean areBrackets;
-	private Bracket[] brackets;
 	
-	@OneToOne()
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Bracket> brackets;
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	private PlayOffTree playOffs;
 	
-	public HeadOnTournament(String course, Date startDate, Golfer[] players, 
-			boolean areBrackets, Bracket[] brackets, PlayOffTree playOffs) {
+	public HeadOnTournament(String course, Date startDate, List<Golfer> players, 
+			boolean areBrackets, List<Bracket> brackets, PlayOffTree playOffs) {
 		super(course, startDate, players);
 		this.areBrackets = areBrackets;
 		this.brackets = brackets;
@@ -46,15 +57,14 @@ public class HeadOnTournament extends Tournament{
 		this.areBrackets = areBrackets;
 	}
 
-	public Bracket[] getBrackets() {
+	public List<Bracket> getBrackets() {
 		return brackets;
 	}
 
-	public void setBrackets(Bracket[] brackets) {
+	public void setBrackets(List<Bracket> brackets) {
 		this.brackets = brackets;
 	}
 
-	@OneToOne()
 	public PlayOffTree getPlayOffs() {
 		return playOffs;
 	}

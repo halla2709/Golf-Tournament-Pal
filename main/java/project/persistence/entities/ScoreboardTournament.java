@@ -1,21 +1,27 @@
 package project.persistence.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ScoreboardTournament") 
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="TeamTournament")
 public class ScoreboardTournament extends Tournament {
 
 	private int[][] scores;
 	private int numberOfRounds;
 	
-	public ScoreboardTournament(String course, Date startDate, int numberOfRounds, Golfer[] players, int[][] scores){
+	public ScoreboardTournament(String course, Date startDate, int numberOfRounds, List<Golfer> players, int[][] scores){
 		super(course, startDate, players);
 		this.setNumberOfRounds(numberOfRounds);
 	}

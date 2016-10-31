@@ -1,21 +1,27 @@
 package project.persistence.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TeamHeadOnTournament") 
+@Table(name = "TeamHeadOnTournament")
+@DiscriminatorValue("Team")
 public class TeamHeadOnTournament extends HeadOnTournament {
 
-	private Team[] teams;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Team> teams;
 	
-	public TeamHeadOnTournament(String course, Date startDate, int numberOfRounds, Golfer[] players, 
-			boolean areBrackets, Bracket[] brackets, PlayOffTree playOffs) {
+	public TeamHeadOnTournament(String course, Date startDate, int numberOfRounds, List<Golfer> players, 
+			boolean areBrackets, List<Bracket> brackets, PlayOffTree playOffs) {
 		super(course, startDate, players, areBrackets, brackets, playOffs);
 	}
 	
@@ -25,11 +31,11 @@ public class TeamHeadOnTournament extends HeadOnTournament {
 		System.out.println(teamHeadOnTournament.getCourse());
 	}
 
-	public Team[] getTeams() {
+	public List<Team> getTeams() {
 		return teams;
 	}
 
-	public void setTeams(Team[] teams) {
+	public void setTeams(List<Team> teams) {
 		this.teams = teams;
 	}
 	

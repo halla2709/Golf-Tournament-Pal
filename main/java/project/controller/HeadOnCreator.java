@@ -3,14 +3,18 @@ package project.controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import project.persistence.entities.Bracket;
 import project.persistence.entities.Golfer;
 import project.persistence.entities.HeadOnTournament;
 import project.persistence.entities.Match;
+import project.persistence.entities.PlayOffRound;
 import project.persistence.entities.PlayOffTree;
 import project.persistence.repositories.HeadOnCreatorRepository;
 import project.service.HeadOnService;
@@ -19,13 +23,13 @@ import project.service.Implementation.HeadOnServiceImplementation;
 public class HeadOnCreator {
 	
 	private boolean areBrackets;
-	private Golfer[] players;
-	private Golfer[] sorted;
+	private List<Golfer> players;
+	private List<Golfer> sorted;
 	private int numInBracket;
 	private int numOfBrackets;
 	private int numOutOfBrackets;
 	
-	public HeadOnCreator(boolean areBrackets, Golfer[] players, int numInBracket, int numOutOfBrackets){
+	public HeadOnCreator(boolean areBrackets, List<Golfer> players, int numInBracket, int numOutOfBrackets){
 		System.out.println("Creating creator");
 		this.areBrackets = areBrackets;
 		this.players = players;
@@ -45,16 +49,22 @@ public class HeadOnCreator {
 		Golfer pabbi = new Golfer("raggi", 93939393, 6.8, "ilvar");		
 		Golfer hedda = new Golfer("hedda", 93939393, 12.2, "hallamammain");
 		Golfer brynja = new Golfer("brynja", 93939393, 24.2, "ilvar");
-		Golfer[] unsorted = {mamma, halla, elvar, pabbi};
-		HeadOnCreator headOnCreator = new HeadOnCreator(false, unsorted, 3, 2);
+		List<Golfer> unsorted = new ArrayList<>();
+		unsorted.add(brynja);
+		unsorted.add(elvar);
+		unsorted.add(halla);
+		unsorted.add(pabbi);
+		unsorted.add(mamma);
+		unsorted.add(hedda);
+		HeadOnCreator headOnCreator = new HeadOnCreator(true, unsorted, 3, 2);
 		
 		HeadOnTournament tournament = headOnCreator.createTournament();
 		
-		headOnCreator.saveTournament(tournament);
+		System.out.println(headOnCreator.numOfBrackets);
 	}
 
-	private Golfer[] sortByHandicap(Golfer[] unsorted) {
-		Arrays.sort(unsorted);
+	private List<Golfer> sortByHandicap(List<Golfer> unsorted) {
+		Collections.sort(unsorted);
 		return unsorted;
 	}
 	
@@ -63,7 +73,7 @@ public class HeadOnCreator {
 	}
 	
 	private boolean playerNumberValidator() {
-		int playerNumber = players.length;
+		int playerNumber = players.size();
 		
 		if(areBrackets) {
 			double dNumOfBrackets = playerNumber/numInBracket;
@@ -90,7 +100,7 @@ public class HeadOnCreator {
 		for(int i = 0; i < numOfBrackets; i++) {
 			// Riðillinn hefur enn enga leikmenn en fær nafnið b0, b1,.. osfrv
 			brackets[i] = new Bracket(null, "b" + i);
-			for(int j = i; j < sorted.length; j = j+2*numOfBrackets) {
+			for(int j = i; j < sorted.size(); j = j+2*numOfBrackets) {
 				/* Eftir að raðað er eftir forgjöf inniheldur sorted
 				 * [0,1,2,3,4,...,n-2,n-1]
 				 * Viljum að raðað sé svona í riðlana:
@@ -100,9 +110,9 @@ public class HeadOnCreator {
 				 * 		2m 	...
 				 * 		...			n-1	
 				 */
-				brackets[i].addPlayer(sorted[j]);
-				if(j+2*numOfBrackets-1-i < sorted.length)
-					brackets[i].addPlayer(sorted[j+2*numOfBrackets-1-i]);
+				brackets[i].addPlayer(sorted.get(j));
+				if(j+2*numOfBrackets-1-i < sorted.size())
+					brackets[i].addPlayer(sorted.get(j+2*numOfBrackets-1-i));
 			}
 		}
 		return brackets;
@@ -121,22 +131,26 @@ public class HeadOnCreator {
 		 *   changeToBase2(numIn) er fjöldi umferða þ.e. log2(fjöldi leikmanna í fyrstu umferð)
 		 */
 		
-		Match[][] emptyMatches = new Match[numOfMatches][(int) changeToBase2(numIn)];
 		
+		List<PlayOffRound> rounds = new ArrayList<>((int) changeToBase2(numIn));
 		// Ef þetta er ekki riðlamót þá er hægt að stilla upp fyrstu umferðinni
 		if(!areBrackets) {
+			List<Match> emptyMatches = new ArrayList<Match>(numOfMatches);
 			for(int i = 0; i < numOfMatches; i++) {
 				// Röðum í umferðina eftir forgjöf.
-				Golfer[] playersInMatch = {sorted[i], sorted[sorted.length-1-i]};
-				for(int j = 0; j < emptyMatches[0].length; j++) {
-					emptyMatches[i][j] = new Match();
-				}
-				emptyMatches[i][0].setPlayers(playersInMatch);
+				List<Golfer> playersInMatch = new ArrayList<>();
+				playersInMatch.add(sorted.get(i));
+				playersInMatch.add(sorted.get(sorted.size()-1-i));
+				Match m = new Match();
+				m.setPlayers(playersInMatch);
+				emptyMatches.add(i, new Match());
+				emptyMatches.get(i).setPlayers(playersInMatch);
 			}
+			PlayOffRound p = new PlayOffRound(null, emptyMatches, 1);
+			rounds.add(p);
 		}
 		
-		
-		return new PlayOffTree(emptyMatches);
+		return new PlayOffTree(rounds);
 		
 	}
 	
@@ -144,26 +158,25 @@ public class HeadOnCreator {
 		// Tjekkum hvort við getum sett mótið upp
 		if(!playerNumberValidator()) return null;
 		
-		Bracket[] brackets = null;
+		List<Bracket> brackets = new ArrayList<>();
 		PlayOffTree playoffs = null;
-		int numInPlayoffs = players.length;
+		int numInPlayoffs = players.size();
 		
 		// Búum til riðla ef þeir eiga að vera. 
 		// Fjöldi í útsláttarkeppni fer þá eftir því
 		// hve margir komast upp úr riðlunum.
 		if(areBrackets) {
-			brackets = createBracket();
-			numInPlayoffs = numOutOfBrackets*brackets.length;
+			brackets = Arrays.asList(createBracket());
+			numInPlayoffs = numOutOfBrackets*brackets.size();
 		}
 		
 		// Búum til útsláttatréð
 		playoffs = createPlayOffTree(numInPlayoffs);
 		
 		Scanner scan = new Scanner(System.in);
-		String course = scan.nextLine();
-		String s = scan.nextLine();
+		String course = "korpa";
+		String s = "01 01 2011";
 	    DateFormat df = new SimpleDateFormat("dd MM yyyy");
-	    Date result = null;
 	    Date start = new Date();
 		try {
 			start = df.parse(s);
@@ -173,7 +186,6 @@ public class HeadOnCreator {
 		}  
 		scan.close();
 		return new HeadOnTournament(course, start, players, areBrackets, brackets, playoffs);
-		
 	}
 	
 
@@ -226,11 +238,11 @@ public class HeadOnCreator {
 		this.areBrackets = areBrackets;
 	}
 
-	public Golfer[] getPlayers() {
+	public List<Golfer> getPlayers() {
 		return players;
 	}
 
-	public void setPlayers(Golfer[] players) {
+	public void setPlayers(List<Golfer> players) {
 		this.players = players;
 	}
 

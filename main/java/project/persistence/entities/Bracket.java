@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -20,16 +22,33 @@ public class Bracket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	private Match[] match;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+	private List<Match> match;
 	
 	@ManyToMany()
+	@JoinTable(name="BracketPlayer", joinColumns=@JoinColumn(name="bracket_id"), inverseJoinColumns=@JoinColumn(name="golfer_id")) 
 	private List<Golfer> players;
+//	
+//	@ManyToOne()
+//	@JoinColumn(name="tournament")
+//	private HeadOnTournament tournament;
+//	
+//	public HeadOnTournament getTournament() {
+//		return tournament;
+//	}
+//
+//	public void setTournament(HeadOnTournament tournament) {
+//		this.tournament = tournament;
+//	}
+
 	private String name;
 	
 	public Bracket(List<Golfer> players, String name){
 		if(players == null) this.players = new ArrayList<Golfer>();
 		else this.players = players;
 		this.name = name;
+		//this.tournament = tournament;
 	}
 	
 	public static void main(String[] args){
@@ -37,16 +56,14 @@ public class Bracket {
 		System.out.println(bracket);
 	}
 
-	public Match[] getMatch() {
+	public List<Match> getMatch() {
 		return match;
 	}
 
-	public void setMatch(Match[] match) {
+	public void setMatch(List<Match> match) {
 		this.match = match;
 	}
 
-	@ManyToMany(cascade=CascadeType.ALL)  
-	@JoinTable(name="BracketPlayer", joinColumns=@JoinColumn(name="bracket_id"), inverseJoinColumns=@JoinColumn(name="golfer_id")) 
 	public Golfer[] getPlayers() {
 		return (Golfer[]) players.toArray();
 	}

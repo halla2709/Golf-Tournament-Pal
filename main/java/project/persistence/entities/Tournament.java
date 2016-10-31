@@ -1,23 +1,34 @@
 package project.persistence.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
  
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Tournament {
 	
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 	private String course;
-	private Golfer[] players;
+	
+	@ManyToMany()
+	@JoinTable(name="TournamentPlayers", joinColumns=@JoinColumn(name="tournament_id"), inverseJoinColumns=@JoinColumn(name="golfer_id")) 
+	private List<Golfer> players;
 	private Date startDate;
 	
-	public Tournament(String course, Date startDate, Golfer[] players) {
+	public Tournament(String course, Date startDate, List<Golfer> players) {
 		this.course = course;
 		this.startDate = startDate;
 		this.players = players;
@@ -45,13 +56,13 @@ public class Tournament {
 
 
 
-	public Golfer[] getPlayers() {
+	public List<Golfer> getPlayers() {
 		return players;
 	}
 
 
 
-	public void setPlayers(Golfer[] players) {
+	public void setPlayers(List<Golfer> players) {
 		this.players = players;
 	}
 

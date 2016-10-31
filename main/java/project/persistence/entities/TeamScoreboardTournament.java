@@ -1,20 +1,29 @@
 package project.persistence.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TeamScoreboardTournament") 
+@DiscriminatorValue("Team")
 public class TeamScoreboardTournament extends ScoreboardTournament{
 
-	private Team[] team;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Team> team;
 	
-	public TeamScoreboardTournament(String course, Date startDate, int numberOfRounds, Golfer[] players, 
+	public TeamScoreboardTournament(String course, Date startDate, int numberOfRounds, List<Golfer> players, 
 			int[][] scores, Team[] team){
 		super(course, startDate, numberOfRounds, players, scores);
 	}
@@ -25,11 +34,11 @@ public class TeamScoreboardTournament extends ScoreboardTournament{
 		System.out.println(teamScoreboardTournament.getCourse());
 	}
 
-	public Team[] getTeam() {
+	public List<Team> getTeam() {
 		return team;
 	}
 
-	public void setTeam(Team[] team) {
+	public void setTeam(List<Team> team) {
 		this.team = team;
 	}
 

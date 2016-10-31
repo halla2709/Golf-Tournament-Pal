@@ -1,9 +1,12 @@
 package project.persistence.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,12 +16,13 @@ public class Scorecard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	private Golfer[] player;
+    
+	private Golfer player;
 	private String teamName;
 	private int numberOfRounds;
 	private int[][] roundScores;
 
-	public Scorecard(Golfer[] player, String teamName, int numberOfRounds, int[][] roundScores){
+	public Scorecard(Golfer player, String teamName, int numberOfRounds, int[][] roundScores){
 		this.player = player;
 		this.teamName = teamName;
 		this.numberOfRounds = numberOfRounds;
@@ -30,11 +34,11 @@ public class Scorecard {
 		System.out.println(scorecard.teamName);
 	}
 
-	public Golfer[] getPlayer() {
+	public Golfer getPlayer() {
 		return player;
 	}
 
-	public void setPlayer(Golfer[] player) {
+	public void setPlayer(Golfer player) {
 		this.player = player;
 	}
 
