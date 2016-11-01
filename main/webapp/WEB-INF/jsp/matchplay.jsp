@@ -2,14 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <%@ page contentType="text/html; charset=UTF-8" %>
-<link rel="stylesheet" href="css/style.css" type="text/css"/>
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-colors-highway.css">
-<link rel="shortcut icon" href="../images/images.jpg" />
-<script src="/js/cloneForm.js" language="Javascript" type="text/javascript"></script>
-<script src="/js/checkbox.js" language="Javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../images/images.jpg"/>
 <script src="/js/addInput.js" language="Javascript" type="text/javascript"></script>
-
-
 
 
 <html lang="is">
@@ -32,13 +26,11 @@
   	</li>
   <li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
   <li><a class="w3-padding-16 w3-hover-white" href="/mypage">My Page</a></li>
+  <br><br>
   <!-- <li style="float:right"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
-  <br>
-  <br>
 
   <!-- Header(&Navigation) -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
-  <div class="w3-center">
+<header class="w3-container w3-theme w3-padding w3-center" id="myHeader">
   <h2>Golf-Tournament Pal!</h2>
   <h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
 </header>
@@ -48,63 +40,55 @@
   <!-- Main Text -->
 <div class="w3-row w3-container" style="position:relative; top:8em; padding: 2em; margin-bottom:150px; z-index:0;" > 
 	<div class="w3-col s5">
-	<h3>1. Fill out all information about participants:</h3>
-		<script src="/js/addInput.js" language="Javascript" type="text/javascript"></script>	
-			<form name="participant">
-				<div class="w3-card-8" style="padding:2em;">
-					<div id="dynamicInput">
+	<h3>1. Fill out all information about participants:</h3>	
+			<form method ="POST">
+				<div class="w3-card-8" style="padding:2em;" id="dynamicInput">
 						<input class="w3-input w3-animate-input" type="text" required style="width:50%" name="myInputs[]">
 				  		<label class="w3-label w3-validate w3-border">Name</label>
 				  		<p>
-				  		<input class="w3-input w3-animate-input" type="number" required style="width:50%" name="myInputs[]">
+				  		<input class="w3-input w3-animate-input" type="text" required style="width:50%" name="myInputs[]">
 				  		<label class="w3-label w3-validate w3-border">Social Security Number</label>
 				  		<p>
 				  		<input class="w3-input w3-animate-input" type="email" required style="width:50%" name="myInputs[]">
 				  		<label class="w3-label w3-validate w3-border">Email</label>	
 				  		<p>
-				  		<input class="w3-input w3-animate-input" type="double" required style="width:15%" name="myInputs[]">
+				  		<input class="w3-input w3-animate-input" type="number" required style="width:15%" name="myInputs[]">
 				  		<label class="w3-label w3-validate w3-border">Handicap</label>
 					</div>	
-			  	</div>
-			</form>
 			  	<p>
-			  	<input class="w3-btn w3-theme" type="button" value="Add another player" onClick="CloneForm('participants');">
+			  	<input class="w3-btn w3-theme" type="button" value="Add another player" onClick="addInput('dynamicInput');">
 		  		<br>
-			
+			</form>
 	</div>
 
 	
 	<div class="w3-col s6" style="margin-left:5em;">
 	<h3>2. Fill out information about the tournament:</h3>
-		<script src="/js/addInput.js" language="Javascript" type="text/javascript"></script>
 		<form>
 			<div class="w3-card-8" style="padding:2em;">
-				<input class="w3-input w3-animate-input" type="text" required style="width:50%" name="myInputs[]">
+				<input class="w3-input w3-animate-input" type="text" required style="width:50%">
 		  		<label class="w3-label w3-validate w3-border">Course</label>
 		  		<p>
-		  		<input class="w3-input w3-animate-input" type="date" required style="width:25%" name="myInputs[]">
+		  		<input class="w3-input w3-animate-input" type="date" required style="width:25%">
 		  		<label class="w3-label w3-validate w3-border">Date</label>	
 		  		<p>
-		  		<input class="w3-input w3-animate-input" type="time" required style="width:25%" name="myInputs[]">
+		  		<input class="w3-input w3-animate-input" type="time" required style="width:25%">
 		  		<label class="w3-label w3-validate w3-border">Time</label>	
 	  		<p>
-	  		<input class="w3-check" type="checkbox" id="brackets">	
-				<label>Brackets</label>
+	  		<button class="w3-check" id="brackets">	<label>Brackets</label>
+			</button>
 	  		<p>
-	  			<p id="numOfBrackets">HALLO</p>
-		  		<select class="w3-select" style="width:50%" id="numOfBracketssss">
+		  		<select class="w3-select" style="width:50%" id="numOfBrackets">
 		  		  <option value="" disabled selected>How many participant exit the bracket? </option>
 				  <option value="1">1 participant</option>
 				  <option value="2">2 participants</option>
 				</select> 
-					
-	  		<br>
-	  		<button class="w3-btn w3-theme w3-large w3-right" onClick="addInput('dynamicInput');">Create Tournament!</button>
 	  		<br>
 	  		</div>
-
+	  		<button class="w3-btn w3-theme w3-large w3-right">Create Tournament!</button>
+	  		<br>
+	  	
 		</form>
-		
 </div>
 </div>
 
