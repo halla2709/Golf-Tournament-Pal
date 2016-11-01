@@ -41,14 +41,15 @@
 
   <!-- Main Text -->
   
-<div class="w3-row w3-container" style="position:relative; top:10em; margin-bottom:150px;">
-<h1 class="w3-center">My Page</h1>
+<div class="w3-row w3-container" style="position:relative; top:8em; padding: 2em; margin-bottom:150px; z-index:0;" > 
+<h1>My Page</h1>
+<br>
   <div class="w3-col s3 w3-center w3-card-8" style="padding:2em; height:25em;">
-  		<img src="images/userprofilepicture.png" alt="Person" style=top:12em; margin-bottom:150px;">
+  		<img src="images/userprofilepicture.png" alt="My Image" style="max-width:100%;">
   		<h4>Name</h4>
   		<p>Slogan</p>
   </div>
-  <div class="w3-col s8 w3-card w3-card-8" style="height:25em; padding:2em; margin-left:5em;">
+  <div class="w3-col s8 w3-card w3-card-8" style="height:25em; padding:2em; margin-left:2em;">
   	<h2 class="w3-center">My Information</h2>
   	<h3>Name: </h3>
 	<h3>Email: </h3>

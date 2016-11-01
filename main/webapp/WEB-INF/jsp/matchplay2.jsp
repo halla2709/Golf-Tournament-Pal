@@ -40,45 +40,43 @@
 <hr>
 
   <!-- Main Text -->
+
 <div class="w3-row w3-container" style="position:relative; top:8em; padding: 2em; margin-bottom:150px; z-index:0;" > 
-	<h1>Results</h1>
-	<br>
-	<h2>Here we will post results from tournaments.</h2><br>
-	<h3>Find the tournament you are looking for:</h3>
-	<input class="w3-animate-input" type="text" style="width:30%" name="search" placeholder="Search..">
-	<br> 
-	<p>RESULTS TABLE</p>
+<div class="w3-container">
+  <h2>Your tournament</h2>
+  <p>has been successfully created! This is how it looks:</p>
 
   <table class="w3-table-all w3-hoverable">
     <thead>
       <tr class="w3-theme">
-        <th>Tournament</th>
-        <th>Date</th>
-        <th>Korpúlstaðarvöllur</th>
+        <th>First Name</th>
+        <th>Social Security Number</th>
+        <th>Email</th>
+        <th>Handicap</th>
       </tr>
     </thead>
     <tr>
-      <td>Matchplay</td>
-      <td>10.11.2016</td>
-      <td>Þórsvöllur</td>
+      <td>Unnur Kristín Brynjólfsdóttir</td>
+      <td>030892-2329</td>
+      <td>unnkbry@gmail.com</td>
+      <td>2.5</td>
     </tr>
     <tr>
-      <td>Matchplay</td>
+      <td>Linda</td>
       <td>kt</td>
       <td>email</td>
+      <td>2.1</td>
     </tr>
     <tr>
-      <td>Scoreboard</td>
-      <td>26.12.2016</td>
-      <td>Korpúlstaðarvöllur</td>
+      <td>Halla</td>
+      <td>kt</td>
+      <td>email</td>
+      <td>2.2</td>
     </tr>
   </table>
 </div>
-	
-	
-
 </div>
-<br>
+
 <hr>
   
   <!-- Footer -->

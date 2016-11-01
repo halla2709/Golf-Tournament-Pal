@@ -2,9 +2,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <%@ page contentType="text/html; charset=UTF-8" %>
-<link rel="stylesheet" href="css/style.css" type="text/css"/>
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-colors-highway.css">
-<link rel="shortcut icon" href="../images/images.jpg" />
+<link rel="shortcut icon" href="../images/images.jpg"/>
+<script src="/addInput.js" language="Javascript" type="text/javascript"></script>
+<script src="/checkBox.js" language="Javascript" type="text/javascript"></script>
+
 
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -20,38 +21,66 @@
   <li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
   <li class ="w3-dropdown-hover"><a class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create Tournament</a>
   	<div class="w3-dropdown-content w3-theme w3-card-4">
-  	<a class="w3-padding-16 w3-hover-white" href="/matchplay">Matchplay Tournament</a>
-  	<a class="w3-padding-16 w3-hover-white" href="/scoreboard">Scoreboard Tournament</a>
+  		<a class="w3-padding-16 w3-hover-white" href="/matchplay">Matchplay Tournament</a>
+  		<a class="w3-padding-16 w3-hover-white" href="/scoreboard">Scoreboard Tournament</a>
   	</div>
-  	</li>
+  </li>
   <li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
-  <li><a class="w3-padding-16 w3-hover-white" href="/mypage">My Page</a></li>
+  <li><a class="w3-padding-16 w3-hover-white" href="/mypage">My Page</a></li><br><br>
   <!-- <li style="float:right"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
-  <br>
-  <br>
 
   <!-- Header(&Navigation) -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
-  <div class="w3-center">
-  <h2>Golf-Tournament Pal!</h2>
-  <h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
-</header>
+	<header class="w3-container w3-theme w3-padding w3-center" id="myHeader">
+  		<h2>Golf-Tournament Pal!</h2>
+  		<h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
+	</header>
 </ul>
 <hr>
 
   <!-- Main Text -->
 <div class="w3-row w3-container" style="position:relative; top:8em; padding: 2em; margin-bottom:150px; z-index:0;" > 
-	<br>
-	<h1>Welcome to our website</h1>
-	<br>
-	<h2>We are the Golfclub of Reykjavík</h2>
-	<h2>feel free to try out this demo website.</h2>
-	<br> 
-	<p>We have many interesting things, you can Create a Tournament, see your Profile page or look at some interesting results for tournaments!</p>
-	<p>Nice to see you and Happy Golfing!!!</p> 
-	<img src="../images/golfer.png" alt="Golfer" style="width:100%; max-width:200px;">
+	<!-- Container Participants -->
+	<div class="w3-col s5" style="margin-right:5em;">
+	<h3>1. Fill out information about participants:</h3>	
+		<form method ="POST">		
+			<div id="dynamicInput">
+				<div class="w3-card-8" style="padding:2em">
+					<span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-margin-right w3-medium">&times;</span>
+					<input class="w3-input w3-animate-input" type="text" required style="width:50%" name="myInputs[]">
+			  		<label class="w3-label w3-validate w3-border">Name</label>
+			  		<input class="w3-input w3-animate-input" type="text" required style="width:50%" name="myInputs[]">
+			  		<label class="w3-label w3-validate w3-border">Social Security Number</label>
+			  		<input class="w3-input w3-animate-input" type="email" required style="width:50%" name="myInputs[]">
+			  		<label class="w3-label w3-validate w3-border">Email</label>	
+			  		<input class="w3-input w3-animate-input" type="number" required style="width:15%" name="myInputs[]">
+			  		<label class="w3-label w3-validate w3-border">Handicap</label>
+		  		</div>
+			</div>	
+		</form>				
+		<p>
+		<input class="w3-btn w3-theme" type="button" value="Add another player" onClick="addInput('dynamicInput');"><br>
+	</div>
+
+	<!-- Container Tournament -->
+	<div class="w3-col s6">
+	<h3>2. Fill out information about the tournament:</h3>
+		<form>
+			<div class="w3-card-8" style="padding:2em;">
+				<input class="w3-input w3-animate-input" type="text" required style="width:50%">
+		  		<label class="w3-label w3-validate w3-border">Course</label>
+		  		<p>
+		  		<input class="w3-input w3-animate-input" type="date" required style="width:25%">
+		  		<label class="w3-label w3-validate w3-border">Date</label>	
+		  		<p>
+		  		<input class="w3-input w3-animate-input" type="time" required style="width:25%">
+		  		<label class="w3-label w3-validate w3-border">Time</label>	
+	  			<p>
+	  		</div><br>
+	  		<a href="/scoreboard2" class="w3-btn w3-theme w3-large w3-right">Create Tournament!</a>
+	  		<br>
+		</form>
+	</div>
 </div>
-<br>
 <hr>
   
   <!-- Footer -->
@@ -79,6 +108,7 @@
 .w3-theme {
 color:#fff !important;background-color:#1a237e !important}
 </style>
+
 
 </body>
 </html>

@@ -41,7 +41,6 @@
 
   <!-- Main Text -->
 <div class="w3-row w3-container" style="position:relative; top:8em; padding: 2em; margin-bottom:150px; z-index:0;" > 
-	<br>
 	<h1>Welcome to our website</h1>
 	<br>
 	<h2>We are the Golfclub of Reykjavík</h2>

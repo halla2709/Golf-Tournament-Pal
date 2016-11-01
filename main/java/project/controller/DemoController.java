@@ -53,10 +53,22 @@ public class DemoController {
         return "matchplay";
     }
     
+    @RequestMapping(value = "/matchplay2", method = RequestMethod.GET)
+    public String matchplay2(){
+
+        return "matchplay2";
+    }
+    
     @RequestMapping(value = "/scoreboard", method = RequestMethod.GET)
     public String scoreboard(){
 
         return "scoreboard";
+    }
+    
+    @RequestMapping(value = "/scoreboard2", method = RequestMethod.GET)
+    public String scoreboard2(){
+
+        return "scoreboard2";
     }
 
 }
