@@ -25,6 +25,14 @@ public class TeamHeadOnTournament extends HeadOnTournament {
 		super(course, startDate, players, areBrackets, brackets, playOffs);
 	}
 	
+	
+	
+	public TeamHeadOnTournament(String course, Date startDate, List<Golfer> players) {
+		super(course, startDate, players);
+	}
+
+
+
 	public static void main(String[] args){
 		TeamHeadOnTournament teamHeadOnTournament = new TeamHeadOnTournament("Flottasti völlurinn", new Date(), 3,
 				null, true, null, null);

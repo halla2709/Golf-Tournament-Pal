@@ -24,7 +24,6 @@ public class HeadOnCreator {
 	
 	private boolean areBrackets;
 	private List<Golfer> players;
-	private List<Golfer> sorted;
 	private int numInBracket;
 	private int numOfBrackets;
 	private int numOutOfBrackets;
@@ -38,7 +37,7 @@ public class HeadOnCreator {
 		else numInBracket = 0;
 		if(areBrackets) this.numOutOfBrackets = numOutOfBrackets;
 		else numOutOfBrackets = 0;
-		sorted = sortByHandicap(players);
+		sortByHandicap(players);
 	}
 	
 	public static void main(String[] args){
@@ -63,9 +62,8 @@ public class HeadOnCreator {
 		System.out.println(headOnCreator.numOfBrackets);
 	}
 
-	private List<Golfer> sortByHandicap(List<Golfer> unsorted) {
+	private void sortByHandicap(List<Golfer> unsorted) {
 		Collections.sort(unsorted);
-		return unsorted;
 	}
 	
 	private double changeToBase2(int input) { 
@@ -100,8 +98,8 @@ public class HeadOnCreator {
 		for(int i = 0; i < numOfBrackets; i++) {
 			// Riðillinn hefur enn enga leikmenn en fær nafnið b0, b1,.. osfrv
 			brackets[i] = new Bracket(null, "b" + i);
-			for(int j = i; j < sorted.size(); j = j+2*numOfBrackets) {
-				/* Eftir að raðað er eftir forgjöf inniheldur sorted
+			for(int j = i; j < players.size(); j = j+2*numOfBrackets) {
+				/* Eftir að raðað er eftir forgjöf inniheldur players
 				 * [0,1,2,3,4,...,n-2,n-1]
 				 * Viljum að raðað sé svona í riðlana:
 				 *		b0 	 b1  ... bm
@@ -110,9 +108,9 @@ public class HeadOnCreator {
 				 * 		2m 	...
 				 * 		...			n-1	
 				 */
-				brackets[i].addPlayer(sorted.get(j));
-				if(j+2*numOfBrackets-1-i < sorted.size())
-					brackets[i].addPlayer(sorted.get(j+2*numOfBrackets-1-i));
+				brackets[i].addPlayer(players.get(j));
+				if(j+2*numOfBrackets-1-i < players.size())
+					brackets[i].addPlayer(players.get(j+2*numOfBrackets-1-i));
 			}
 		}
 		return brackets;
@@ -139,8 +137,8 @@ public class HeadOnCreator {
 			for(int i = 0; i < numOfMatches; i++) {
 				// Röðum í umferðina eftir forgjöf.
 				List<Golfer> playersInMatch = new ArrayList<>();
-				playersInMatch.add(sorted.get(i));
-				playersInMatch.add(sorted.get(sorted.size()-1-i));
+				playersInMatch.add(players.get(i));
+				playersInMatch.add(players.get(players.size()-1-i));
 				Match m = new Match();
 				m.setPlayers(playersInMatch);
 				emptyMatches.add(i, new Match());

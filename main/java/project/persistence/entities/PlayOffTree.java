@@ -21,17 +21,25 @@ public class PlayOffTree {
     @OneToMany(cascade = CascadeType.ALL)
 	private List<PlayOffRound> rounds;
 	
+
+
+	public PlayOffTree() {
+		super();
+	}
+	
+	public PlayOffTree(List<PlayOffRound> rounds){
+		this.rounds = rounds;
+	}
+	
 	public List<PlayOffRound> getRounds() {
 		return rounds;
 	}
-
+	
 	public void setRounds(List<PlayOffRound> rounds) {
 		this.rounds = rounds;
 	}
 
-	public PlayOffTree(List<PlayOffRound> rounds){
-		this.rounds = rounds;
-	}
+
 	
 	public static void main(String[] args){
 		PlayOffTree playOffTree = new PlayOffTree(null);

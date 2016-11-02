@@ -7,11 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import project.persistence.entities.Golfer;
 import project.persistence.entities.HeadOnTournament;
 
-public interface HeadOnCreatorRepository extends JpaRepository<HeadOnTournament, Long>{
+public interface GolferRepository extends JpaRepository<Golfer, Long>{
 	
-	HeadOnTournament save(HeadOnTournament headontournament);
+	Golfer save(Golfer golfer);
 	
-	void delete(HeadOnTournament headontournament);
+	void delete(Golfer golfer);
 
-	//Golfer save(Golfer players);
 }

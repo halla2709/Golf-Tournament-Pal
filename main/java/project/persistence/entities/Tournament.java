@@ -36,6 +36,12 @@ public class Tournament {
 	
 	
 	
+	public Tournament() {
+		super();
+	}
+
+
+
 	public static void main(String[] args) {
 		Tournament tour = new Tournament("mamma'in", new Date(), null);
 		

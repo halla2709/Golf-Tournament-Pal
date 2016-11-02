@@ -30,7 +30,13 @@ public class HeadOnTournament extends Tournament{
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private PlayOffTree playOffs;
+
 	
+	
+	public HeadOnTournament(String course, Date startDate, List<Golfer> players) {
+		super(course, startDate, players);
+	}
+
 	public HeadOnTournament(String course, Date startDate, List<Golfer> players, 
 			boolean areBrackets, List<Bracket> brackets, PlayOffTree playOffs) {
 		super(course, startDate, players);

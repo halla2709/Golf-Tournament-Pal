@@ -26,6 +26,14 @@ public class ScoreboardTournament extends Tournament {
 		this.setNumberOfRounds(numberOfRounds);
 	}
 	
+	
+	
+	public ScoreboardTournament(String course, Date startDate, List<Golfer> players) {
+		super(course, startDate, players);
+	}
+
+
+
 	public static void main(String[] args){
 		ScoreboardTournament scoreboardTournament = new ScoreboardTournament("vннн", new Date(), 5, null, null);
 		System.out.println(scoreboardTournament.getCourse());

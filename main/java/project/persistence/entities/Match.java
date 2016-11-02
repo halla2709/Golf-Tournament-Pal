@@ -23,7 +23,7 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(name="MatchPlayer", joinColumns=@JoinColumn(name="match_id"), inverseJoinColumns=@JoinColumn(name="golfer_id")) 
 	private List<Golfer> players;
 	private String results;

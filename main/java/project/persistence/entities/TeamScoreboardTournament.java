@@ -28,6 +28,13 @@ public class TeamScoreboardTournament extends ScoreboardTournament{
 		super(course, startDate, numberOfRounds, players, scores);
 	}
 	
+	
+	public TeamScoreboardTournament(String course, Date startDate, int numberOfRounds, List<Golfer> players,
+			int[][] scores) {
+		super(course, startDate, numberOfRounds, players, scores);
+	}
+
+
 	public static void main(String[] args){
 		TeamScoreboardTournament teamScoreboardTournament = new TeamScoreboardTournament("kalli", new Date(), 6,
 				null, null, null);

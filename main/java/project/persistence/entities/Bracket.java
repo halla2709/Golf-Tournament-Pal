@@ -51,6 +51,12 @@ public class Bracket {
 		//this.tournament = tournament;
 	}
 	
+	public Bracket() {
+		super();
+	}
+
+
+
 	public static void main(String[] args){
 		Bracket bracket = new Bracket(null, "Halla");
 		System.out.println(bracket);

@@ -33,6 +33,14 @@ public class PlayOffRound {
 		this.round = round;
 	}
 	
+	
+	
+	public PlayOffRound() {
+		super();
+	}
+
+
+
 	public PlayOffTree getPlayofftree() {
 		return playofftree;
 	}

@@ -1,5 +1,7 @@
 package project.service.Implementation;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,6 @@ public class HeadOnServiceImplementation implements HeadOnService {
 	public void delete(HeadOnTournament headontournament) {
 		repository.delete(headontournament);
 	}
+
 
 }

@@ -29,6 +29,12 @@ public class Scorecard {
 		this.roundScores = roundScores;
 	}
 		
+	public Scorecard() {
+		super();
+	}
+
+
+
 	public static void main(String[] args){
 		Scorecard scorecard = new Scorecard(null, "The Best Team", 3, null);
 		System.out.println(scorecard.teamName);

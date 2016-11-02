@@ -37,6 +37,10 @@ public class Team{
 		this.tournament = tournament;
 	}
 	
+	public Team() {
+		super();
+	}
+
 	public static void main(String [] args){
 		Team team = new Team ("mammaíín", 20.6, null, null);
 		System.out.println(team.teamName);

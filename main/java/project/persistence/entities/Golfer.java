@@ -32,6 +32,12 @@ public class Golfer implements Comparable<Golfer>, Serializable{
 		this.email = email;
 	}
 	
+	public Golfer() {
+		super();
+	}
+
+
+
 	public static void main(String[] args) {
 		Golfer halla = new Golfer("Halla", 93939393, 4.3, "hallamammain");
 		Golfer Elvar = new Golfer("Elvar", 93939393, 5.0, "ilvar");
