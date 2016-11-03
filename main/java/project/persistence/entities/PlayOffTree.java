@@ -21,8 +21,6 @@ public class PlayOffTree {
     @OneToMany(cascade = CascadeType.ALL)
 	private List<PlayOffRound> rounds;
 	
-
-
 	public PlayOffTree() {
 		super();
 	}
@@ -37,13 +35,6 @@ public class PlayOffTree {
 	
 	public void setRounds(List<PlayOffRound> rounds) {
 		this.rounds = rounds;
-	}
-
-
-	
-	public static void main(String[] args){
-		PlayOffTree playOffTree = new PlayOffTree(null);
-
 	}
 
 	@Override

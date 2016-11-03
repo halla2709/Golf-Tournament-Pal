@@ -3,7 +3,6 @@ package project.persistence.entities;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,11 +20,13 @@ public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+    
 	private String course;
 	
 	@ManyToMany()
 	@JoinTable(name="TournamentPlayers", joinColumns=@JoinColumn(name="tournament_id"), inverseJoinColumns=@JoinColumn(name="golfer_id")) 
 	private List<Golfer> players;
+	
 	private Date startDate;
 	
 	public Tournament(String course, Date startDate, List<Golfer> players) {

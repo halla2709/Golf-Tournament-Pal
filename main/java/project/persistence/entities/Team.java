@@ -2,14 +2,12 @@ package project.persistence.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,22 +17,18 @@ public class Team{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
 	private String teamName;
+	
 	private double handicap;
 	
-	@ManyToOne()
-	@JoinColumn(name="team")
-	private Tournament tournament;
-	
-	@ManyToMany()
-    @JoinTable(name="TeamPlayer", joinColumns=@JoinColumn(name="team_id"), inverseJoinColumns=@JoinColumn(name="golfer_id")) 
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Golfer> players;
 	
-	public Team (String teamName, double handicap, List<Golfer> players, Tournament tournament){
+	public Team (String teamName, double handicap, List<Golfer> players){
 		this.teamName = teamName;
 		this.handicap = handicap;
 		this.players = players;
-		this.tournament = tournament;
 	}
 	
 	public Team() {
@@ -42,7 +36,7 @@ public class Team{
 	}
 
 	public static void main(String [] args){
-		Team team = new Team ("mammaíín", 20.6, null, null);
+		Team team = new Team ("mammaíín", 20.6, null);
 		System.out.println(team.teamName);
 	}
 
@@ -69,16 +63,5 @@ public class Team{
 	public void setPlayers(List<Golfer> players) {
 		this.players = players;
 	}
-
-	public Tournament getTournament() {
-		return tournament;
-	}
-
-	public void setTournament(Tournament tournament) {
-		this.tournament = tournament;
-	}
-	
-	
-	
 
 }

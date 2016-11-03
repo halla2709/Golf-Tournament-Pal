@@ -1,13 +1,19 @@
 package project.persistence.entities;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Scorecard") 
@@ -17,27 +23,49 @@ public class Scorecard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Round> rounds;
+    
+    @ManyToOne()
+    @JoinColumn(name="player")
 	private Golfer player;
-	private String teamName;
+	
+    @ManyToOne()
+    @JoinColumn(name="team")
+	private Team team;
+    
+    private String course;
+    
+    @Transient()
 	private int numberOfRounds;
-	private int[][] roundScores;
 
-	public Scorecard(Golfer player, String teamName, int numberOfRounds, int[][] roundScores){
+	public Scorecard(Golfer player, Team team, String course, int numberOfRounds){
 		this.player = player;
-		this.teamName = teamName;
+		this.team = team;
 		this.numberOfRounds = numberOfRounds;
-		this.roundScores = roundScores;
+		this.course = course;
+		rounds = new ArrayList<Round>();
+		for(int i = 0; i < numberOfRounds; i++) {
+			rounds.add(new Round());
+		}
+		System.out.println(rounds.size());
 	}
 		
 	public Scorecard() {
 		super();
 	}
 
-
-
+	public int[] getTotalForRounds() { 
+		int[] totals = new int[numberOfRounds];
+		for(int i = 0; i < numberOfRounds; i++) {
+			totals[i] = rounds.get(i).getTotal();
+		}
+		return totals;
+	}
+	
 	public static void main(String[] args){
-		Scorecard scorecard = new Scorecard(null, "The Best Team", 3, null);
-		System.out.println(scorecard.teamName);
+		Scorecard scorecard = new Scorecard(null, null, "Grabbi", 3);
+		System.out.println(scorecard.course);
 	}
 
 	public Golfer getPlayer() {
@@ -48,14 +76,6 @@ public class Scorecard {
 		this.player = player;
 	}
 
-	public String getTeamName() {
-		return teamName;
-	}
-
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
-	}
-
 	public int getNumberOfRounds() {
 		return numberOfRounds;
 	}
@@ -64,11 +84,4 @@ public class Scorecard {
 		this.numberOfRounds = numberOfRounds;
 	}
 
-	public int[][] getRoundScores() {
-		return roundScores;
-	}
-
-	public void setRoundScores(int[][] roundScores) {
-		this.roundScores = roundScores;
-	}
 }

@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
@@ -29,18 +28,6 @@ public class Bracket {
 	@ManyToMany()
 	@JoinTable(name="BracketPlayer", joinColumns=@JoinColumn(name="bracket_id"), inverseJoinColumns=@JoinColumn(name="golfer_id")) 
 	private List<Golfer> players;
-//	
-//	@ManyToOne()
-//	@JoinColumn(name="tournament")
-//	private HeadOnTournament tournament;
-//	
-//	public HeadOnTournament getTournament() {
-//		return tournament;
-//	}
-//
-//	public void setTournament(HeadOnTournament tournament) {
-//		this.tournament = tournament;
-//	}
 
 	private String name;
 	
@@ -48,7 +35,6 @@ public class Bracket {
 		if(players == null) this.players = new ArrayList<Golfer>();
 		else this.players = players;
 		this.name = name;
-		//this.tournament = tournament;
 	}
 	
 	public Bracket() {

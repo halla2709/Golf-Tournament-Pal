@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import project.persistence.entities.Golfer;
 import project.persistence.entities.HeadOnTournament;
-import project.persistence.repositories.HeadOnCreatorRepository;
 import project.service.GolferService;
 import project.service.HeadOnService;
 

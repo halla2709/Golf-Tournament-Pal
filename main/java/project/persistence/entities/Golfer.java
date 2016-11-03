@@ -12,9 +12,6 @@ import javax.persistence.Table;
 @Table(name = "Golfer") 
 public class Golfer implements Comparable<Golfer>, Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8509943069522870963L;
 
 	private String name;

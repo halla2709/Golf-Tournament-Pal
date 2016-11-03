@@ -6,9 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,13 +22,9 @@ public class TeamHeadOnTournament extends HeadOnTournament {
 		super(course, startDate, players, areBrackets, brackets, playOffs);
 	}
 	
-	
-	
 	public TeamHeadOnTournament(String course, Date startDate, List<Golfer> players) {
 		super(course, startDate, players);
 	}
-
-
 
 	public static void main(String[] args){
 		TeamHeadOnTournament teamHeadOnTournament = new TeamHeadOnTournament("Flottasti völlurinn", new Date(), 3,

@@ -16,9 +16,6 @@ import project.persistence.entities.HeadOnTournament;
 import project.persistence.entities.Match;
 import project.persistence.entities.PlayOffRound;
 import project.persistence.entities.PlayOffTree;
-import project.persistence.repositories.HeadOnCreatorRepository;
-import project.service.HeadOnService;
-import project.service.Implementation.HeadOnServiceImplementation;
 
 public class HeadOnCreator {
 	
@@ -144,7 +141,7 @@ public class HeadOnCreator {
 				emptyMatches.add(i, new Match());
 				emptyMatches.get(i).setPlayers(playersInMatch);
 			}
-			PlayOffRound p = new PlayOffRound(null, emptyMatches, 1);
+			PlayOffRound p = new PlayOffRound(emptyMatches, 1);
 			rounds.add(p);
 		}
 		
