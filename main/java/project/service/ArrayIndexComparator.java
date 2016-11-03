@@ -4,9 +4,9 @@ import java.util.Comparator;
 
 public class ArrayIndexComparator implements Comparator<Integer>
 {
-    private final Integer[] array;
+    private final int[] array;
 
-    public ArrayIndexComparator(Integer[] array)
+    public ArrayIndexComparator(int[] array)
     {
         this.array = array;
     }
@@ -25,6 +25,8 @@ public class ArrayIndexComparator implements Comparator<Integer>
     public int compare(Integer index1, Integer index2)
     {
          // Autounbox from Integer to int to use as array indexes
-        return array[index1].compareTo(array[index2]);
+        if(array[index1] < (array[index2])) return -1;
+        else if(array[index1] > (array[index2])) return 1;
+        return 0;
     }
 }

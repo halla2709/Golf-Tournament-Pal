@@ -1,5 +1,7 @@
 package project.service.Implementation;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,10 @@ public class GolferServiceImplementation implements GolferService{
 	@Override
 	public Golfer save(Golfer player) {
 		return repository.save(player);
+	}
+	@Override
+	public List<Golfer> findAll() {
+		return repository.findAll();
 	}
 
 }

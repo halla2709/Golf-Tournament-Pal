@@ -1,22 +1,25 @@
 package project.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import project.persistence.entities.Golfer;
+import project.persistence.entities.ScoreboardTournament;
 import project.persistence.entities.Scorecard;
+import project.service.ArrayIndexComparator;
 
 public class ScoreboardCreator {
 
 	private List<Golfer> players;
 	private int numberOfRounds;
 	private String course;
-	
+	private Date startDate;
 	private List<Scorecard> scorecards;
 	private int[][] score;
 	
-	public ScoreboardCreator(List<Golfer> players, int numberOfRounds, String course){
+	public ScoreboardCreator(List<Golfer> players, int numberOfRounds, String course, Date startDate){
 		this.players = players;
 		this.numberOfRounds = numberOfRounds;
 		this.course = course;
@@ -38,7 +41,7 @@ public class ScoreboardCreator {
 	// dálkar eru skor á hring, seinni talan
 	// seinasti dálkurinn er summa fyrir leikmanninn
 	public int[][] createScoreBoard() {
-		int[][] score = new int[players.size()][numberOfRounds+1];
+		score = new int[players.size()][numberOfRounds+1];
 		
 		for(int i = 0; i < players.size(); i++) {
 			int[] scorecardi = scorecards.get(i).getTotalForRounds();
@@ -59,7 +62,21 @@ public class ScoreboardCreator {
 			totalscores[i] = score[i][numberOfRounds];
 		}
 		
-			
+		ArrayIndexComparator comparator = new ArrayIndexComparator(totalscores);
+		Integer[] indexes = comparator.createIndexArray();
+		Arrays.sort(indexes, comparator);
+		Arrays.sort(totalscores);
+
+		List<Golfer> newplayers = new ArrayList<Golfer>();
+		int[][] newscores = new int[players.size()][numberOfRounds + 1];
+		
+		for(int i = 0; i < players.size(); i++) {
+			newplayers.add(players.get((int) indexes[i])); 
+			newscores[i] = score[(int) indexes[i]];
+		}
+		
+		players = newplayers;
+		score = newscores;
 	}
 	
 	private int[] findMinScore() {
@@ -75,6 +92,15 @@ public class ScoreboardCreator {
 		int[] ret = {location, min};
 		return ret;
 	}
+	
+	public ScoreboardTournament createTournament() { 
+		
+		scorecards = createScorecards();
+		score = createScoreBoard();
+		
+		return new ScoreboardTournament(course, startDate, numberOfRounds, players, score);
+	}
+	
 	public static void main(String[] args){
 		Golfer halla = new Golfer("Halla", 93939393, 4.3, "hallamammain");
 		Golfer elvar = new Golfer("Elvar", 93939393, 36.0, "ilvar");
@@ -89,11 +115,13 @@ public class ScoreboardCreator {
 		unsorted.add(pabbi);
 		unsorted.add(mamma);
 		unsorted.add(hedda);
-		ScoreboardCreator s = new ScoreboardCreator(unsorted, 3, "Grabbi");
+		ScoreboardCreator s = new ScoreboardCreator(unsorted, 3, "Grabbi", new Date());
 		
 		List<Scorecard> wow = s.createScorecards();
 		int[][] scores = s.createScoreBoard();
-		System.out.println(scores[0][3]);
+		s.updateStatus();
+		
+		
 	}
 
 	public List<Golfer >getPlayers() {

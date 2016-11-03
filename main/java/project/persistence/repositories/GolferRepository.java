@@ -9,8 +9,8 @@ import project.persistence.entities.HeadOnTournament;
 
 public interface GolferRepository extends JpaRepository<Golfer, Long>{
 	
-	Golfer save(Golfer golfer);
-	
-	void delete(Golfer golfer);
+	Golfer save(Golfer player);
+
+	List<Golfer> findAll();
 
 }
