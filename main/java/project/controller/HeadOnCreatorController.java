@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,8 +32,8 @@ public class HeadOnCreatorController {
 		return headOnService.save(tournament);
 	}
 	
-	@RequestMapping(value="/prufa", method = RequestMethod.GET)
-	public String prufaprufa() { 
+	@RequestMapping(value="/matchplay", method = RequestMethod.GET)
+	public String matchplay2() { 
 		System.out.println("Byrja prufu");
 		
 		Golfer halla = new Golfer("Halla", 93939393, 4.3, "hallamammain");
@@ -39,7 +42,7 @@ public class HeadOnCreatorController {
 		Golfer pabbi = new Golfer("raggi", 18181818, 6.8, "ilvar");		
 		Golfer hedda = new Golfer("hedda", 28282828, 12.2, "hallamammain");
 		Golfer brynja = new Golfer("brynja", 4949494, 24.2, "ilvar");
-		List<Golfer> unsorted = new ArrayList<>();
+		List<Golfer> unsorted = new ArrayList<Golfer>();
 		unsorted.add(brynja);
 		unsorted.add(elvar);
 		unsorted.add(halla);
@@ -59,7 +62,9 @@ public class HeadOnCreatorController {
 		
 		headOnService.save(tournament);
 		System.out.println("saved");
-		return "prufa";
+		return "matchplay";
 	}
+
+
 	
 }

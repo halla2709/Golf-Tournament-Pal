@@ -37,9 +37,9 @@ public class ScoreboardCreator {
 		return newscorecards;
 	}
 	
-	// raðir eru skor á leikmann, fyrri talan
-	// dálkar eru skor á hring, seinni talan
-	// seinasti dálkurinn er summa fyrir leikmanninn
+	// raï¿½ir eru skor ï¿½ leikmann, fyrri talan
+	// dï¿½lkar eru skor ï¿½ hring, seinni talan
+	// seinasti dï¿½lkurinn er summa fyrir leikmanninn
 	public int[][] createScoreBoard() {
 		score = new int[players.size()][numberOfRounds+1];
 		
@@ -108,7 +108,7 @@ public class ScoreboardCreator {
 		Golfer pabbi = new Golfer("raggi", 93939393, 6.8, "ilvar");		
 		Golfer hedda = new Golfer("hedda", 93939393, 12.2, "hallamammain");
 		Golfer brynja = new Golfer("brynja", 93939393, 24.2, "ilvar");
-		List<Golfer> unsorted = new ArrayList<>();
+		List<Golfer> unsorted = new ArrayList<Golfer>();
 		unsorted.add(brynja);
 		unsorted.add(elvar);
 		unsorted.add(halla);

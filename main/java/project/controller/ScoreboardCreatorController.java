@@ -51,4 +51,6 @@ public class ScoreboardCreatorController {
         // Return the view
         return "prufa";
     }
+    
+    
 }

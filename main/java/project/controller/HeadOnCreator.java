@@ -45,7 +45,7 @@ public class HeadOnCreator {
 		Golfer pabbi = new Golfer("raggi", 93939393, 6.8, "ilvar");		
 		Golfer hedda = new Golfer("hedda", 93939393, 12.2, "hallamammain");
 		Golfer brynja = new Golfer("brynja", 93939393, 24.2, "ilvar");
-		List<Golfer> unsorted = new ArrayList<>();
+		List<Golfer> unsorted = new ArrayList<Golfer>();
 		unsorted.add(brynja);
 		unsorted.add(elvar);
 		unsorted.add(halla);
@@ -73,9 +73,9 @@ public class HeadOnCreator {
 		if(areBrackets) {
 			double dNumOfBrackets = playerNumber/numInBracket;
 			numOfBrackets = (int) Math.floor(dNumOfBrackets);
-			// Mega ekki vera færri en 2 riðlar og fjöldi leikmanna verður að ganga upp í riðlana
+			// Mega ekki vera fï¿½rri en 2 riï¿½lar og fjï¿½ldi leikmanna verï¿½ur aï¿½ ganga upp ï¿½ riï¿½lana
 			if(numOfBrackets < 2 || numOfBrackets != dNumOfBrackets) return false;
-			// Fjöldi riðla verður að vera veldi af 2.
+			// Fjï¿½ldi riï¿½la verï¿½ur aï¿½ vera veldi af 2.
 			else if(Math.floor(changeToBase2(numOfBrackets)) == changeToBase2(numOfBrackets)) return true;
 			else return false;
 			
@@ -93,12 +93,12 @@ public class HeadOnCreator {
 	private Bracket[] createBracket() {
 		Bracket[] brackets = new Bracket[(int) numOfBrackets];
 		for(int i = 0; i < numOfBrackets; i++) {
-			// Riðillinn hefur enn enga leikmenn en fær nafnið b0, b1,.. osfrv
+			// Riï¿½illinn hefur enn enga leikmenn en fï¿½r nafniï¿½ b0, b1,.. osfrv
 			brackets[i] = new Bracket(null, "b" + i);
 			for(int j = i; j < players.size(); j = j+2*numOfBrackets) {
-				/* Eftir að raðað er eftir forgjöf inniheldur players
+				/* Eftir aï¿½ raï¿½aï¿½ er eftir forgjï¿½f inniheldur players
 				 * [0,1,2,3,4,...,n-2,n-1]
-				 * Viljum að raðað sé svona í riðlana:
+				 * Viljum aï¿½ raï¿½aï¿½ sï¿½ svona ï¿½ riï¿½lana:
 				 *		b0 	 b1  ... bm
 				 *		0  	  1      m
 				 *		2m-1	    m+1
@@ -122,18 +122,18 @@ public class HeadOnCreator {
 		 *   \/		1
 		 *   		2
 		 *   		...
-		 *   numOfMatches er fjöldi leikja í fyrstu umferð
-		 *   changeToBase2(numIn) er fjöldi umferða þ.e. log2(fjöldi leikmanna í fyrstu umferð)
+		 *   numOfMatches er fjï¿½ldi leikja ï¿½ fyrstu umferï¿½
+		 *   changeToBase2(numIn) er fjï¿½ldi umferï¿½a ï¿½.e. log2(fjï¿½ldi leikmanna ï¿½ fyrstu umferï¿½)
 		 */
 		
 		
-		List<PlayOffRound> rounds = new ArrayList<>((int) changeToBase2(numIn));
-		// Ef þetta er ekki riðlamót þá er hægt að stilla upp fyrstu umferðinni
+		List<PlayOffRound> rounds = new ArrayList<PlayOffRound>((int) changeToBase2(numIn));
+		// Ef ï¿½etta er ekki riï¿½lamï¿½t ï¿½ï¿½ er hï¿½gt aï¿½ stilla upp fyrstu umferï¿½inni
 		if(!areBrackets) {
 			List<Match> emptyMatches = new ArrayList<Match>(numOfMatches);
 			for(int i = 0; i < numOfMatches; i++) {
-				// Röðum í umferðina eftir forgjöf.
-				List<Golfer> playersInMatch = new ArrayList<>();
+				// Rï¿½ï¿½um ï¿½ umferï¿½ina eftir forgjï¿½f.
+				List<Golfer> playersInMatch = new ArrayList<Golfer>();
 				playersInMatch.add(players.get(i));
 				playersInMatch.add(players.get(players.size()-1-i));
 				Match m = new Match();
@@ -150,22 +150,22 @@ public class HeadOnCreator {
 	}
 	
 	public HeadOnTournament createTournament() {
-		// Tjekkum hvort við getum sett mótið upp
+		// Tjekkum hvort viï¿½ getum sett mï¿½tiï¿½ upp
 		if(!playerNumberValidator()) return null;
 		
-		List<Bracket> brackets = new ArrayList<>();
+		List<Bracket> brackets = new ArrayList<Bracket>();
 		PlayOffTree playoffs = null;
 		int numInPlayoffs = players.size();
 		
-		// Búum til riðla ef þeir eiga að vera. 
-		// Fjöldi í útsláttarkeppni fer þá eftir því
-		// hve margir komast upp úr riðlunum.
+		// Bï¿½um til riï¿½la ef ï¿½eir eiga aï¿½ vera. 
+		// Fjï¿½ldi ï¿½ ï¿½tslï¿½ttarkeppni fer ï¿½ï¿½ eftir ï¿½vï¿½
+		// hve margir komast upp ï¿½r riï¿½lunum.
 		if(areBrackets) {
 			brackets = Arrays.asList(createBracket());
 			numInPlayoffs = numOutOfBrackets*brackets.size();
 		}
 		
-		// Búum til útsláttatréð
+		// Bï¿½um til ï¿½tslï¿½ttatrï¿½ï¿½
 		playoffs = createPlayOffTree(numInPlayoffs);
 		
 		Scanner scan = new Scanner(System.in);
@@ -185,7 +185,7 @@ public class HeadOnCreator {
 	
 
 	public boolean saveTournament(HeadOnTournament tournament) {
-		// Tenging við gagnagrunn
+		// Tenging viï¿½ gagnagrunn
 		return true;
 	}
 	

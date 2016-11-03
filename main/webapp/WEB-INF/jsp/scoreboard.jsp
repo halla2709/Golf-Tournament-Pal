@@ -72,9 +72,6 @@
 		  		<input class="w3-input w3-animate-input" type="date" required style="width:25%">
 		  		<label class="w3-label w3-validate w3-border">Date</label>	
 		  		<p>
-		  		<input class="w3-input w3-animate-input" type="time" required style="width:25%">
-		  		<label class="w3-label w3-validate w3-border">Time</label>	
-	  			<p>
 	  		</div><br>
 	  		<a href="/scoreboard2" class="w3-btn w3-theme w3-large w3-right">Create Tournament!</a>
 	  		<br>

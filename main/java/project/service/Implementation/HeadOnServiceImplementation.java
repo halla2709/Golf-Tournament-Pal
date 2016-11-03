@@ -1,5 +1,6 @@
 package project.service.Implementation;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,39 @@ public class HeadOnServiceImplementation implements HeadOnService {
 	
 	@Autowired
 	public HeadOnServiceImplementation(HeadOnCreatorRepository repository) {
-		System.out.println("??");
 		this.repository = repository;
 	}
 		
 	@Override
 	public HeadOnTournament save(HeadOnTournament headontournament) {
-		
-		System.out.println("tournament saving");
 		return repository.save(headontournament);
 	}
 
 	@Override
 	public void delete(HeadOnTournament headontournament) {
 		repository.delete(headontournament);
+	}
+
+	@Override
+	public List<HeadOnTournament> findAll() {
+		return repository.findAll();
+		
+	}
+
+	@Override
+	public List<HeadOnTournament> findAllReverseOrder() {
+		// Get all the Postit notes
+        List<HeadOnTournament> postitNotes = repository.findAll();
+
+        // Reverse the list
+        Collections.reverse(postitNotes);
+
+        return postitNotes;
+	}
+
+	@Override
+	public HeadOnTournament findOne(Long id) {
+		return repository.findOne(id);
 	}
 
 

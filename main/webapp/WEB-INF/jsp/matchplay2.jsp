@@ -46,7 +46,38 @@
   <h2>Your tournament</h2>
   <p>has been successfully created! This is how it looks:</p>
 
-  <table class="w3-table-all w3-hoverable">
+	<%--Choose what code to generate based on tests that we implement--%>
+	<c:choose>
+		<%--If the model has an attribute with the name `postitNotes`--%>
+		<c:when test="${not empty golfers}">
+			<%--Create a table for the Postit Notes--%>
+			<table class="notes">
+
+				<%--For each postit note, that is in the list that was passed in the model--%>
+				<%--generate a row in the table--%>
+				<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
+				<c:forEach var="golfer" items="${golfers}">
+					<tr>
+						<%--We can reference attributes of the Entity by just entering the name we gave--%>
+						<%--it in the singular item var, and then just a dot followed by the attribute name--%>
+
+						<%--Create a link based on the name attribute value--%>
+						<td>${golfer.name}</td>
+						<%--The String in the note attribute--%>
+						<td>${golfer.handicap}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:when>
+
+		<%--If all tests are false, then do this--%>
+		<c:otherwise>
+			<h3>No notes!</h3>
+		</c:otherwise>
+	</c:choose>
+ 			
+ 			
+ 	<table class="w3-table-all w3-hoverable">
     <thead>
       <tr class="w3-theme">
         <th>First Name</th>

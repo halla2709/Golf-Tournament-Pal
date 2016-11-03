@@ -47,17 +47,17 @@ public class DemoController {
         return "mypage";
     }
     
-    @RequestMapping(value = "/matchplay", method = RequestMethod.GET)
-    public String matchplay(){
-
-        return "matchplay";
-    }
-    
-    @RequestMapping(value = "/matchplay2", method = RequestMethod.GET)
-    public String matchplay2(){
-
-        return "matchplay2";
-    }
+//    @RequestMapping(value = "/matchplay", method = RequestMethod.GET)
+//    public String matchplay(){
+//
+//        return "matchplay";
+//    }
+//    
+//    @RequestMapping(value = "/matchplay2", method = RequestMethod.GET)
+//    public String matchplay2(){
+//
+//        return "matchplay2";
+//    }
     
     @RequestMapping(value = "/scoreboard", method = RequestMethod.GET)
     public String scoreboard(){
@@ -66,9 +66,15 @@ public class DemoController {
     }
     
     @RequestMapping(value = "/scoreboard2", method = RequestMethod.GET)
-    public String scoreboard2(){
+    public String scoreboaard2(){
 
         return "scoreboard2";
+    }
+    
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+    public String about(){
+
+        return "about";
     }
 
 }

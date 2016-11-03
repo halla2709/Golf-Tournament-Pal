@@ -17,7 +17,6 @@ public class GolferServiceImplementation implements GolferService{
 	
 	@Autowired
 	public GolferServiceImplementation(GolferRepository repository) {
-		System.out.println("??");
 		this.repository = repository;
 	}
 	@Override
