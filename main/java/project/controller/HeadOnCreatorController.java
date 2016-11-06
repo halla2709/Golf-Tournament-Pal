@@ -24,6 +24,7 @@ public class HeadOnCreatorController {
 	GolferService golferService;
 	
 	HeadOnTournament tournament;
+	Integer numOutOfBrackets;
 	
 	@Autowired
 	public HeadOnCreatorController(HeadOnService headOnService, GolferService golferService){
@@ -50,13 +51,14 @@ public class HeadOnCreatorController {
 											Model model) {
 		System.out.println("numoob " + numOutOfBrackets);
 		
-		if(numOutOfBrackets!=null) {
+		if(tournament == null) {
 			tournament = headOnTournament;
+			this.numOutOfBrackets = numOutOfBrackets;
 		}
 		
 		System.out.println(tournament.getCourse());
 		
-    	if(golfer.getName()!=null) {
+    	if(golfer.getName() != null) {
     		System.out.println("Saving golfer " + golfer.getName());
     		tournament.addPlayer(golfer);
     		golferService.save(golfer);
@@ -70,4 +72,10 @@ public class HeadOnCreatorController {
 		return "wow";
 	}
 	
+	@RequestMapping(value="/matchplay2", method = RequestMethod.POST)
+	public String showTournament() { 
+		//HeadOnCreator creator = new HeadOnCreator()
+		headOnService.save(tournament);
+		return "matchplay2";
+	}
 }

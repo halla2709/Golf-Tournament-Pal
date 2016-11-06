@@ -65,19 +65,21 @@
 					<sf:checkbox path="areBrackets" id="brackets" class="w3-check" onClick="myfunction()" />
 					<label>Brackets</label>
 					<p>
-					<select name="numOutOfBrackets" id="bracketschecked" class="w3-select" style="width: 30%; display: none;" id="numOfBrackets">
+					<div id="hidden">
+				<select name="numOutOfBrackets" id="bracketschecked" class="w3-select" style="width: 30%; display: none;" id="numOfBrackets">
 						<option value="" disabled selected>How many participant	exit the bracket?</option>
 						<option value="1" ${param.numOutOfBrackets == '1' ? 'selected' :  ''}>1 participant</option>
-						<option value="2" ${param.numOutOfBrackets == '2' ? 'selected' :  ''}>2 participants</option>
+						<option value="2" ${param.numOutOfBrackets == '1' ? 'selected' :  ''}>2 participants</option>
 					</select> <br>
-					<input type="submit" value="Senda!!!"/>
-				</div>
+					<input style="display: none;" type="text"/>
+					<br>
+					</div>
+				<input type="submit" value="Senda!!!"/>
 				<br>
 			</sf:form>
 		</div>
 
 
-				<div class="w3-card-8" style="padding: 2em">
 		<hr>
 	</div>
 

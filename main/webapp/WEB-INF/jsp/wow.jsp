@@ -48,7 +48,7 @@
 		<h1>Create Tournament</h1>
 		<h3>2. Fill out information about participants:</h3>
 
-		<sf:form method="POST" commandName="golfer" action="/wow">
+		<sf:form method="POST" commandName="golfer" action="/addplayers">
 			<div style="padding: 2em;">
 
 				<div class="w3-card-8 w3-col l4 s6"
@@ -136,8 +136,10 @@
 			<p>After filling out information about the participants, the
 				tournament should be complete!</p>
 			<br>
+			<form action="/matchplay2" method="POST">
 			<input class="w3-theme w3-large" type="submit" type="button"
 				value="Create Tournament">
+				</form>
 			<br>
 			</div>
 

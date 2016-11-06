@@ -1,5 +1,5 @@
 function myfunction() {
-var link = document.getElementById('bracketschecked');
+var link = document.getElementById('hidden');
 	if (document.getElementById('brackets').checked) {
 		link.style.display = 'inline'; 
 }
