@@ -21,31 +21,33 @@
 
 <body>
 	<!-- Navigation (&Header)-->
-	<ul id="nav" class="w3-navbar w3-container w3-theme">
-		<li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
-		<li class="w3-dropdown-hover"><a
-			class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create
-				Tournament</a>
-			<div class="w3-dropdown-content w3-theme w3-card-4">
-				<a class="w3-padding-16 w3-hover-white" href="/matchplay">Matchplay
-					Tournament</a> <a class="w3-padding-16 w3-hover-white"
-					href="/scoreboard">Scoreboard Tournament</a>
-			</div></li>
-		<li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
-		<li><a class="w3-padding-16 w3-hover-white" href="/mypage">MyPage</a></li>
-		<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
-		<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
-		<br>
-		<br>
+	<div class="w3-top">
+		<ul class="w3-navbar w3-container w3-theme">
+			<li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
+			<li class="w3-dropdown-hover"><a
+				class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create
+					Tournament</a>
+				<div class="w3-dropdown-content theme w3-card-4">
+					<a class="w3-padding-16 theme w3-hover-white" href="/matchplay">Matchplay
+						Tournament</a> <a class="w3-padding-16 theme w3-hover-white"
+						href="/scoreboard">Scoreboard Tournament</a>
+				</div></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/mypage">My
+					Page</a></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
+			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
+			<br>
+			<br>
 
-		<!-- Header(&Navigation) -->
-		<header class="w3-container w3-theme w3-padding" id="myHeader">
-			<div class="w3-center">
-				<h2>Golf-Tournament Pal!</h2>
-				<h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
-			</div>
-		</header>
-	</ul>
+			<!-- Header(&Navigation) -->
+			<header class="w3-container w3-theme w3-padding" id="myHeader">
+				<div class="w3-center">
+					<h2>Golf-Tournament Pal!</h2>
+					<h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
+			</header>
+		</ul>
+	</div>
 	<hr>
 
 	<!-- Main Text -->
@@ -56,19 +58,18 @@
 		<div>
 			<h3>1. Fill out information about the tournament:</h3>
 			<sf:form>
-				<div class="w3-card-8" style="padding: 2em;">
+				<div class="w3-card-8" id="matchplays">
 					<input class="w3-input" type="text" required style="width: 30%">
 					<label class="w3-label w3-validate w3-border">Course</label>
 					<p>
-						<input class="w3-input" type="date" required
-							style="width: 10%"> <label
-							class="w3-label w3-validate w3-border">Date</label>
+						<input class="w3-input" type="date" required style="width: 10%">
+						<label class="w3-label w3-validate w3-border">Date</label>
 					<p>
 						<input id="brackets" class="w3-check" type="checkbox"
 							onClick="myfunction()"><label>Brackets</label>
 					<p>
 						<select id="bracketschecked" class="w3-select"
-							style="width: 30%; display: none;" id="numOfBrackets">
+							style="width: 30%">
 							<option value="" disabled selected>How many participant
 								exit the bracket?</option>
 							<option value="1">1 participant</option>
@@ -84,32 +85,37 @@
 
 		<!-- Container Participants -->
 
-	<div style="margin-right: 5em;">
-		<h3>2. Fill out information about participants:</h3>
-		<form method="POST" action="/matchplay2">
-			<div id="dynamicInput">
-				<div class="w3-card-8" style="padding: 2em">
-					<h5>Participant 1</h5>
+		<div style="margin-right: 5em;">
+			<h3>2. Fill out information about participants:</h3>
+			<form method="POST" action="/matchplay2">
+				<div id="dynamicInput">
+					<div class="w3-card-8" style="padding: 2em">
+						<h5>Participant 1</h5>
 
-					<div>
-					<input type="text" name="myInputs[]" placeholder="Enter name" class="w3-input" style="width:30%"/>
-					<input type="email" placeholder="Enter email address" class="w3-input" style="width:30%"/>
+						<div>
+							<input type="text" name="myInputs[]" placeholder="Enter name"
+								class="w3-input" style="width: 30%" /> <input type="email"
+								placeholder="Enter email address" class="w3-input"
+								style="width: 30%" />
+						</div>
+						<div>
+							<input type="text" placeholder="Enter social security number"
+								class="w3-input" style="width: 30%" /> <input type="number"
+								placeholder="Enter handicap" class="w3-input" style="width: 30%" />
+						</div>
 					</div>
-					<div>
-					<input type="text" placeholder="Enter social security number" class="w3-input" style="width:30%"/>
-					<input type="number" placeholder="Enter handicap" class="w3-input" style="width:30%"/>
-			  		</div>
 				</div>
-			</div>
-				<input class="w3-theme w3-small" type="button" value="Add another player" onClick="addInput('dynamicInput');"><br>
-			<p>
-				<input type="submit" class="w3-theme w3-large" type="button" value="Create Tournament"><br>
-	</form>
-	</div>
-	<hr>
+				<input class="w3-theme w3-small" type="button"
+					value="Add another player" onClick="addInput('dynamicInput');"><br>
+				<p>
+					<input type="submit" class="w3-theme w3-large" type="button"
+						value="Create Tournament"><br>
+			</form>
+		</div>
+		<hr>
 
 
-	<hr>
+		<hr>
 	</div>
 
 	<!-- Footer -->
@@ -149,5 +155,4 @@
 
 </body>
 </html>
-
 

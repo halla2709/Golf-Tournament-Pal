@@ -1,12 +1,17 @@
+
+
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-colors-highway.css">
+<link rel="stylesheet"
+	href="http://www.w3schools.com/lib/w3-colors-highway.css">
 <link rel="shortcut icon" href="../images/images.jpg" />
 <link rel="stylesheet" href="/style.css">
+<script src="/addInput.js" language="Javascript" type="text/javascript"></script>
+<script src="/checkBox.js" language="Javascript" type="text/javascript"></script>
 <html lang="is">
-
 <title>Golf-Tournament Pal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
@@ -17,21 +22,24 @@
 <body>
 	<!-- Navigation (&Header)-->
 	<div class="w3-top">
-		<ul id="nav" class="w3-navbar w3-container w3-theme">
+		<ul class="w3-navbar w3-container w3-theme">
 			<li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
-			<li class="w3-dropdown-hover"><a class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create Tournament</a>
-				<div class="w3-dropdown-content w3-theme w3-card-4">
-				<a class="w3-padding-16 w3-hover-w3-theme" href="/matchplay">Matchplay Tournament</a>
-				<a class="w3-padding-16 w3-hover-white" href="/scoreboard">Scoreboard Tournament</a>
-				</div>
-				</li>
+			<li class="w3-dropdown-hover"><a
+				class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create
+					Tournament</a>
+				<div class="w3-dropdown-content theme w3-card-4">
+					<a class="w3-padding-16 theme w3-hover-white" href="/matchplay">Matchplay
+						Tournament</a> <a class="w3-padding-16 theme w3-hover-white"
+						href="/scoreboard">Scoreboard Tournament</a>
+				</div></li>
 			<li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
-			<li><a class="w3-padding-16 w3-hover-white" href="/mypage">MyPage</a></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/mypage">My
+					Page</a></li>
 			<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
 			<br>
 			<br>
-	
+
 			<!-- Header(&Navigation) -->
 			<header class="w3-container w3-theme w3-padding" id="myHeader">
 				<div class="w3-center">
@@ -75,8 +83,7 @@
 		</div>
 		<div id="footer2"
 			class="w3-third w3-center w3-medium w3-theme w3-text-white">
-			<br>
-			<br>
+			<br> <br>
 			<p>Golfing,</p>
 			<p>It's a way of life</p>
 		</div>

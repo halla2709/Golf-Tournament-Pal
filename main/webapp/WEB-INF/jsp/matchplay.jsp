@@ -21,58 +21,58 @@
 
 <body>
 	<!-- Navigation (&Header)-->
-	<ul id="nav" class="w3-navbar w3-container w3-theme">
-		<li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
-		<li class="w3-dropdown-hover"><a
-			class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create
-				Tournament</a>
-			<div class="w3-dropdown-content w3-theme w3-card-4">
-				<a class="w3-padding-16 w3-hover-white" href="/matchplay">Matchplay
-					Tournament</a> <a class="w3-padding-16 w3-hover-white"
-					href="/scoreboard">Scoreboard Tournament</a>
-			</div></li>
-		<li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
-		<li><a class="w3-padding-16 w3-hover-white" href="/mypage">MyPage</a></li>
-		<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
-		<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
-		<br>
-		<br>
+	<div class="w3-top">
+		<ul class="w3-navbar w3-container w3-theme">
+			<li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
+			<li class="w3-dropdown-hover"><a
+				class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create
+					Tournament</a>
+				<div class="w3-dropdown-content theme w3-card-4">
+					<a class="w3-padding-16 theme w3-hover-white" href="/matchplay">Matchplay
+						Tournament</a> <a class="w3-padding-16 theme w3-hover-white"
+						href="/scoreboard">Scoreboard Tournament</a>
+				</div></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/mypage">My
+					Page</a></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
+			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
+			<br>
+			<br>
 
-		<!-- Header(&Navigation) -->
-		<header class="w3-container w3-theme w3-padding" id="myHeader">
-			<div class="w3-center">
-				<h2>Golf-Tournament Pal!</h2>
-				<h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
-		</header>
-	</ul>
+			<!-- Header(&Navigation) -->
+			<header class="w3-container w3-theme w3-padding" id="myHeader">
+				<div class="w3-center">
+					<h2>Golf-Tournament Pal!</h2>
+					<h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
+			</header>
+		</ul>
+	</div>
 	<hr>
 
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
 		<h1>Create a MatchPlay Tournament</h1>
 		<br>
-		<!-- Container Tournament -->
-		<div>
-			<h3>1. Fill out information about the tournament:</h3>
+		<h3>1. Please fill out information about the tournament:</h3>
+		<br>
 			<sf:form method="POST" commandName="headOnTournament"
 				action="/addplayers">
-				<div class="w3-card-8" style="padding: 2em;">
+				<div id="matchplay" class="w3-card-8">
 					<sf:input path="course" class="w3-input" type="text"
 						style="width: 30%" />
-					<label class="w3-label w3-validate w3-border">Course</label>
-					<p>
-						<sf:input path="startDate" class="w3-input" type="date"
-							style="width: 10%" />
-						<label class="w3-label w3-validate w3-border">Date</label>
-					<p>
-						<sf:checkbox path="areBrackets" id="brackets" class="w3-check"
-							onClick="myfunction()" />
-						<label>Brackets</label>
-					<p>
-					<div id="hidden" style="display: none;">
+					<label class="w3-label w3-validate w3-border">Course</label> <br>
+					<sf:input path="startDate" class="w3-input" type="date"
+						style="width: 10%" />
+					<label class="w3-label w3-validate w3-border">Date</label> <br>
+					<br>
+					<sf:checkbox path="areBrackets" id="brackets" class="w3-check"
+						onClick="myfunction()" />
+					<label>Brackets</label> <br> <br>
+					<div id="hidden">
 						<select name="numOutOfBrackets" id="bracketschecked"
-							class="w3-select" style="width: 30%;">
-							<option value="" disabled selected>How many participant
+							class="w3-select w3-validate" style="width: 30%;">
+							<option value="" disabled selected>How many participants
 								exit the bracket?</option>
 							<option value="1"
 								${param.numOutOfBrackets == '1' ? 'selected' :  ''}>1
@@ -80,15 +80,19 @@
 							<option value="2"
 								${param.numOutOfBrackets == '1' ? 'selected' :  ''}>2
 								participants</option>
-						</select> <br> 
-						<input type="number" name="numberInBrackets"/> 
-						<label>How many players in brackets</label><br>
+						</select> <br> <br> <input type="number" style="width: 10%;"
+							class="w3-input" name="numberInBrackets" placeholder="1" /> <label
+							class="w3-label w3-validate w3-border">How many
+							participants in brackets?</label>
 					</div>
-					<input type="submit" value="Senda!!!" /> <br>
+					<br> <br>
+					<p>After filling out information about the tournament, it is
+						time to fill out information about the participants.</p>
+					<input class="w3-theme w3-large" type="submit" type="button"
+						value="Participant Information"><br>
+				</div>
+				<br>
 			</sf:form>
-		</div>
-
-
 		<hr>
 	</div>
 
@@ -129,5 +133,4 @@
 
 </body>
 </html>
-
 

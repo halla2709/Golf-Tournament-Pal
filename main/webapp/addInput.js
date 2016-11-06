@@ -14,4 +14,8 @@ function addInput(divName){
           document.getElementById(divName).appendChild(newdiv);
           counter++;
      }
-}
+};
+
+function dismiss(){
+	      document.getElementById('dismiss').style.display='none';
+};

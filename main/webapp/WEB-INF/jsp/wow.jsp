@@ -1,12 +1,16 @@
+
+
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <link rel="stylesheet"
 	href="http://www.w3schools.com/lib/w3-colors-highway.css">
 <link rel="shortcut icon" href="../images/images.jpg" />
 <link rel="stylesheet" href="/style.css">
+<script src="/addInput.js" language="Javascript" type="text/javascript"></script>
+<script src="/checkBox.js" language="Javascript" type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,30 +21,33 @@
 
 <body>
 	<!-- Navigation (&Header)-->
-	<ul id="nav" class="w3-navbar w3-container w3-theme">
-		<li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
-		<li class="w3-dropdown-hover"><a
-			class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create
-				Tournament</a>
-			<div class="w3-dropdown-content w3-theme w3-card-4">
-				<a class="w3-padding-16 w3-hover-white" href="/matchplay">Matchplay
-					Tournament</a> <a class="w3-padding-16 w3-hover-white"
-					href="/scoreboard">Scoreboard Tournament</a>
-			</div></li>
-		<li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
-		<li><a class="w3-padding-16 w3-hover-white" href="/mypage">MyPage</a></li>
-		<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
-		<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
-		<br>
-		<br>
+	<div class="w3-top">
+		<ul class="w3-navbar w3-container w3-theme">
+			<li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
+			<li class="w3-dropdown-hover"><a
+				class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create
+					Tournament</a>
+				<div class="w3-dropdown-content theme w3-card-4">
+					<a class="w3-padding-16 theme w3-hover-white" href="/matchplay">Matchplay
+						Tournament</a> <a class="w3-padding-16 theme w3-hover-white"
+						href="/scoreboard">Scoreboard Tournament</a>
+				</div></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/mypage">My
+					Page</a></li>
+			<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
+			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
+			<br>
+			<br>
 
-		<!-- Header(&Navigation) -->
-		<header class="w3-padding" id="myHeader">
-			<div class="w3-center">
-				<h2>Golf-Tournament Pal!</h2>
-				<h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
-		</header>
-	</ul>
+			<!-- Header(&Navigation) -->
+			<header class="w3-container w3-theme w3-padding" id="myHeader">
+				<div class="w3-center">
+					<h2>Golf-Tournament Pal!</h2>
+					<h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
+			</header>
+		</ul>
+	</div>
 	<hr>
 
 	<!-- Main Text -->
@@ -59,7 +66,7 @@
 							<td>Name:</td>
 							<%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
 							<td><sf:input path="name" type="text"
-									placeholder="Enter Name" class="w3-input" style="width:150%" /></td>
+									placeholder="Enter Name" class="w3-input" /></td>
 						</tr>
 						<tr>
 							<td>Handicap:</td>
@@ -71,12 +78,13 @@
 							<td>Social:</td>
 							<%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
 							<td><sf:input path="social" type="text"
-									placeholder="Enter SSN" class="w3-input" style="width:60%"/></td>
+									placeholder="Enter SSN" class="w3-input" style="width:60%" /></td>
 						</tr>
 						<tr>
 							<td>Email:</td>
 							<%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-							<td><sf:input path="email" type="email" class="w3-input" style="width:150%" placeholder="Enter Email"/></td>
+							<td><sf:input path="email" type="email" class="w3-input"
+									placeholder="Enter Email" /></td>
 						</tr>
 
 					</table>
@@ -92,11 +100,12 @@
 							<%--Create a table for the Postit Notes--%>
 							<table class="w3-table-all w3-hoverable">
 								<thead>
-									<tr>
+									<tr id="table">
 										<td>First Name</td>
 										<td>Social Security Number</td>
 										<td>Email</td>
 										<td>Handicap</td>
+
 									</tr>
 								</thead>
 
@@ -104,17 +113,18 @@
 								<%--generate a row in the table--%>
 								<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
 								<c:forEach var="golfer" items="${golfers}">
-									<tr>
+
+									<tr id="dismiss">
 										<%--We can reference attributes of the Entity by just entering the name we gave--%>
 										<%--it in the singular item var, and then just a dot followed by the attribute name--%>
 
 										<%--Create a link based on the name attribute value--%>
 										<td>${golfer.name}</td>
-										<%--The String in the note attribute--%>
 										<td>${golfer.social}</td>
 										<td>${golfer.email}</td>
-										<td>${golfer.handicap}</td>
-
+										<td>${golfer.handicap}<span onclick="dismiss()"
+											class="w3-closebtn w3-margin-right w3-medium">&times;</span>
+										</td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -123,29 +133,32 @@
 
 						<%--If all tests are false, then do this--%>
 						<c:otherwise>
-							<h4>You have not entered any participants yet!</h4>
+							<table class="w3-table-all w3-hoverable">
+								<thead>
+									<tr id="table">
+										<td>First Name</td>
+										<td>Social Security Number</td>
+										<td>Email</td>
+										<td>Handicap</td>
+
+									</tr>
+								</thead>
+							</table>
+							<p>You have not entered any participants yet!</p>
 						</c:otherwise>
 					</c:choose>
 				</div>
-
+				<div class="w3-col s12">
+				<p> After selecting participants in the tournament, create the tournament!
+					<br><input class="w3-theme w3-large" type="submit" type="button"value="Create Tournament"/><br>
+				</div>
 			</div>
-			</sf:form>
+					
+		</sf:form>
 
-	<div class="w3-row w3-container w3-col 18 s12">
-			<br>
-			<p>After filling out information about the participants, the
-				tournament should be complete!</p>
-			<br>
-			<form action="/matchplay2" method="POST">
-			<input class="w3-theme w3-large" type="submit" type="button"
-				value="Create Tournament">
-				</form>
-			<br>
-			</div>
-
-		
+	
+	<hr>
 	</div>
-
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"
@@ -180,6 +193,6 @@
 			</ul>
 		</div>
 	</div>
-
 </body>
 </html>
+

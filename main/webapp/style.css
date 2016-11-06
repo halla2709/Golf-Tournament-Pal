@@ -1,56 +1,73 @@
 .w3-theme {
-	color:#ffffff;
-	opacity:1;
-	background-color:#001A85;
+	color: #ffffff;
+	opacity: 1;
+	background-color: #001A85;
 }
 
-ul
-{
-	list-style:none;
+.theme {
+	color: #ffffff;
+	opacity: 1;
+	background-color: #001A85;
+}
+
+#table {
+	background-color: #001A85;
+	color: #ffffff;
+}
+
+ul {
+	list-style: none;
 }
 
 #nav {
-	
-	position:fixed;
-	top:0; 
-	height:12em; 
-	width:100%; 
-	z-index:0;
+	position: fixed;
+	top: 0px;
+	height: 12em;
+	width: 100%;
+	z-index: 0;
 }
 
-
-#login
-{
-	 float:right;
+#login {
+	float: right;
 }
 
-#main { 		
-    position:relative; 
-    top:8em; 
-    padding: 2em; 
-    margin-bottom:150px; 
-    z-index:0;"
+#main {
+	position: relative;
+	top: 8em;
+	padding: 2em;
+	margin-bottom: 15em;
+	z-index: 0;
+	"
 }
 
-#golferimg
-{
-	width:100%; 
-	max-width:200px;
+#golferimg {
+	width: 100%;
+	max-width: 200px;
 }
 
-#footer
-{
-	width:100%; 
-	height:150px; 
-	bottom:0px; 
-	position:relative;
-}
-#footer1, #footer2, #footer3
-{
-	height:12em;
+#footer {
+	width: 100%;
+	bottom: 0px;
+	position: relative;
 }
 
-#footer.p
-{
-	width:30px
+#footer1, #footer2, #footer3 {
+	height: 12em;
+}
+
+/* This is document specific*/
+#search {
+	width: 30%;
+}
+
+#matchplay, #matchplays #scoreboard {
+	padding: 2em;
+}
+
+#hidden {
+	display: none;
+}
+
+#bracketschecked {
+	display: none;
 }
