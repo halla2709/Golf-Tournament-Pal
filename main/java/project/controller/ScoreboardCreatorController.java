@@ -54,7 +54,9 @@ public class ScoreboardCreatorController {
         // Return the view
         return "prufa";
     }
-    
+
+
+
     @RequestMapping(value="/scoreboardprufa", method = RequestMethod.GET)
     public String scoreboardprufuGet(Model model) {
     	model.addAttribute("scoreboard", new ScoreboardTournament());
@@ -77,5 +79,6 @@ public class ScoreboardCreatorController {
     	model.addAttribute("golfers", scoreboard.getPlayers());
     	return "wow";
     }
-    
+
+	
 }
