@@ -81,7 +81,7 @@
 								${param.numOutOfBrackets == '1' ? 'selected' :  ''}>2
 								participants</option>
 						</select> <br> <br> <input type="number" style="width: 10%;"
-							class="w3-input" name="numberInBrackets" placeholder="1" /> <label
+							class="w3-input" name="numberInBrackets"/> <label
 							class="w3-label w3-validate w3-border">How many
 							participants in brackets?</label>
 					</div>

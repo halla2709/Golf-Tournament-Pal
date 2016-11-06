@@ -10,19 +10,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Golfer") 
-public class Golfer implements Comparable<Golfer>, Serializable{
+public class Golfer implements Comparable<Golfer> {
 	
-	private static final long serialVersionUID = 8509943069522870963L;
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 436502358235599004L;
+
+	//private static final long serialVersionUID = 8509943069522870963L;
 
 	private String name;
 	
     @Id
-	private int social;
+	private long social;
     
 	private double handicap;
 	private String email;
 	
-	public Golfer(String name, int social, double handicap, String email) {
+	public Golfer(String name, long social, double handicap, String email) {
 		this.name = name;
 		this.social = social;
 		this.handicap = handicap;
@@ -49,14 +54,16 @@ public class Golfer implements Comparable<Golfer>, Serializable{
 	}
 
 	public void setName(String name) {
+		System.out.println("setting name " + name);
 		this.name = name;
 	}
 
-	public int getSocial() {
+	public long getSocial() {
 		return social;
 	}
 
-	public void setSocial(int social) {
+	public void setSocial(long social) {
+		System.out.println("setting social " + social);
 		this.social = social;
 	}
 
@@ -65,6 +72,7 @@ public class Golfer implements Comparable<Golfer>, Serializable{
 	}
 
 	public void setHandicap(double handicap) {
+		System.out.println("setting hcp " + handicap);
 		this.handicap = handicap;
 	}
 
@@ -73,6 +81,7 @@ public class Golfer implements Comparable<Golfer>, Serializable{
 	}
 
 	public void setEmail(String email) {
+		System.out.println("setting email " + email);
 		this.email = email;
 	}
 

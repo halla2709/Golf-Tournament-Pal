@@ -1,6 +1,7 @@
 package project.service.Implementation;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,14 @@ public class HeadOnServiceImplementation implements HeadOnService {
 	}
 		
 	@Override
-	public HeadOnTournament save(HeadOnTournament headontournament) {
-		return repository.save(headontournament);
+	public HeadOnTournament save(boolean areBrackets, List<Golfer> players, int numInBracket, int numOutOfBrackets, String course, Date startDate) {
+		
+		HeadOnCreator creator = new HeadOnCreator(areBrackets, players, numInBracket, numOutOfBrackets);
+		if(!creator.playerNumberValidator()) return null;
+		
+		HeadOnTournament newt = creator.createTournament(course, startDate);
+		repository.save(newt);
+		return newt;
 	}
 
 	@Override

@@ -56,15 +56,12 @@ public class Bracket {
 		this.match = match;
 	}
 
-	public Golfer[] getPlayers() {
-		return (Golfer[]) players.toArray();
+	public List<Golfer> getPlayers() {
+		return players;
 	}
 
-	public void setPlayers(Golfer[] players) {
-		for(int i = 0; i <  players.length; i++){
-			this.players.add(players[i]);
-		}
-		
+	public void setPlayers(List<Golfer> players) {
+		this.players = players;
 	}
 
 	public void addPlayer(Golfer player) {

@@ -1,5 +1,6 @@
 package project.service;
 
+import java.util.Date;
 import java.util.List;
 
 import project.persistence.entities.Golfer;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface HeadOnService {
 	
-	HeadOnTournament save(HeadOnTournament headontournament);
+	HeadOnTournament save(boolean areBrackets, List<Golfer> players, int numInBracket, int numOutOfBrackets, String course, Date startDate);
 	
 	void delete(HeadOnTournament headontournament);
 	 /**

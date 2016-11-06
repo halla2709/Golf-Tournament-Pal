@@ -26,15 +26,13 @@ public class HeadOnCreatorController {
 	HeadOnTournament tournament;
 	Integer numOutOfBrackets;
 	Integer numberInBrackets;
+	boolean beenhere;
 	
 	@Autowired
 	public HeadOnCreatorController(HeadOnService headOnService, GolferService golferService){
 		this.headOnService = headOnService;
 		this.golferService = golferService;
-	}
-	
-	public HeadOnTournament save(HeadOnTournament tournament){
-		return headOnService.save(tournament);
+		beenhere = false;
 	}
 	
 	@RequestMapping(value="/matchplay", method = RequestMethod.GET)
@@ -54,12 +52,14 @@ public class HeadOnCreatorController {
 											@RequestParam(value = "numOutOfBrackets", required=false) Integer numOutOfBrackets,
 											@RequestParam(value = "numberInBrackets", required=false) Integer numberInBrackets,
 											Model model) {
+		
 		System.out.println("numoob " + numOutOfBrackets);
 		System.out.println("number in brackets " + numberInBrackets);
-		if(tournament == null) {
+		if(!beenhere) {
 			tournament = headOnTournament;
 			this.numOutOfBrackets = numOutOfBrackets;
 			this.numberInBrackets = numberInBrackets;
+			beenhere = true;
 		}
 		
 		System.out.println(tournament.getCourse());
@@ -79,12 +79,18 @@ public class HeadOnCreatorController {
 	}
 	
 	@RequestMapping(value="/matchplay2", method = RequestMethod.POST)
-	public String showTournament() { 
+	public String showTournament(Model model) { 
 		if(numberInBrackets == null) numberInBrackets = 0;
 		if(numOutOfBrackets == null) numOutOfBrackets = 0;
-		HeadOnCreator creator = new HeadOnCreator(tournament.isAreBrackets(), tournament.getPlayers(), numberInBrackets, numOutOfBrackets);
-		System.out.println(creator.createTournament());
-		//headOnService.save(tournament);
+
+		tournament = headOnService.save(tournament.isAreBrackets(), tournament.getPlayers(),
+				numberInBrackets, numOutOfBrackets, tournament.getCourse(), tournament.getStartDate());
+		
+		model.addAttribute("golfers", tournament.getPlayers());
+		model.addAttribute("brackets", tournament.getBrackets());
+		model.addAttribute("playofftree", tournament.getPlayOffs());
+		
+		beenhere = false;
 		return "matchplay2";
 	}
 }

@@ -55,12 +55,12 @@
 		<h1>Create Tournament</h1>
 		<h3>2. Fill out information about participants:</h3>
 
-		<sf:form method="POST" commandName="golfer" action="/addplayers">
-			<div style="padding: 2em;">
 
-				<div class="w3-card-8 w3-col l4 s6"
-					style="padding: 2em; margin-right: 2em;">
+		<div style="padding: 2em;">
 
+			<div class="w3-card-8 w3-col l4 s6"
+				style="padding: 2em; margin-right: 2em;">
+				<sf:form method="POST" commandName="golfer" action="/addplayers">
 					<table>
 						<tr>
 							<td>Name:</td>
@@ -87,77 +87,87 @@
 									placeholder="Enter Email" /></td>
 						</tr>
 
+						<br>
+						<br>
 					</table>
-					<br> <br> <input class="w3-theme w3-medium" type="submit"
-						type="button" VALUE="Add Player" />
-				</div>
+					<input class="w3-theme w3-medium" type="submit" type="button"
+						VALUE="Add Player" />
 
-				<div class="w3-card-8 w3-col 18 s6 w3-center">
-					<%--Choose what code to generate based on tests that we implement--%>
-					<c:choose>
-						<%--If the model has an attribute with the name `postitNotes`--%>
-						<c:when test="${not empty golfers}">
-							<%--Create a table for the Postit Notes--%>
-							<table class="w3-table-all w3-hoverable">
-								<thead>
-									<tr id="table">
-										<td>First Name</td>
-										<td>Social Security Number</td>
-										<td>Email</td>
-										<td>Handicap</td>
+				</sf:form>
 
-									</tr>
-								</thead>
-
-								<%--For each postit note, that is in the list that was passed in the model--%>
-								<%--generate a row in the table--%>
-								<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
-								<c:forEach var="golfer" items="${golfers}">
-
-									<tr id="dismiss">
-										<%--We can reference attributes of the Entity by just entering the name we gave--%>
-										<%--it in the singular item var, and then just a dot followed by the attribute name--%>
-
-										<%--Create a link based on the name attribute value--%>
-										<td>${golfer.name}</td>
-										<td>${golfer.social}</td>
-										<td>${golfer.email}</td>
-										<td>${golfer.handicap}<span onclick="dismiss()"
-											class="w3-closebtn w3-margin-right w3-medium">&times;</span>
-										</td>
-									</tr>
-								</c:forEach>
-							</table>
-
-						</c:when>
-
-						<%--If all tests are false, then do this--%>
-						<c:otherwise>
-							<table class="w3-table-all w3-hoverable">
-								<thead>
-									<tr id="table">
-										<td>First Name</td>
-										<td>Social Security Number</td>
-										<td>Email</td>
-										<td>Handicap</td>
-
-									</tr>
-								</thead>
-							</table>
-							<p>You have not entered any participants yet!</p>
-						</c:otherwise>
-					</c:choose>
-				</div>
-				<div class="w3-col s12">
-				<p> After selecting participants in the tournament, create the tournament!
-					<br><input class="w3-theme w3-large" type="submit" type="button"value="Create Tournament"/><br>
-				</div>
 			</div>
-					
-		</sf:form>
 
-	
-	<hr>
+			<div class="w3-card-8 w3-col 18 s6 w3-center">
+				<%--Choose what code to generate based on tests that we implement--%>
+				<c:choose>
+					<%--If the model has an attribute with the name `postitNotes`--%>
+					<c:when test="${not empty golfers}">
+						<%--Create a table for the Postit Notes--%>
+						<table class="w3-table-all w3-hoverable">
+							<thead>
+								<tr id="table">
+									<td>First Name</td>
+									<td>Social Security Number</td>
+									<td>Email</td>
+									<td>Handicap</td>
+
+								</tr>
+							</thead>
+
+							<%--For each postit note, that is in the list that was passed in the model--%>
+							<%--generate a row in the table--%>
+							<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
+							<c:forEach var="golfer" items="${golfers}">
+
+								<tr id="dismiss">
+									<%--We can reference attributes of the Entity by just entering the name we gave--%>
+									<%--it in the singular item var, and then just a dot followed by the attribute name--%>
+
+									<%--Create a link based on the name attribute value--%>
+									<td>${golfer.name}</td>
+									<td>${golfer.social}</td>
+									<td>${golfer.email}</td>
+									<td>${golfer.handicap}<span onclick="dismiss()"
+										class="w3-closebtn w3-margin-right w3-medium">&times;</span>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+
+					</c:when>
+
+					<%--If all tests are false, then do this--%>
+					<c:otherwise>
+						<table class="w3-table-all w3-hoverable">
+							<thead>
+								<tr id="table">
+									<td>First Name</td>
+									<td>Social Security Number</td>
+									<td>Email</td>
+									<td>Handicap</td>
+
+								</tr>
+							</thead>
+						</table>
+						<p>You have not entered any participants yet!</p>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div class="w3-col s12">
+				<p>
+					After selecting participants in the tournament, create the
+					tournament! <br>
+				<form method="POST" action="/matchplay2">
+					<input class="w3-theme w3-large" type="submit" type="button"
+						value="Create Tournament" /><br>
+				</form>
+			</div>
+		</div>
+
+
+
+
+		<hr>
 	</div>
 	<!-- Footer -->
 	<div id="footer">

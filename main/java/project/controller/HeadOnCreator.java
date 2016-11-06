@@ -54,7 +54,7 @@ public class HeadOnCreator {
 		unsorted.add(hedda);
 		HeadOnCreator headOnCreator = new HeadOnCreator(true, unsorted, 3, 2);
 		
-		HeadOnTournament tournament = headOnCreator.createTournament();
+		HeadOnTournament tournament = headOnCreator.createTournament("Halla", new Date());
 		
 		System.out.println(headOnCreator.numOfBrackets);
 	}
@@ -67,7 +67,7 @@ public class HeadOnCreator {
 		return Math.log(input)/Math.log(2);
 	}
 	
-	private boolean playerNumberValidator() {
+	public boolean playerNumberValidator() {
 		int playerNumber = players.size();
 		
 		if(areBrackets) {
@@ -150,9 +150,8 @@ public class HeadOnCreator {
 		
 	}
 	
-	public HeadOnTournament createTournament() {
+	public HeadOnTournament createTournament(String course, Date startDate) {
 		// Tjekkum hvort vi� getum sett m�ti� upp
-		System.out.println("HER");
 		if(!playerNumberValidator()) return null;
 		
 		List<Bracket> brackets = new ArrayList<Bracket>();
@@ -170,19 +169,7 @@ public class HeadOnCreator {
 		// B�um til �tsl�ttatr��
 		playoffs = createPlayOffTree(numInPlayoffs);
 		
-		Scanner scan = new Scanner(System.in);
-		String course = "korpa";
-		String s = "01 01 2011";
-	    DateFormat df = new SimpleDateFormat("dd MM yyyy");
-	    Date start = new Date();
-		try {
-			start = df.parse(s);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-		scan.close();
-		return new HeadOnTournament(course, start, players, areBrackets, brackets, playoffs);
+		return new HeadOnTournament(course, startDate, players, areBrackets, brackets, playoffs);
 	}
 	
 
