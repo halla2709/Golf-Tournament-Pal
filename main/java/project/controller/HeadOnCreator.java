@@ -73,7 +73,7 @@ public class HeadOnCreator {
 		if(areBrackets) {
 			double dNumOfBrackets = playerNumber/numInBracket;
 			numOfBrackets = (int) Math.floor(dNumOfBrackets);
-			// Mega ekki vera f�rri en 2 ri�lar og fj�ldi leikmanna ver�ur a� ganga upp � ri�lana
+			// Mega ekki vera faerri en 2 ridlar og fjoldi leikmanna verdur ad ganga upp i ridlana
 			if(numOfBrackets < 2 || numOfBrackets != dNumOfBrackets) return false;
 			// Fj�ldi ri�la ver�ur a� vera veldi af 2.
 			else if(Math.floor(changeToBase2(numOfBrackets)) == changeToBase2(numOfBrackets)) return true;

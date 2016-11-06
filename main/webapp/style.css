@@ -1,9 +1,7 @@
 .w3-theme {
-color:#fff	;
-opacity:1.0;
-background-color:solid;
+color:#ffffff;
+opacity:1;
 background-color:#1a237e;
-
 }
 
 ul
@@ -12,13 +10,17 @@ ul
 }
 
 #nav {
+	
 	position:fixed;
-	background-color:#1a237e;
-	color:#fff	 
-	top:0px; 
+	top:0;
+	background-color:#004080;
+	color:#fff;	 
 	height:12em; 
 	width:100%; 
 	z-index:0;
+}
+#myHeader{
+	
 }
 
 #login

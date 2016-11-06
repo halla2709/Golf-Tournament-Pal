@@ -2,7 +2,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-colors-highway.css">
 <link rel="shortcut icon" href="../images/images.jpg" />
 <link rel="stylesheet" href="/style.css">
 <html lang="is">
@@ -15,7 +14,8 @@
 
 <body>
 	<!-- Navigation (&Header)-->
-	<ul id="nav" class="w3-navbar w3-container w3-theme">
+	<div class="w3-top">
+	<ul id="nav" class="w3-navbar" >
 		<li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
 		<li class="w3-dropdown-hover"><a
 			class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create
@@ -39,6 +39,7 @@
 				<h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
 		</header>
 	</ul>
+	</div>
 	<hr>
 
 	<!-- Main Text -->
