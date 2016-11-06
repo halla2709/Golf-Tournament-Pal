@@ -71,6 +71,7 @@ public class HeadOnCreator {
 		int playerNumber = players.size();
 		
 		if(areBrackets) {
+			if(playerNumber < numInBracket) return false;
 			double dNumOfBrackets = playerNumber/numInBracket;
 			numOfBrackets = (int) Math.floor(dNumOfBrackets);
 			// Mega ekki vera faerri en 2 ridlar og fjoldi leikmanna verdur ad ganga upp i ridlana
@@ -151,6 +152,7 @@ public class HeadOnCreator {
 	
 	public HeadOnTournament createTournament() {
 		// Tjekkum hvort vi� getum sett m�ti� upp
+		System.out.println("HER");
 		if(!playerNumberValidator()) return null;
 		
 		List<Bracket> brackets = new ArrayList<Bracket>();

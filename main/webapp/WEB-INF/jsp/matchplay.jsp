@@ -54,28 +54,37 @@
 		<!-- Container Tournament -->
 		<div>
 			<h3>1. Fill out information about the tournament:</h3>
-			<sf:form method="POST" commandName="headOnTournament" action="/addplayers">
+			<sf:form method="POST" commandName="headOnTournament"
+				action="/addplayers">
 				<div class="w3-card-8" style="padding: 2em;">
-					<sf:input path="course" class="w3-input" type="text" style="width: 30%"/>
+					<sf:input path="course" class="w3-input" type="text"
+						style="width: 30%" />
 					<label class="w3-label w3-validate w3-border">Course</label>
 					<p>
-					<sf:input path="startDate" class="w3-input" type="date" style="width: 10%" />
-					<label class="w3-label w3-validate w3-border">Date</label>
+						<sf:input path="startDate" class="w3-input" type="date"
+							style="width: 10%" />
+						<label class="w3-label w3-validate w3-border">Date</label>
 					<p>
-					<sf:checkbox path="areBrackets" id="brackets" class="w3-check" onClick="myfunction()" />
-					<label>Brackets</label>
+						<sf:checkbox path="areBrackets" id="brackets" class="w3-check"
+							onClick="myfunction()" />
+						<label>Brackets</label>
 					<p>
-					<div id="hidden">
-				<select name="numOutOfBrackets" id="bracketschecked" class="w3-select" style="width: 30%; display: none;" id="numOfBrackets">
-						<option value="" disabled selected>How many participant	exit the bracket?</option>
-						<option value="1" ${param.numOutOfBrackets == '1' ? 'selected' :  ''}>1 participant</option>
-						<option value="2" ${param.numOutOfBrackets == '1' ? 'selected' :  ''}>2 participants</option>
-					</select> <br>
-					<input style="display: none;" type="text"/>
-					<br>
+					<div id="hidden" style="display: none;">
+						<select name="numOutOfBrackets" id="bracketschecked"
+							class="w3-select" style="width: 30%;">
+							<option value="" disabled selected>How many participant
+								exit the bracket?</option>
+							<option value="1"
+								${param.numOutOfBrackets == '1' ? 'selected' :  ''}>1
+								participant</option>
+							<option value="2"
+								${param.numOutOfBrackets == '1' ? 'selected' :  ''}>2
+								participants</option>
+						</select> <br> 
+						<input type="number" name="numberInBrackets"/> 
+						<label>How many players in brackets</label><br>
 					</div>
-				<input type="submit" value="Senda!!!"/>
-				<br>
+					<input type="submit" value="Senda!!!" /> <br>
 			</sf:form>
 		</div>
 

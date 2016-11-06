@@ -25,6 +25,7 @@ public class HeadOnCreatorController {
 	
 	HeadOnTournament tournament;
 	Integer numOutOfBrackets;
+	Integer numberInBrackets;
 	
 	@Autowired
 	public HeadOnCreatorController(HeadOnService headOnService, GolferService golferService){
@@ -40,6 +41,9 @@ public class HeadOnCreatorController {
 	public String matchplay2(Model model) { 
 
 		model.addAttribute("headOnTournament", new HeadOnTournament());
+		tournament = new HeadOnTournament();
+		numOutOfBrackets = 0;
+		numberInBrackets = 0;
 		
 		return "matchplay";
 	}
@@ -48,12 +52,14 @@ public class HeadOnCreatorController {
 	public String addPlayersToMatchplayers(@ModelAttribute("headOnTournament") HeadOnTournament headOnTournament,
 											@ModelAttribute("golfer") Golfer golfer,
 											@RequestParam(value = "numOutOfBrackets", required=false) Integer numOutOfBrackets,
+											@RequestParam(value = "numberInBrackets", required=false) Integer numberInBrackets,
 											Model model) {
 		System.out.println("numoob " + numOutOfBrackets);
-		
+		System.out.println("number in brackets " + numberInBrackets);
 		if(tournament == null) {
 			tournament = headOnTournament;
 			this.numOutOfBrackets = numOutOfBrackets;
+			this.numberInBrackets = numberInBrackets;
 		}
 		
 		System.out.println(tournament.getCourse());
@@ -74,8 +80,11 @@ public class HeadOnCreatorController {
 	
 	@RequestMapping(value="/matchplay2", method = RequestMethod.POST)
 	public String showTournament() { 
-		//HeadOnCreator creator = new HeadOnCreator()
-		headOnService.save(tournament);
+		if(numberInBrackets == null) numberInBrackets = 0;
+		if(numOutOfBrackets == null) numOutOfBrackets = 0;
+		HeadOnCreator creator = new HeadOnCreator(tournament.isAreBrackets(), tournament.getPlayers(), numberInBrackets, numOutOfBrackets);
+		System.out.println(creator.createTournament());
+		//headOnService.save(tournament);
 		return "matchplay2";
 	}
 }
