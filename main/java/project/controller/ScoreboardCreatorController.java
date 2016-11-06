@@ -59,6 +59,7 @@ public class ScoreboardCreatorController {
 
     @RequestMapping(value="/scoreboardprufa", method = RequestMethod.GET)
     public String scoreboardprufuGet(Model model) {
+    	
     	model.addAttribute("scoreboard", new ScoreboardTournament());
     	
     	return "enneinprufa";

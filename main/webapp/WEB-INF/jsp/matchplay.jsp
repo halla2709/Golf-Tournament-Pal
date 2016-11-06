@@ -54,61 +54,30 @@
 		<!-- Container Tournament -->
 		<div>
 			<h3>1. Fill out information about the tournament:</h3>
-			<form>
+			<sf:form method="POST" commandName="headOnTournament" action="/addplayers">
 				<div class="w3-card-8" style="padding: 2em;">
-					<input class="w3-input" type="text" required style="width: 30%">
+					<sf:input path="course" class="w3-input" type="text" style="width: 30%"/>
 					<label class="w3-label w3-validate w3-border">Course</label>
 					<p>
-						<input class="w3-input" type="date" required
-							style="width: 10%"> <label
-							class="w3-label w3-validate w3-border">Date</label>
+					<sf:input path="startDate" class="w3-input" type="date" style="width: 10%" />
+					<label class="w3-label w3-validate w3-border">Date</label>
 					<p>
-						<input id="brackets" class="w3-check" type="checkbox"
-							onClick="myfunction()"><label>Brackets</label>
+					<sf:checkbox path="areBrackets" id="brackets" class="w3-check" onClick="myfunction()" />
+					<label>Brackets</label>
 					<p>
-						<select id="bracketschecked" class="w3-select"
-							style="width: 30%; display: none;" id="numOfBrackets">
-							<option value="" disabled selected>How many participant
-								exit the bracket?</option>
-							<option value="1">1 participant</option>
-							<option value="2">2 participants</option>
-						</select> <br>
+					<select name="numOutOfBrackets" id="bracketschecked" class="w3-select" style="width: 30%; display: none;" id="numOfBrackets">
+						<option value="" disabled selected>How many participant	exit the bracket?</option>
+						<option value="1" ${param.numOutOfBrackets == '1' ? 'selected' :  ''}>1 participant</option>
+						<option value="2" ${param.numOutOfBrackets == '2' ? 'selected' :  ''}>2 participants</option>
+					</select> <br>
+					<input type="submit" value="Senda!!!"/>
 				</div>
 				<br>
-				<p id="demo"></p>
-				<br>
-			</form>
+			</sf:form>
 		</div>
 
 
-		<!-- Container Participants -->
-
-	<div style="margin-right: 5em;">
-		<h3>2. Fill out information about participants:</h3>
-		<sf:form method="POST" commandName="golfer" action="/matchplay2">
-			<div id="dynamicInput">
-				<div class="w3-card-8" style="padding: 2em">
-					<h5>Participant 1</h5>
-
-					<div>
-					<sf:input path="name" type="text" name="myInputs[]" placeholder="Enter name" class="w3-input" style="width:30%"/>
-					<sf:input path="email" type="email" placeholder="Enter email address" class="w3-input" style="width:30%"/>
-					</div>
-					<div>
-					<sf:input path="social" type="text" placeholder="Enter social security number" class="w3-input" style="width:30%"/>
-					<sf:input path="handicap" type="number" placeholder="Enter handicap" class="w3-input" style="width:30%"/>
-			  		</div>
-				</div>
-			</div>
-				<input class="w3-theme w3-small" type="button" value="Add another player" onClick="addInput('dynamicInput');"><br>
-			<p>
-				<input type="submit" class="w3-theme w3-large" type="button" value="Create Tournament"><br>
-	</sf:form>
-	</div>
-	<hr>
-
-
-	<hr>
+		<hr>
 	</div>
 
 	<!-- Footer -->

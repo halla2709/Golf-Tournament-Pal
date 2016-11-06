@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import project.persistence.entities.Golfer;
 import project.persistence.entities.HeadOnTournament;
@@ -22,6 +23,8 @@ public class HeadOnCreatorController {
 	HeadOnService headOnService;
 	GolferService golferService;
 	
+	HeadOnTournament tournament;
+	
 	@Autowired
 	public HeadOnCreatorController(HeadOnService headOnService, GolferService golferService){
 		this.headOnService = headOnService;
@@ -33,38 +36,38 @@ public class HeadOnCreatorController {
 	}
 	
 	@RequestMapping(value="/matchplay", method = RequestMethod.GET)
-	public String matchplay2() { 
-		System.out.println("Byrja prufu");
+	public String matchplay2(Model model) { 
+
+		model.addAttribute("headOnTournament", new HeadOnTournament());
 		
-		Golfer halla = new Golfer("Halla", 93939393, 4.3, "hallamammain");
-		Golfer elvar = new Golfer("Elvar", 27272727, 36.0, "ilvar");
-		Golfer mamma = new Golfer("begga", 9292929, 33.4, "hallamammain");
-		Golfer pabbi = new Golfer("raggi", 18181818, 6.8, "ilvar");		
-		Golfer hedda = new Golfer("hedda", 28282828, 12.2, "hallamammain");
-		Golfer brynja = new Golfer("brynja", 4949494, 24.2, "ilvar");
-		List<Golfer> unsorted = new ArrayList<Golfer>();
-		unsorted.add(brynja);
-		unsorted.add(elvar);
-		unsorted.add(halla);
-		unsorted.add(pabbi);
-		unsorted.add(hedda);
-		unsorted.add(mamma);
-		HeadOnCreator headOnCreator = new HeadOnCreator(true, unsorted, 3, 2);
-		
-		HeadOnTournament tournament = headOnCreator.createTournament();
-		
-		golferService.save(halla);
-		golferService.save(elvar);
-		golferService.save(mamma);
-		golferService.save(pabbi);
-		golferService.save(hedda);
-		golferService.save(brynja);
-		
-		headOnService.save(tournament);
-		System.out.println("saved");
 		return "matchplay";
 	}
-
-
+	
+	@RequestMapping(value="/addplayers", method = RequestMethod.POST)
+	public String addPlayersToMatchplayers(@ModelAttribute("headOnTournament") HeadOnTournament headOnTournament,
+											@ModelAttribute("golfer") Golfer golfer,
+											@RequestParam(value = "numOutOfBrackets", required=false) Integer numOutOfBrackets,
+											Model model) {
+		System.out.println("numoob " + numOutOfBrackets);
+		
+		if(numOutOfBrackets!=null) {
+			tournament = headOnTournament;
+		}
+		
+		System.out.println(tournament.getCourse());
+		
+    	if(golfer.getName()!=null) {
+    		System.out.println("Saving golfer " + golfer.getName());
+    		tournament.addPlayer(golfer);
+    		golferService.save(golfer);
+    		System.out.println("player added " + golfer.getName());
+    	}
+    	
+    	    	
+    	model.addAttribute("golfer", new Golfer());
+    	model.addAttribute("golfers", tournament.getPlayers());
+    	
+		return "wow";
+	}
 	
 }

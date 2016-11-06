@@ -3,6 +3,7 @@ package project.persistence.entities;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,6 +55,7 @@ public class Tournament {
 
 
 	public void addPlayer(Golfer golfer) {
+		if(players == null) players = new ArrayList<Golfer>();
 		players.add(golfer);
 	}
 
