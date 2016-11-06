@@ -1,16 +1,11 @@
-
-
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <link rel="stylesheet"
 	href="http://www.w3schools.com/lib/w3-colors-highway.css">
 <link rel="shortcut icon" href="../images/images.jpg" />
 <link rel="stylesheet" href="/style.css">
-<script src="/addInput.js" language="Javascript" type="text/javascript"></script>
-<script src="/checkBox.js" language="Javascript" type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,37 +44,16 @@
 
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
-		<h1>Create a MatchPlay Tournament</h1>
+		<h1>Hugbúnaðarverkefni 1</h1>
 		<br>
-		<!-- Container Tournament -->
-		<div>
-			<h3>1. Fill out information about the tournament:</h3>
-			<sf:form method="POST" commandName="headOnTournament" action="/addplayers">
-				<div class="w3-card-8" style="padding: 2em;">
-					<sf:input path="course" class="w3-input" type="text" style="width: 30%"/>
-					<label class="w3-label w3-validate w3-border">Course</label>
-					<p>
-					<sf:input path="startDate" class="w3-input" type="date" style="width: 10%" />
-					<label class="w3-label w3-validate w3-border">Date</label>
-					<p>
-					<sf:checkbox path="areBrackets" id="brackets" class="w3-check" onClick="myfunction()" />
-					<label>Brackets</label>
-					<p>
-					<select name="numOutOfBrackets" id="bracketschecked" class="w3-select" style="width: 30%; display: none;" id="numOfBrackets">
-						<option value="" disabled selected>How many participant	exit the bracket?</option>
-						<option value="1" ${param.numOutOfBrackets == '1' ? 'selected' :  ''}>1 participant</option>
-						<option value="2" ${param.numOutOfBrackets == '2' ? 'selected' :  ''}>2 participants</option>
-					</select> <br>
-					<input type="submit" value="Senda!!!"/>
-				</div>
-				<br>
-			</sf:form>
-		</div>
-
-
-				<div class="w3-card-8" style="padding: 2em">
-		<hr>
+		<h2>Halla</h2>
+		<h2>Linda</h2>
+		<h2>Unnur</h2>
+		<br>
+		<img id="golferimg" src="../images/golfer.png" alt="Golfer">
 	</div>
+	<br>
+	<hr>
 
 	<!-- Footer -->
 	<div id="footer">
@@ -98,7 +72,8 @@
 		</div>
 		<div id="footer2"
 			class="w3-third w3-center w3-medium w3-theme w3-text-white">
-			<br> <br>
+			<br>
+			<br>
 			<p>Golfing,</p>
 			<p>It's a way of life</p>
 		</div>
@@ -118,5 +93,4 @@
 
 </body>
 </html>
-
 
