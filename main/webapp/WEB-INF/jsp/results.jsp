@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css"/>
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-colors-highway.css">
 <link rel="shortcut icon" href="../images/images.jpg" />
-
+<link rel="stylesheet" href="/style.css">
 <html lang="is">
 <title>Golf-Tournament Pal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,8 @@
 <body>
 
   <!-- Navigation (&Header)-->
-<ul class="w3-navbar w3-container w3-theme" style="position:fixed; top:0px; height:12em; width:100%; z-index:0;">
+<div class="w3-top">
+<ul class="w3-navbar w3-container w3-theme">
   <li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
   <li class ="w3-dropdown-hover"><a class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create Tournament</a>
   	<div class="w3-dropdown-content w3-theme w3-card-4">
@@ -37,6 +38,7 @@
   <h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
 </header>
 </ul>
+</div>
 <hr>
 
   <!-- Main Text -->

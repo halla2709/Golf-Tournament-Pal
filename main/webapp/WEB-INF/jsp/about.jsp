@@ -19,8 +19,7 @@
 	<ul id="nav" class="w3-navbar w3-container w3-theme">
 		<li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
 		<li class="w3-dropdown-hover"><a
-			class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create
-				Tournament</a>
+			class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create Tournament</a>
 			<div class="w3-dropdown-content w3-theme w3-card-4">
 				<a class="w3-padding-16 w3-hover-white" href="/matchplay">Matchplay
 					Tournament</a> <a class="w3-padding-16 w3-hover-white"

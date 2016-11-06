@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="css/style.css" type="text/css"/>
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-colors-highway.css">
 <link rel="shortcut icon" href="../images/images.jpg" />
-
 <html lang="is">
+
 <title>Golf-Tournament Pal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
@@ -16,27 +16,29 @@
 <body>
 
   <!-- Navigation (&Header)-->
-<ul class="w3-navbar w3-container w3-theme" style="position:fixed; top:0px; height:12em; width:100%; z-index:0;">
-  <li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
-  <li class ="w3-dropdown-hover"><a class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create Tournament</a>
-  	<div class="w3-dropdown-content w3-theme w3-card-4">
-  	<a class="w3-padding-16 w3-hover-white" href="/matchplay">Matchplay Tournament</a>
-  	<a class="w3-padding-16 w3-hover-white" href="/scoreboard">Scoreboard Tournament</a>
-  	</div>
-  	</li>
-  <li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
-  <li><a class="w3-padding-16 w3-hover-white" href="/mypage">My Page</a></li>
-  <!-- <li style="float:right"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
-  <br>
-  <br>
-
-  <!-- Header(&Navigation) -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
-  <div class="w3-center">
-  <h2>Golf-Tournament Pal!</h2>
-  <h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
-</header>
-</ul>
+	<div class=w3-top>
+		<ul class="w3-navbar w3-container w3-theme" style="position:fixed; top:0px; height:12em; width:100%; z-index:0;">
+		  <li><a class="w3-padding-16 w3-hover-white" href="/index">Home</a></li>
+		  <li class ="w3-dropdown-hover"><a class="w3-padding-16 w3-hover-white" href="javascript:void(0)">Create Tournament</a>
+		  	<div class="w3-dropdown-content w3-theme w3-card-4">
+		  	<a class="w3-padding-16 w3-hover-white" href="/matchplay">Matchplay Tournament</a>
+		  	<a class="w3-padding-16 w3-hover-white" href="/scoreboard">Scoreboard Tournament</a>
+		  	</div>
+		  	</li>
+		  <li><a class="w3-padding-16 w3-hover-white" href="/results">Results</a></li>
+		  <li><a class="w3-padding-16 w3-hover-white" href="/mypage">My Page</a></li>
+		  <!-- <li style="float:right"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
+		  <br>
+		  <br>
+		
+		  <!-- Header(&Navigation) -->
+		<header class="w3-container w3-theme w3-padding" id="myHeader">
+		  <div class="w3-center">
+		  <h2>Golf-Tournament Pal!</h2>
+		  <h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
+		</header>
+		</ul>
+	</div>
 <hr>
 
   <!-- Main Text -->

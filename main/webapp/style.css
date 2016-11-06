@@ -1,7 +1,7 @@
 .w3-theme {
-color:#ffffff;
-opacity:1;
-background-color:#1a237e;
+	color:#ffffff;
+	opacity:1;
+	background-color:#001A85;
 }
 
 ul
@@ -12,9 +12,7 @@ ul
 #nav {
 	
 	position:fixed;
-	top:0;
-	background-color:#004080;
-	color:#fff;	 
+	top:0; 
 	height:12em; 
 	width:100%; 
 	z-index:0;
