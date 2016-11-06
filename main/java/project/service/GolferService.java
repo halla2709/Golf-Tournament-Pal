@@ -9,4 +9,5 @@ public interface GolferService {
 	Golfer save(Golfer player);
 
 	List<Golfer> findAll();
+	
 }	

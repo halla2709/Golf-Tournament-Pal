@@ -1,5 +1,8 @@
 package project.persistence.entities;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +53,9 @@ public class Tournament {
 	}
 
 
+	public void addPlayer(Golfer golfer) {
+		players.add(golfer);
+	}
 
 	public String getCourse() {
 		return course;
@@ -58,6 +64,7 @@ public class Tournament {
 
 
 	public void setCourse(String course) {
+		System.out.println("Setting course " + course);
 		this.course = course;
 	}
 
@@ -81,8 +88,17 @@ public class Tournament {
 
 
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartDate(String startDate) {
+	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	    Date result = null;
+		try {
+			result = df.parse(startDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		System.out.println("Setting startDate " + startDate.toString());
+		this.startDate = result;
 	}
 
 

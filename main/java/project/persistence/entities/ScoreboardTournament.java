@@ -1,5 +1,6 @@
 package project.persistence.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,14 +32,13 @@ public class ScoreboardTournament extends Tournament {
 		this.setNumberOfRounds(numberOfRounds);
 	}
 	
-	
-	
 	public ScoreboardTournament(String course, Date startDate, List<Golfer> players) {
 		super(course, startDate, players);
 	}
 	
 	public ScoreboardTournament() { 
-		
+		this.setPlayers(new ArrayList<Golfer>());
+		scores = null;
 	}
 
 	public static void main(String[] args){
@@ -59,6 +59,7 @@ public class ScoreboardTournament extends Tournament {
 	}
 
 	public void setNumberOfRounds(int numberOfRounds) {
+		System.out.println("Setting numberOfRounds " + numberOfRounds);
 		this.numberOfRounds = numberOfRounds;
 	}
 

@@ -43,6 +43,7 @@
 			<div class="w3-center">
 				<h2>Golf-Tournament Pal!</h2>
 				<h5 class="w3-large w3-animate-bottom">Your best Golf friend</h5>
+			</div>
 		</header>
 	</ul>
 	<hr>
@@ -54,7 +55,7 @@
 		<!-- Container Tournament -->
 		<div>
 			<h3>1. Fill out information about the tournament:</h3>
-			<form>
+			<sf:form>
 				<div class="w3-card-8" style="padding: 2em;">
 					<input class="w3-input" type="text" required style="width: 30%">
 					<label class="w3-label w3-validate w3-border">Course</label>
@@ -77,7 +78,7 @@
 				<br>
 				<p id="demo"></p>
 				<br>
-			</form>
+			</sf:form>
 		</div>
 
 
@@ -85,25 +86,25 @@
 
 	<div style="margin-right: 5em;">
 		<h3>2. Fill out information about participants:</h3>
-		<sf:form method="POST" commandName="golfer" action="/matchplay2">
+		<form method="POST" action="/matchplay2">
 			<div id="dynamicInput">
 				<div class="w3-card-8" style="padding: 2em">
 					<h5>Participant 1</h5>
 
 					<div>
-					<sf:input path="name" type="text" name="myInputs[]" placeholder="Enter name" class="w3-input" style="width:30%"/>
-					<sf:input path="email" type="email" placeholder="Enter email address" class="w3-input" style="width:30%"/>
+					<input type="text" name="myInputs[]" placeholder="Enter name" class="w3-input" style="width:30%"/>
+					<input type="email" placeholder="Enter email address" class="w3-input" style="width:30%"/>
 					</div>
 					<div>
-					<sf:input path="social" type="text" placeholder="Enter social security number" class="w3-input" style="width:30%"/>
-					<sf:input path="handicap" type="number" placeholder="Enter handicap" class="w3-input" style="width:30%"/>
+					<input type="text" placeholder="Enter social security number" class="w3-input" style="width:30%"/>
+					<input type="number" placeholder="Enter handicap" class="w3-input" style="width:30%"/>
 			  		</div>
 				</div>
 			</div>
 				<input class="w3-theme w3-small" type="button" value="Add another player" onClick="addInput('dynamicInput');"><br>
 			<p>
 				<input type="submit" class="w3-theme w3-large" type="button" value="Create Tournament"><br>
-	</sf:form>
+	</form>
 	</div>
 	<hr>
 

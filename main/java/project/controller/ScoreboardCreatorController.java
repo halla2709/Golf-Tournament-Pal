@@ -1,5 +1,7 @@
 package project.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import project.persistence.entities.Golfer;
+import project.persistence.entities.ScoreboardTournament;
 import project.service.GolferService;
 
 @Controller
@@ -52,5 +55,27 @@ public class ScoreboardCreatorController {
         return "prufa";
     }
     
+    @RequestMapping(value="/scoreboardprufa", method = RequestMethod.GET)
+    public String scoreboardprufuGet(Model model) {
+    	model.addAttribute("scoreboard", new ScoreboardTournament());
+    	
+    	return "enneinprufa";
+    }
+    
+    @RequestMapping(value="/wow", method = RequestMethod.POST)
+    public String postAScoreboard(@ModelAttribute("scoreboard") ScoreboardTournament scoreboard,
+    								@ModelAttribute("golfer") Golfer golfer,
+    								Model model) {
+    	
+    	if(golfer.getName()!=null) {
+    		golferService.save(golfer);
+    		scoreboard.addPlayer(golfer);
+    	}
+    	
+    	
+    	model.addAttribute("golfer", new Golfer());
+    	model.addAttribute("golfers", scoreboard.getPlayers());
+    	return "wow";
+    }
     
 }
