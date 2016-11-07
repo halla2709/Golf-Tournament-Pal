@@ -35,6 +35,9 @@ public class HeadOnCreatorController {
 		beenhere = false;
 	}
 	
+	/**
+	 * Birtir upphafssíðu ferlisins að búa til MatchPlay/HeadOn mót. 
+	 */
 	@RequestMapping(value="/matchplay", method = RequestMethod.GET)
 	public String matchplay2(Model model) { 
 
@@ -42,10 +45,15 @@ public class HeadOnCreatorController {
 		tournament = new HeadOnTournament();
 		numOutOfBrackets = 0;
 		numberInBrackets = 0;
+		beenhere = false;
 		
 		return "matchplay";
 	}
 	
+	/**
+	 * Birtir síðu sem er til þess að bæta við leikmönnum í mót. 
+	 * 
+	 */
 	@RequestMapping(value="/addplayers", method = RequestMethod.POST)
 	public String addPlayersToMatchplayers(@ModelAttribute("headOnTournament") HeadOnTournament headOnTournament,
 											@ModelAttribute("golfer") Golfer golfer,
@@ -78,6 +86,11 @@ public class HeadOnCreatorController {
 		return "wow";
 	}
 	
+	/*
+	 * Þegar allir leikmenn eru komnir í mótið er athugað hvort fjöldinn passi
+	 * miðað við reglur sem settar eru fram í HeadOnCreator. Ef fjöldinn passar
+	 * ekki birtist villusíða.
+	 */
 	@RequestMapping(value="/matchplay2", method = RequestMethod.POST)
 	public String showTournament(Model model) { 
 		if(numberInBrackets == null) numberInBrackets = 0;
@@ -90,7 +103,7 @@ public class HeadOnCreatorController {
 		model.addAttribute("brackets", tournament.getBrackets());
 		model.addAttribute("playofftree", tournament.getPlayOffs());
 		
-		beenhere = false;
+		
 		return "matchplay2";
 	}
 }

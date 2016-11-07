@@ -22,7 +22,11 @@ public class HeadOnServiceImplementation implements HeadOnService {
 	public HeadOnServiceImplementation(HeadOnCreatorRepository repository) {
 		this.repository = repository;
 	}
-		
+	
+	/**
+	 * Miðað við gefnar upplýsingar er athugað hvort hægt sé að setja upp mót. Ef það er hægt
+	 * er mótið vistað í gagnagrunninn. Annars er skilað null.
+	 */
 	@Override
 	public HeadOnTournament save(boolean areBrackets, List<Golfer> players, int numInBracket, int numOutOfBrackets, String course, Date startDate) {
 		

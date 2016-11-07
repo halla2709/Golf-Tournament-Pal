@@ -25,8 +25,7 @@ public class HeadOnCreator {
 	private int numOfBrackets;
 	private int numOutOfBrackets;
 	
-	public HeadOnCreator(boolean areBrackets, List<Golfer> players, int numInBracket, int numOutOfBrackets){
-		System.out.println("Creating creator");
+	public HeadOnCreator(boolean areBrackets, List<Golfer> players, int numInBracket, int numOutOfBrackets) {
 		this.areBrackets = areBrackets;
 		this.players = players;
 		numOfBrackets = 0;
@@ -67,6 +66,12 @@ public class HeadOnCreator {
 		return Math.log(input)/Math.log(2);
 	}
 	
+	/**
+	 * Fjöldi leikmanna þarf að ganga upp í fjöldi riðla ef það eiga að vera riðlar.
+	 * Einnig þarf fjöldi riðla að vera veldi af tveimur. Ef það eru ekki riðlar þarf
+	 * fjöldi leikmanna að vera veldi af tveimur.
+	 * @return true ef fjöldinn passar, false annars.
+	 */
 	public boolean playerNumberValidator() {
 		int playerNumber = players.size();
 		
@@ -125,6 +130,14 @@ public class HeadOnCreator {
 		 *   		...
 		 *   numOfMatches er fjï¿½ldi leikja ï¿½ fyrstu umferï¿½
 		 *   changeToBase2(numIn) er fjï¿½ldi umferï¿½a ï¿½.e. log2(fjï¿½ldi leikmanna ï¿½ fyrstu umferï¿½)
+		 *   
+		 *   T.d. ef sorted = {1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16} sem á að raða í 4 riðla þá raðast það svona
+		 *   	
+		 *   		b1		b2		b3		b4
+		 *   		1		2		3		4
+		 *   		8		7		6		5
+		 *   		9		10		11		12
+		 *   		16		15		14		13
 		 */
 		
 		
@@ -180,38 +193,6 @@ public class HeadOnCreator {
 	
 	public void displayTournament(HeadOnTournament tournament) {
 		
-	}
-	
-	private String getCourse() {
-		// get info from view
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Course ");
-		String s = "";
-		if(scan.hasNextLine()) s = scan.nextLine();
-		scan.nextInt();
-		System.out.print(s);
-		scan.close();
-		return s;
-	}
-	
-	private Date getStartDate() {
-		// get info from view
-		Scanner scan = new Scanner(System.in);
-		System.out.println("StartDate ");
-		String s = "";
-		if(scan.hasNextLine()) s = scan.nextLine();
-		System.out.print(s);
-	    DateFormat df = new SimpleDateFormat("dd MM yyyy");
-	    Date result = null;
-		try {
-			result = df.parse(s);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-	    System.out.println(result);
-	    scan.close();
-		return result;
 	}
 		
 	public boolean areBrackets() {
