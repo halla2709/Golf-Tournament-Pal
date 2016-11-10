@@ -19,3 +19,7 @@ function addInput(divName){
 function dismiss(){
 	      document.getElementById('dismiss').style.display='none';
 };
+
+function dismiss2(){
+    document.getElementById('dismiss2').style.display='none';
+};

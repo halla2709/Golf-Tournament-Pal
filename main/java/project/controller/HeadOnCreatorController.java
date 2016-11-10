@@ -36,7 +36,7 @@ public class HeadOnCreatorController {
 	}
 	
 	/**
-	 * Birtir upphafssíðu ferlisins að búa til MatchPlay/HeadOn mót. 
+	 * Birtir upphafssï¿½ï¿½u ferlisins aï¿½ bï¿½a til MatchPlay/HeadOn mï¿½t. 
 	 */
 	@RequestMapping(value="/matchplay", method = RequestMethod.GET)
 	public String matchplay2(Model model) { 
@@ -51,7 +51,7 @@ public class HeadOnCreatorController {
 	}
 	
 	/**
-	 * Birtir síðu sem er til þess að bæta við leikmönnum í mót. 
+	 * Birtir sï¿½ï¿½u sem er til ï¿½ess aï¿½ bï¿½ta viï¿½ leikmï¿½nnum ï¿½ mï¿½t. 
 	 * 
 	 */
 	@RequestMapping(value="/addplayers", method = RequestMethod.POST)
@@ -87,9 +87,9 @@ public class HeadOnCreatorController {
 	}
 	
 	/*
-	 * Þegar allir leikmenn eru komnir í mótið er athugað hvort fjöldinn passi
-	 * miðað við reglur sem settar eru fram í HeadOnCreator. Ef fjöldinn passar
-	 * ekki birtist villusíða.
+	 * ï¿½egar allir leikmenn eru komnir ï¿½ mï¿½tiï¿½ er athugaï¿½ hvort fjï¿½ldinn passi
+	 * miï¿½aï¿½ viï¿½ reglur sem settar eru fram ï¿½ HeadOnCreator. Ef fjï¿½ldinn passar
+	 * ekki birtist villusï¿½ï¿½a.
 	 */
 	@RequestMapping(value="/matchplay2", method = RequestMethod.POST)
 	public String showTournament(Model model) { 
@@ -102,7 +102,8 @@ public class HeadOnCreatorController {
 		model.addAttribute("golfers", tournament.getPlayers());
 		model.addAttribute("brackets", tournament.getBrackets());
 		model.addAttribute("playofftree", tournament.getPlayOffs());
-		
+		model.addAttribute("course", tournament.getCourse());
+		model.addAttribute("startdate", tournament.getStartDate());
 		
 		return "matchplay2";
 	}

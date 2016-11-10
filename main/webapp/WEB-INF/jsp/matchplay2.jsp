@@ -55,31 +55,85 @@
 	<div class="w3-row w3-container"
 		style="position: relative; top: 8em; padding: 2em; margin-bottom: 150px; z-index: 0;">
 		<div class="w3-container">
-			<h2>Your tournament</h2>
+			<h1>Your newly created Matchplay Tournament</h1>
 			<p>has been successfully created! This is how it looks:</p>
+			
+			
+			<h3>Tournament Information:</h3>
+			<c:choose>
+				<c:when test="${not empty tournament}">
+				<table class="w3-table-all w3-hoverable">
+						<tr>
+							<th>Tournament</th>
+						<%--For each postit note, that is in the list that was passed in the model--%>
+						<%--generate a row in the table--%>
+						<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
+						<c:forEach var ="courses" items="${course}">
+							<tr>
+								<%--We can reference attributes of the Entity by just entering the name we gave--%>
+								<%--it in the singular item var, and then just a dot followed by the attribute name--%>
 
+								<%--Create a link based on the name attribute value--%>
+								<td colspan="2">${tournament.course}</td>
+							</tr>
+							<c:forEach var="startdates" items="${startdate}">
+								<tr>
+									<td>${player.name}</td>
+									<td>${player.handicap}</td>
+								</tr>						
+							</c:forEach>
+						</c:forEach>
+					</table>
+				</c:when>
+
+				<%--If all tests are false, then do this--%>
+				<c:otherwise>
+					<h5>No tournament info!</h5>
+					<br>
+				</c:otherwise>
+			
+			</c:choose>
+			
+			
+			
+			
+			
+			<h3>Participants Information:</h3>
 			<%--Choose what code to generate based on tests that we implement--%>
 			<c:choose>
 				<%--If the model has an attribute with the name `postitNotes`--%>
 				<c:when test="${not empty golfers}">
 					<%--Create a table for the Postit Notes--%>
 					<table class="w3-table-all w3-hoverable">
+							<thead>
+								<tr id="table">
+									<td>First Name</td>
+									<td>Social Security Number</td>
+									<td>Email</td>
+									<td>Handicap</td>
+
+								</tr>
+							</thead>
+						
 
 						<%--For each postit note, that is in the list that was passed in the model--%>
 						<%--generate a row in the table--%>
 						<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
 						<c:forEach var="golfer" items="${golfers}">
-							<tr>
+							<tr id="dismiss2">
 								<%--We can reference attributes of the Entity by just entering the name we gave--%>
 								<%--it in the singular item var, and then just a dot followed by the attribute name--%>
 
 								<%--Create a link based on the name attribute value--%>
 								<td>${golfer.name}</td>
-								<%--The String in the note attribute--%>
-								<td>${golfer.handicap}</td>
+								<td>${golfer.social}</td>
+								<td>${golfer.email}</td>
+								<td>${golfer.handicap}<span onclick="dismiss2()"
+										class="w3-closebtn w3-margin-right w3-medium">&times;</span>
 							</tr>
 						</c:forEach>
 					</table>
+					<br>
 				</c:when>
 
 				<%--If all tests are false, then do this--%>
@@ -88,11 +142,17 @@
 				</c:otherwise>
 			</c:choose>
 			
+			<h3>Brackets Information:</h3>
 			<c:choose>
 				<c:when test="${not empty brackets}">
-				<table class="w3-table-all w3-hoverable">
-						<tr>
-							<th>Brackets</th>
+							<table class="w3-table-all w3-hoverable" style="width:47%">
+							<thead>
+								<tr id="table">
+									<td>Brackets</td>
+									<td>Handicap</td>
+
+								</tr>
+							</thead>
 						<%--For each postit note, that is in the list that was passed in the model--%>
 						<%--generate a row in the table--%>
 						<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
@@ -108,7 +168,8 @@
 								<tr>
 									<td>${player.name}</td>
 									<td>${player.handicap}</td>
-								</tr>						
+								</tr>		
+													
 							</c:forEach>
 						</c:forEach>
 					</table>
@@ -116,45 +177,16 @@
 
 				<%--If all tests are false, then do this--%>
 				<c:otherwise>
-					<h3>No brackets!</h3>
+					<h5>No brackets!</h5>
 				</c:otherwise>
 			
 			</c:choose>
-
-<!-- 
-			<table class="w3-table-all w3-hoverable">
-				<thead>
-					<tr class="w3-theme">
-						<th>First Name</th>
-						<th>Social Security Number</th>
-						<th>Email</th>
-						<th>Handicap</th>
-					</tr>
-				</thead>
-				<tr>
-					<td>Unnur Kristín Brynjólfsdóttir</td>
-					<td>030892-2329</td>
-					<td>unnkbry@gmail.com</td>
-					<td>2.5</td>
-				</tr>
-				<tr>
-					<td>Linda</td>
-					<td>kt</td>
-					<td>email</td>
-					<td>2.1</td>
-				</tr>
-				<tr>
-					<td>Halla</td>
-					<td>kt</td>
-					<td>email</td>
-					<td>2.2</td>
-				</tr>
-			</table>
-		</div>
+			
 	</div>
-	-->
-
 	<hr>
+	</div>
+	
+	
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"
