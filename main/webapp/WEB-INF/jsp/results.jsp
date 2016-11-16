@@ -56,9 +56,9 @@
 		<br>
 		<h2>Here we will post results from tournaments.</h2>
 		<br>
-		<h3>Find the tournament you are looking for:</h3>
-		<input id="search" class="w3-input w3-border" type="text"
-			name="search" placeholder="Search Tournament.."> <br> <br>
+<!-- 		<h3>Find the tournament you are looking for:</h3> -->
+<!-- 		<input id="search" class="w3-input w3-border" type="text" -->
+<!-- 			name="search" placeholder="Search Tournament.."> <br> <br> -->
 
 		<table class="w3-table-all w3-hoverable">
 			<thead>
@@ -66,23 +66,26 @@
 					<th>Tournament</th>
 					<th>Date</th>
 					<th>Course</th>
+					<th></th>
 				</tr>
 			</thead>
-			<tr>
-				<td>Matchplay</td>
-				<td>10.11.2016</td>
-				<td>Þórsvöllur</td>
-			</tr>
-			<tr>
-				<td>Matchplay</td>
-				<td>kt</td>
-				<td>email</td>
-			</tr>
-			<tr>
-				<td>Scoreboard</td>
-				<td>26.12.2016</td>
-				<td>Korpúlstaðarvöllur</td>
-			</tr>
+			<c:choose>
+				<c:when test="${not empty tournaments}">
+					<c:forEach var="tournament" items="${tournaments}">
+							<tr>
+								<td>${tournament.name}</td>
+								<td>${tournament.startDate}</td>
+								<td>${tournament.course}</td>
+								<td><a href="/tournament/${tournament.getid()}">See more</a>
+							</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="4">No Tournaments!</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 		</table>
 	</div>
 	<br>

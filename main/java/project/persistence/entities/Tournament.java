@@ -18,7 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
  
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Tournament {
 	
     @Id
@@ -26,6 +26,7 @@ public class Tournament {
     private Long id;
     
 	private String course;
+	private String name;
 	
 	@ManyToMany()
 	@JoinTable(name="TournamentPlayers", joinColumns=@JoinColumn(name="tournament_id"), inverseJoinColumns=@JoinColumn(name="golfer_id")) 
@@ -33,10 +34,11 @@ public class Tournament {
 	
 	private Date startDate;
 	
-	public Tournament(String course, Date startDate, List<Golfer> players) {
+	public Tournament(String course, String name, Date startDate, List<Golfer> players) {
 		this.course = course;
 		this.startDate = startDate;
 		this.players = players;
+		this.name = name;
 	}
 	
 	
@@ -48,7 +50,7 @@ public class Tournament {
 
 
 	public static void main(String[] args) {
-		Tournament tour = new Tournament("mamma'in", new Date(), null);
+		Tournament tour = new Tournament("mamma'in", "vuuu",  new Date(), null);
 		
 		System.out.println(tour.getCourse());
 	}
@@ -58,6 +60,18 @@ public class Tournament {
 		if(players == null) players = new ArrayList<Golfer>();
 		players.add(golfer);
 	}
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 
 	public String getCourse() {
 		return course;
@@ -103,5 +117,8 @@ public class Tournament {
 		this.startDate = result;
 	}
 
+	public long getid() {
+		return id;
+	}
 
 }

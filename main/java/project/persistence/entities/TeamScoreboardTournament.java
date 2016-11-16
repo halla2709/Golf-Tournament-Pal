@@ -17,20 +17,20 @@ public class TeamScoreboardTournament extends ScoreboardTournament{
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Team> team;
 	
-	public TeamScoreboardTournament(String course, Date startDate, int numberOfRounds, List<Golfer> players, 
+	public TeamScoreboardTournament(String course, String name, Date startDate, int numberOfRounds, List<Golfer> players, 
 			int[][] scores, Team[] team){
-		super(course, startDate, numberOfRounds, players, scores);
+		super(course, name,  startDate, numberOfRounds, players, scores);
 	}
 	
 	
-	public TeamScoreboardTournament(String course, Date startDate, int numberOfRounds, List<Golfer> players,
+	public TeamScoreboardTournament(String course, String name, Date startDate, int numberOfRounds, List<Golfer> players,
 			int[][] scores) {
-		super(course, startDate, numberOfRounds, players, scores);
+		super(course, name, startDate, numberOfRounds, players, scores);
 	}
 
 
 	public static void main(String[] args){
-		TeamScoreboardTournament teamScoreboardTournament = new TeamScoreboardTournament("kalli", new Date(), 6,
+		TeamScoreboardTournament teamScoreboardTournament = new TeamScoreboardTournament("kalli", "vuuu", new Date(), 6,
 				null, null, null);
 		System.out.println(teamScoreboardTournament.getCourse());
 	}

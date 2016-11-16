@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -52,53 +51,16 @@
 
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
-		<h1>Create a MatchPlay Tournament</h1>
-		<br>
-		<h3>1. Please fill out information about the tournament:</h3>
-		<br>
-			<sf:form method="POST" commandName="headOnTournament"
-				action="/addplayers">
-				<div id="matchplay" class="w3-card-8">
-					<sf:input path="name" class="w3-input" type="text"
-						style="width: 30%" />
-					<label class="w3-label w3-validate w3-border">Name of tournament</label> <br>
-					<sf:input path="course" class="w3-input" type="text"
-						style="width: 30%" />
-					<label class="w3-label w3-validate w3-border">Course</label> <br>
-					<sf:input path="startDate" class="w3-input" type="date"
-						style="width: 10%" />
-					<label class="w3-label w3-validate w3-border">Date</label> <br>
-					<br>
-					<sf:checkbox path="areBrackets" id="brackets" class="w3-check"
-						onClick="myfunction()" />
-					<label>Brackets</label> <br> <br>
-					<div id="hidden">
-						<select name="numOutOfBrackets" id="bracketschecked"
-							class="w3-select w3-validate" style="width: 30%;">
-							<option value="" disabled selected>How many participants
-								exit the bracket?</option>
-							<option value="1"
-								${param.numOutOfBrackets == '1' ? 'selected' :  ''}>1
-								participant</option>
-							<option value="2"
-								${param.numOutOfBrackets == '1' ? 'selected' :  ''}>2
-								participants</option>
-						</select> <br> <br> <input type="number" style="width: 10%;"
-							class="w3-input" name="numberInBrackets"/> <label
-							class="w3-label w3-validate w3-border">How many
-							participants in brackets?</label>
-					</div>
-					<br> <br>
-					<p>After filling out information about the tournament, it is
-						time to fill out information about the participants.</p>
-					<input class="w3-theme w3-large" type="submit" type="button"
-						value="Participant Information"><br>
-				</div>
-				<br>
-			</sf:form>
-		<hr>
+		<form method="GET" action="/addplayers">
+			<h2>This number of players does not work for this type of tournament</h2>
+			<p>The number of players must allow for a complete playoff tree to from, i.e. must be a power of 2</p>
+			<p>If the tournament has brackets then the total number of players fit in the brackets and</p>
+			<p>the number of players that exit the brackets must be a power of 2</p>
+			<input type="submit" class="w3-theme w3-medium" type="button"
+						VALUE="Add more players">
+		</form>
 	</div>
-
+	
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"
@@ -133,7 +95,5 @@
 			</ul>
 		</div>
 	</div>
-
 </body>
 </html>
-

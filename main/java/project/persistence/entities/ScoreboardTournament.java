@@ -27,13 +27,13 @@ public class ScoreboardTournament extends Tournament {
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Scorecard> scorecards;
 	
-	public ScoreboardTournament(String course, Date startDate, int numberOfRounds, List<Golfer> players, int[][] scores){
-		super(course, startDate, players);
+	public ScoreboardTournament(String course, String name, Date startDate, int numberOfRounds, List<Golfer> players, int[][] scores){
+		super(course, name, startDate, players);
 		this.setNumberOfRounds(numberOfRounds);
 	}
 	
-	public ScoreboardTournament(String course, Date startDate, List<Golfer> players) {
-		super(course, startDate, players);
+	public ScoreboardTournament(String course, String name, Date startDate, List<Golfer> players) {
+		super(course, name, startDate, players);
 	}
 	
 	public ScoreboardTournament() { 
@@ -42,7 +42,7 @@ public class ScoreboardTournament extends Tournament {
 	}
 
 	public static void main(String[] args){
-		ScoreboardTournament scoreboardTournament = new ScoreboardTournament("vннн", new Date(), 5, null, null);
+		ScoreboardTournament scoreboardTournament = new ScoreboardTournament("vннн", "vuuuu", new Date(), 5, null, null);
 		System.out.println(scoreboardTournament.getCourse());
 	}
 

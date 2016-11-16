@@ -52,11 +52,59 @@
 
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
-		<h1>Hello</h1>
-		<br>
-		<h3>This is a Tournament site</h3>
+		<h3>Tournament Information:</h3>
+			<table class="w3-table-all w3-hoverable">
+				<tr>
+					<th>Tournament name:</th>
+					<th>Course:</th>
+					<th>Start Date:</th>
+				</tr>
+				<tr>
+					<td>${name}</td>
+					<td>${course}</td>
+					<td>${startdate}</td>
+				</tr>
+			</table>
+			
+			
+			<h3>Participants Information:</h3>
+			<%--Choose what code to generate based on tests that we implement--%>
+			<c:choose>
+				<%--If the model has an attribute with the name `postitNotes`--%>
+				<c:when test="${not empty golfers}">
+					<%--Create a table for the Postit Notes--%>
+					<table class="w3-table-all w3-hoverable">
+							<thead>
+								<tr id="table">
+									<td>First Name</td>
+									<td>Social Security Number</td>
+									<td>Email</td>
+									<td>Handicap</td>
 
-		<hr>
+								</tr>
+							</thead>
+						
+
+						<%--For each postit note, that is in the list that was passed in the model--%>
+						<%--generate a row in the table--%>
+						<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
+						<c:forEach var="golfer" items="${golfers}">
+							<tr>
+								<%--We can reference attributes of the Entity by just entering the name we gave--%>
+								<%--it in the singular item var, and then just a dot followed by the attribute name--%>
+
+								<%--Create a link based on the name attribute value--%>
+								<td>${golfer.name}</td>
+								<td>${golfer.social}</td>
+								<td>${golfer.email}</td>
+								<td>${golfer.handicap}</td>
+							</tr>
+						</c:forEach>
+					</table>
+					<br>
+				</c:when>
+
+			</c:choose>
 	</div>
 
 	<!-- Footer -->

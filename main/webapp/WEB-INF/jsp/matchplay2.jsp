@@ -60,42 +60,18 @@
 			
 			
 			<h3>Tournament Information:</h3>
-			<c:choose>
-				<c:when test="${not empty tournament}">
-				<table class="w3-table-all w3-hoverable">
-						<tr>
-							<th>Tournament</th>
-						<%--For each postit note, that is in the list that was passed in the model--%>
-						<%--generate a row in the table--%>
-						<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
-						<c:forEach var ="courses" items="${course}">
-							<tr>
-								<%--We can reference attributes of the Entity by just entering the name we gave--%>
-								<%--it in the singular item var, and then just a dot followed by the attribute name--%>
-
-								<%--Create a link based on the name attribute value--%>
-								<td colspan="2">${tournament.course}</td>
-							</tr>
-							<c:forEach var="startdates" items="${startdate}">
-								<tr>
-									<td>${player.name}</td>
-									<td>${player.handicap}</td>
-								</tr>						
-							</c:forEach>
-						</c:forEach>
-					</table>
-				</c:when>
-
-				<%--If all tests are false, then do this--%>
-				<c:otherwise>
-					<h5>No tournament info!</h5>
-					<br>
-				</c:otherwise>
-			
-			</c:choose>
-			
-			
-			
+			<table class="w3-table-all w3-hoverable">
+				<tr>
+					<th>Tournament name:</th>
+					<th>Course:</th>
+					<th>Start Date:</th>
+				</tr>
+				<tr>
+					<td>${name}</td>
+					<td>${course}</td>
+					<td>${startdate}</td>
+				</tr>
+			</table>
 			
 			
 			<h3>Participants Information:</h3>
@@ -120,7 +96,7 @@
 						<%--generate a row in the table--%>
 						<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
 						<c:forEach var="golfer" items="${golfers}">
-							<tr id="dismiss2">
+							<tr>
 								<%--We can reference attributes of the Entity by just entering the name we gave--%>
 								<%--it in the singular item var, and then just a dot followed by the attribute name--%>
 
@@ -128,8 +104,7 @@
 								<td>${golfer.name}</td>
 								<td>${golfer.social}</td>
 								<td>${golfer.email}</td>
-								<td>${golfer.handicap}<span onclick="dismiss2()"
-										class="w3-closebtn w3-margin-right w3-medium">&times;</span>
+								<td>${golfer.handicap}</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -142,14 +117,15 @@
 				</c:otherwise>
 			</c:choose>
 			
-			<h3>Brackets Information:</h3>
+			
 			<c:choose>
 				<c:when test="${not empty brackets}">
+					<h3>Brackets Information:</h3>
 							<table class="w3-table-all w3-hoverable" style="width:47%">
 							<thead>
 								<tr id="table">
-									<td>Brackets</td>
-									<td>Handicap</td>
+									<th>Player</th>
+									<th>Handicap</th>
 
 								</tr>
 							</thead>
@@ -177,10 +153,28 @@
 
 				<%--If all tests are false, then do this--%>
 				<c:otherwise>
-					<h5>No brackets!</h5>
+					<h3>Match Information:</h3>
+					<c:forEach var="match" items="${playofftree.rounds.get(0).matches}">
+						<table class="w3-table-all w3-hoverable" style="width:47%">
+							<thead>
+								<tr id="table">
+									<th>Player</th>
+									<th>Handicap</th>
+								</tr>
+							</thead>
+							
+							<c:forEach var="player" items="${match.players }">
+								<tr>
+									<td>${player.name}</td>
+									<td>${player.handicap}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:forEach>
 				</c:otherwise>
 			
 			</c:choose>
+			
 			
 	</div>
 	<hr>
