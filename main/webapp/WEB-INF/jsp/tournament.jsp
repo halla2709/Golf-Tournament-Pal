@@ -1,16 +1,14 @@
-
-
+<!-- Configurations -->
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<link rel="stylesheet"
-	href="http://www.w3schools.com/lib/w3-colors-highway.css">
+
 <link rel="shortcut icon" href="../images/images.jpg" />
-<link rel="stylesheet" href="/style.css">
-<script src="/addInput.js" language="Javascript" type="text/javascript"></script>
-<script src="/checkBox.js" language="Javascript" type="text/javascript"></script>
+<link rel="stylesheet" href="../extras/style.css">
+<script src="../extras/functions.js" language="Javascript"
+	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,11 +34,13 @@
 			<li><a class="w3-padding-16 w3-hover-white" href="/mypage">My
 					Page</a></li>
 			<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
+			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
-			<br>
-			<br>
+
 
 			<!-- Header(&Navigation) -->
+			<br>
+			<br>
 			<header class="w3-container w3-theme w3-padding" id="myHeader">
 				<div class="w3-center">
 					<h2>Golf-Tournament Pal!</h2>
@@ -55,61 +55,61 @@
 		<h1>More information about the Tournament</h1>
 		<br>
 		<h3>Tournament Information:</h3>
-			<table class="w3-table-all w3-hoverable" style="width:47%">
-				<thead>
+		<table class="w3-table-all w3-hoverable" style="width: 47%">
+			<thead>
 				<tr id="table">
-				
+
 					<td>Tournament name:</td>
 					<td>Course:</td>
 					<td>Start Date:</td>
 				</tr>
-				</thead>
-				<tr>
-					<td>${name}</td>
-					<td>${course}</td>
-					<td>${startdate}</td>
-				</tr>
-			</table>
-			
-			<br>
-			<h3>Participants Information:</h3>
-			<%--Choose what code to generate based on tests that we implement--%>
-			<c:choose>
-				<%--If the model has an attribute with the name `postitNotes`--%>
-				<c:when test="${not empty golfers}">
-					<%--Create a table for the Postit Notes--%>
-					<table class="w3-table-all w3-hoverable">
-							<thead>
-								<tr id="table">
-									<td>First Name</td>
-									<td>Social Security Number</td>
-									<td>Email</td>
-									<td>Handicap</td>
+			</thead>
+			<tr>
+				<td>${name}</td>
+				<td>${course}</td>
+				<td>${startdate}</td>
+			</tr>
+		</table>
 
-								</tr>
-							</thead>
-						
+		<br>
+		<h3>Participants Information:</h3>
+		<%--Choose what code to generate based on tests that we implement--%>
+		<c:choose>
+			<%--If the model has an attribute with the name `postitNotes`--%>
+			<c:when test="${not empty golfers}">
+				<%--Create a table for the Postit Notes--%>
+				<table class="w3-table-all w3-hoverable">
+					<thead>
+						<tr id="table">
+							<td>First Name</td>
+							<td>Social Security Number</td>
+							<td>Email</td>
+							<td>Handicap</td>
 
-						<%--For each postit note, that is in the list that was passed in the model--%>
-						<%--generate a row in the table--%>
-						<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
-						<c:forEach var="golfer" items="${golfers}">
-							<tr>
-								<%--We can reference attributes of the Entity by just entering the name we gave--%>
-								<%--it in the singular item var, and then just a dot followed by the attribute name--%>
+						</tr>
+					</thead>
 
-								<%--Create a link based on the name attribute value--%>
-								<td>${golfer.name}</td>
-								<td>${golfer.social}</td>
-								<td>${golfer.email}</td>
-								<td>${golfer.handicap}</td>
-							</tr>
-						</c:forEach>
-					</table>
-					<br>
-				</c:when>
 
-			</c:choose>
+					<%--For each postit note, that is in the list that was passed in the model--%>
+					<%--generate a row in the table--%>
+					<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
+					<c:forEach var="golfer" items="${golfers}">
+						<tr>
+							<%--We can reference attributes of the Entity by just entering the name we gave--%>
+							<%--it in the singular item var, and then just a dot followed by the attribute name--%>
+
+							<%--Create a link based on the name attribute value--%>
+							<td>${golfer.name}</td>
+							<td>${golfer.social}</td>
+							<td>${golfer.email}</td>
+							<td>${golfer.handicap}</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<br>
+			</c:when>
+
+		</c:choose>
 	</div>
 
 	<!-- Footer -->

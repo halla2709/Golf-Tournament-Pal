@@ -1,16 +1,14 @@
-
-
+<!-- Configurations -->
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<link rel="stylesheet"
-	href="http://www.w3schools.com/lib/w3-colors-highway.css">
+
 <link rel="shortcut icon" href="../images/images.jpg" />
-<link rel="stylesheet" href="/style.css">
-<script src="/addInput.js" language="Javascript" type="text/javascript"></script>
-<script src="/checkBox.js" language="Javascript" type="text/javascript"></script>
+<link rel="stylesheet" href="../extras/style.css">
+<script src="../extras/functions.js" language="Javascript"
+	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,11 +34,13 @@
 			<li><a class="w3-padding-16 w3-hover-white" href="/mypage">My
 					Page</a></li>
 			<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
+			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
-			<br>
-			<br>
+
 
 			<!-- Header(&Navigation) -->
+			<br>
+			<br>
 			<header class="w3-container w3-theme w3-padding" id="myHeader">
 				<div class="w3-center">
 					<h2>Golf-Tournament Pal!</h2>
@@ -73,9 +73,9 @@
 			<p>Or Create a new tournament</p>
 		</div>
 	</div>
-
 	<br>
 	<hr>
+
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

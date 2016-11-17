@@ -1,21 +1,19 @@
-
-
+<!-- Configurations -->
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<link rel="stylesheet"
-	href="http://www.w3schools.com/lib/w3-colors-highway.css">
+
 <link rel="shortcut icon" href="../images/images.jpg" />
-<link rel="stylesheet" href="/style.css">
-<script src="/addInput.js" language="Javascript" type="text/javascript"></script>
-<script src="/checkBox.js" language="Javascript" type="text/javascript"></script>
+<link rel="stylesheet" href="../extras/style.css">
+<script src="../extras/functions.js" language="Javascript"
+	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.theme.css">
+<link rel="stylesheet" href="http://www.w3school s.com/lib/w3.theme.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -36,11 +34,13 @@
 			<li><a class="w3-padding-16 w3-hover-white" href="/mypage">My
 					Page</a></li>
 			<li><a class="w3-padding-16 w3-hover-white" href="/about">About</a></li>
+			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
-			<br>
-			<br>
+
 
 			<!-- Header(&Navigation) -->
+			<br>
+			<br>
 			<header class="w3-container w3-theme w3-padding" id="myHeader">
 				<div class="w3-center">
 					<h2>Golf-Tournament Pal!</h2>
@@ -56,49 +56,52 @@
 		<br>
 		<h3>1. Please fill out information about the tournament:</h3>
 		<br>
-			<sf:form method="POST" commandName="headOnTournament"
-				action="/addplayers">
-				<div id="matchplay" class="w3-card-8">
-					<sf:input required="required" path="name" class="w3-input w3-animate-input" type="text"
-						style="width: 30%"/>
-					<label class="w3-label w3-validate w3-border">Name of tournament</label> 
-					<br>
-					<sf:input required="required" path="course" class="w3-input" type="text"
-						style="width: 30%" />
-					<label class="w3-label w3-validate w3-border">Course</label> <br>
-					<sf:input required="required" path="startDate" class="w3-input" type="date"
-						style="width: 10%" />
-					<label class="w3-label w3-validate w3-border">Date</label> <br>
-					<br>
-					<sf:checkbox path="areBrackets" id="brackets" class="w3-check"
-						onClick="myfunction()" />
-					<label>Brackets</label> <br> <br>
-					<div id="hidden">
-						<select name="numOutOfBrackets" id="bracketschecked"
-							class="w3-select w3-validate" style="width: 30%;">
-							<option value="" disabled selected>How many participants
-								exit the bracket?</option>
-							<option value="1"
-								${param.numOutOfBrackets == '1' ? 'selected' :  ''}>1
-								participant</option>
-							<option value="2"
-								${param.numOutOfBrackets == '1' ? 'selected' :  ''}>2
-								participants</option>
-						</select> <br> <br> <input type="number" style="width: 10%;"
-							class="w3-input" name="numberInBrackets"/> <label
-							class="w3-label w3-validate w3-border">How many
-							participants in brackets?</label>
-					</div>
-					<br> <br>
-					<p>After filling out information about the tournament, it is
-						time to fill out information about the participants.</p>
-					<input class="w3-theme w3-large" type="submit" type="button"
-						value="Participant Information"><br>
-				</div>
+		<sf:form method="POST" commandName="headOnTournament"
+			action="/addplayers">
+			<div id="matchplay" class="w3-card-8">
+				<sf:input required="required" path="name" class="w3-input"
+					type="text" style="width: 30%" />
+				<label class="w3-label w3-validate w3-border">Name of
+					tournament</label> <br>
+				<sf:input required="required" path="course" class="w3-input"
+					type="text" style="width: 30%" />
+				<label class="w3-label w3-validate w3-border">Course</label> <br>
+				<sf:input required="required" path="startDate" class="w3-input"
+					type="date" style="width: 10%" />
+				<label class="w3-label w3-validate w3-border">Date</label> <br>
 				<br>
-			</sf:form>
-		<hr>
+				<sf:checkbox path="areBrackets" id="brackets" class="w3-check"
+					onClick="myfunction()" />
+				<label>Brackets</label> <br> <br>
+				<div id="hidden">
+					<select name="numOutOfBrackets" id="bracketschecked"
+						class="w3-select w3-validate" style="width: 30%;">
+						<option value="" disabled selected>How many participants
+							exit the bracket?</option>
+						<option value="1"
+							${param.numOutOfBrackets == '1' ? 'selected' :  ''}>1
+							participant</option>
+						<option value="2"
+							${param.numOutOfBrackets == '1' ? 'selected' :  ''}>2
+							participants</option>
+					</select> <br> <br> <input type="number" style="width: 10%;"
+						class="w3-input" min="0" name="numberInBrackets" /> <label
+						class="w3-label w3-validate w3-border">How many
+						participants in brackets?</label>
+				</div>
+			</div>
+			<br>
+			<p>After filling out information about the tournament, it is time
+				to go to the next step and fill out information about the
+				participants.</p>
+			<input class="w3-theme w3-large" type="submit" type="button"
+				value="Participant Information">
+			<br>
+
+			<br>
+		</sf:form>
 	</div>
+	<hr>
 
 	<!-- Footer -->
 	<div id="footer">

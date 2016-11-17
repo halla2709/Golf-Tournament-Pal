@@ -77,7 +77,7 @@ public class MatchPlayCreatorController {
     	model.addAttribute("golfer", new Golfer());
     	model.addAttribute("golfers", tournament.getPlayers());
     	
-    	return "wow";
+    	return "participant";
 	}
 	
 	@RequestMapping(value="/addplayers", method = RequestMethod.GET) 
@@ -87,7 +87,7 @@ public class MatchPlayCreatorController {
 		model.addAttribute("golfer", new Golfer());
     	model.addAttribute("golfers", tournament.getPlayers());
 		
-		return "wow";
+		return "participant";
 	}
 	
 	/*

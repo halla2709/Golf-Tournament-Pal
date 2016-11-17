@@ -8,32 +8,39 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import project.persistence.entities.Golfer;
+import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.ScoreboardTournament;
 import project.service.GolferService;
+import project.service.ScoreboardService;
 
 @Controller
 public class ScoreboardCreatorController {
 
 	GolferService golferService;
+	ScoreboardService scoreboardService;
+	
+	ScoreboardTournament tournament;
+	Integer numOutOfBrackets;
+	Integer numberInBrackets;
+	boolean beenhere;
 	
 	@Autowired
 	public ScoreboardCreatorController(GolferService golferService){
 		this.golferService = golferService;
 	}
 	
-    @RequestMapping(value = "/prufaprufa", method = RequestMethod.GET)
+    @RequestMapping(value = "/scoreboard", method = RequestMethod.GET)
     public String postitNoteViewGet(Model model){
 
         // Add a new Postit Note to the model for the form
         // If you look at the form in PostitNotes.jsp, you can see that we
         // reference this attribute there by the name `postitNote`.
-        model.addAttribute("golfer", new Golfer());
+        model.addAttribute("scoreboardTournament", new ScoreboardTournament());
         
-        model.addAttribute("golfers", golferService.findAll());
-        
-        return "prufa";
+        return "scoreboard";
     }
     
     @RequestMapping(value = "/prufaprufa", method = RequestMethod.POST)
@@ -65,21 +72,42 @@ public class ScoreboardCreatorController {
     	return "enneinprufa";
     }
     
-    @RequestMapping(value="/wow", method = RequestMethod.POST)
-    public String postAScoreboard(@ModelAttribute("scoreboard") ScoreboardTournament scoreboard,
-    								@ModelAttribute("golfer") Golfer golfer,
-    								Model model) {
-    	
-    	if(golfer.getName()!=null) {
+    @RequestMapping(value="/addplayers2", method = RequestMethod.POST)
+	public String addPlayersToMatchplayers(@ModelAttribute("scoreboardTournament") ScoreboardTournament scoreboardTournament,
+											@ModelAttribute("golfer") Golfer golfer,
+											Model model) {
+		
+		if(!beenhere) {
+			tournament = scoreboardTournament;
+			beenhere = true;
+		}
+		
+		else {
+    		System.out.println("Saving golfer " + golfer.getName());
+    		tournament.addPlayer(golfer);
     		golferService.save(golfer);
-    		scoreboard.addPlayer(golfer);
+    		System.out.println(tournament.getPlayers().size());
     	}
     	
-    	
+    	    	
     	model.addAttribute("golfer", new Golfer());
-    	model.addAttribute("golfers", scoreboard.getPlayers());
-    	return "wow";
-    }
+    	model.addAttribute("golfers", tournament.getPlayers());
+    	
+    	return "participant2";
+	}
 
+    @RequestMapping(value="/scoreboard2", method = RequestMethod.POST)
+	public String showTournament(Model model) { 
+
+		ScoreboardTournament newtournament = scoreboardService.save(tournament.getPlayers(), tournament.getNumberOfRounds(), tournament.getCourse(), tournament.getName(), tournament.getStartDate());
+		
+		model.addAttribute("golfers", newtournament.getPlayers());
+		model.addAttribute("numberOfRounds", newtournament.getNumberOfRounds());
+		model.addAttribute("course", newtournament.getCourse());
+		model.addAttribute("startdate", newtournament.getStartDate());
+		model.addAttribute("name", newtournament.getName());
+		beenhere = false;
+		return "matchplay2";
+	}
 	
 }
