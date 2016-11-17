@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -52,15 +53,18 @@
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
 		<form method="GET" action="/addplayers">
-			<h2>This number of players does not work for this type of tournament</h2>
-			<p>The number of players must allow for a complete playoff tree to from, i.e. must be a power of 2</p>
-			<p>If the tournament has brackets then the total number of players fit in the brackets and</p>
-			<p>the number of players that exit the brackets must be a power of 2</p>
-			<input type="submit" class="w3-theme w3-medium" type="button"
-						VALUE="Add more players">
+			<h1>Something went wrong...</h1>
+			<br>
+				<p>This number of players does not work for this type of tournament.</p>
+				<p>The number of players must allow for a complete playoff tree to form, i.e. must be a power of 2.</p>
+				<p>If the tournament has brackets then the total number of players fit in the brackets.</p>
+				<p>The number of players that exit the brackets must be a power of 2.</p>
+				<br>
+				<input type="submit" class="w3-theme w3-large" type="button" VALUE="Edit Players">
 		</form>
-	</div>
-	
+	</div> 
+	<hr>
+
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"
@@ -95,5 +99,7 @@
 			</ul>
 		</div>
 	</div>
+
 </body>
 </html>
+

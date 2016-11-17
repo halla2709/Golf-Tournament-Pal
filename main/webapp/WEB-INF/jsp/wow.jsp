@@ -55,7 +55,7 @@
 		<h3>2. Fill out information about participants:</h3>
 
 
-		<div style="padding: 2em;">
+		<div>
 
 			<div class="w3-card-8 w3-col l4 s6"
 				style="padding: 2em; margin-right: 2em;">
@@ -64,31 +64,30 @@
 						<tr>
 							<td>Name:</td>
 							<%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-							<td><sf:input path="name" type="text"
+							<td><sf:input required="required" path="name" type="text"
 									placeholder="Enter Name" class="w3-input" /></td>
 						</tr>
 						<tr>
 							<td>Handicap:</td>
 							<%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-							<td><sf:input path="handicap" type="number" step="0.1"
+							<td><sf:input required="required" path="handicap" type="number" step="0.1"
 									class="w3-input " style="width:30%" /></td>
 						</tr>
 						<tr>
 							<td>Social:</td>
 							<%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-							<td><sf:input path="social" type="text"
-									placeholder="Enter SSN" class="w3-input" style="width:60%" /></td>
+							<td><sf:input id="ssn" required="required" path="social" type="text" name="ssn" class="w3-input" style="width:60%" min="0" /></td>
+
 						</tr>
 						<tr>
 							<td>Email:</td>
 							<%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-							<td><sf:input path="email" type="email" class="w3-input"
+							<td><sf:input required="required" path="email" type="email" class="w3-input"
 									placeholder="Enter Email" /></td>
 						</tr>
 
-						<br>
-						<br>
 					</table>
+					<br>
 					<input class="w3-theme w3-medium" type="submit" type="button"
 						VALUE="Add Player" />
 
@@ -153,21 +152,21 @@
 				</c:choose>
 			</div>
 			<div class="w3-col s12">
-				<p>
-					After selecting participants in the tournament, create the
-					tournament! <br>
+				<br>
+				<p>After selecting participants in the tournament, create the
+					tournament!</p>
+				<br>
 				<form method="POST" action="/matchplay2">
 					<input class="w3-theme w3-large" type="submit" type="button"
 						value="Create Tournament" /><br>
 				</form>
 			</div>
 		</div>
-
-
-
-
 		<hr>
 	</div>
+	
+
+
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

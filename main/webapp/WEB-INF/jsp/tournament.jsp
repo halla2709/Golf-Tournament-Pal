@@ -52,13 +52,18 @@
 
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
+		<h1>More information about the Tournament</h1>
+		<br>
 		<h3>Tournament Information:</h3>
-			<table class="w3-table-all w3-hoverable">
-				<tr>
-					<th>Tournament name:</th>
-					<th>Course:</th>
-					<th>Start Date:</th>
+			<table class="w3-table-all w3-hoverable" style="width:47%">
+				<thead>
+				<tr id="table">
+				
+					<td>Tournament name:</td>
+					<td>Course:</td>
+					<td>Start Date:</td>
 				</tr>
+				</thead>
 				<tr>
 					<td>${name}</td>
 					<td>${course}</td>
@@ -66,7 +71,7 @@
 				</tr>
 			</table>
 			
-			
+			<br>
 			<h3>Participants Information:</h3>
 			<%--Choose what code to generate based on tests that we implement--%>
 			<c:choose>

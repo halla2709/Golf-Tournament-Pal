@@ -117,7 +117,7 @@ public class Tournament {
 		this.startDate = result;
 	}
 
-	public long getid() {
+	public Long getid() {
 		return id;
 	}
 

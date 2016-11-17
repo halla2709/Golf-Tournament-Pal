@@ -61,9 +61,9 @@
 			see your Profile page or look at some interesting results for
 			tournaments!</p>
 		<p>Nice to see you and Happy Golfing!!!</p>
+		<br>
 		<img id="golferimg" src="../images/golfer.png" alt="Golfer">
 	</div>
-	<br>
 	<hr>
 
 	<!-- Footer -->

@@ -59,13 +59,14 @@
 			<sf:form method="POST" commandName="headOnTournament"
 				action="/addplayers">
 				<div id="matchplay" class="w3-card-8">
-					<sf:input path="name" class="w3-input" type="text"
-						style="width: 30%" />
-					<label class="w3-label w3-validate w3-border">Name of tournament</label> <br>
-					<sf:input path="course" class="w3-input" type="text"
+					<sf:input required="required" path="name" class="w3-input w3-animate-input" type="text"
+						style="width: 30%"/>
+					<label class="w3-label w3-validate w3-border">Name of tournament</label> 
+					<br>
+					<sf:input required="required" path="course" class="w3-input" type="text"
 						style="width: 30%" />
 					<label class="w3-label w3-validate w3-border">Course</label> <br>
-					<sf:input path="startDate" class="w3-input" type="date"
+					<sf:input required="required" path="startDate" class="w3-input" type="date"
 						style="width: 10%" />
 					<label class="w3-label w3-validate w3-border">Date</label> <br>
 					<br>
