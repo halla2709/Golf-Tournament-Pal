@@ -6,4 +6,5 @@ import project.persistence.entities.Tournament;
 
 public interface TournamentRepository extends JpaRepository<Tournament, Long>{
 
+	
 }

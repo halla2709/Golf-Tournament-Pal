@@ -26,10 +26,12 @@ public class ScoreboardTournament extends Tournament {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Scorecard> scorecards;
-	
-	public ScoreboardTournament(String course, String name, Date startDate, int numberOfRounds, List<Golfer> players, int[][] scores){
+
+	public ScoreboardTournament(String course, String name, Date startDate, int numberOfRounds, List<Golfer> players, List<Scorecard> scorecards, int[][] scores){
 		super(course, name, startDate, players);
-		this.setNumberOfRounds(numberOfRounds);
+		this.numberOfRounds = numberOfRounds;
+		this.scores = scores;
+		this.scorecards = scorecards;
 	}
 	
 	public ScoreboardTournament(String course, String name, Date startDate, List<Golfer> players) {
@@ -42,7 +44,7 @@ public class ScoreboardTournament extends Tournament {
 	}
 
 	public static void main(String[] args){
-		ScoreboardTournament scoreboardTournament = new ScoreboardTournament("vннн", "vuuuu", new Date(), 5, null, null);
+		ScoreboardTournament scoreboardTournament = new ScoreboardTournament("vннн", "vuuuu", new Date(), 5, null, null,  null);
 		System.out.println(scoreboardTournament.getCourse());
 	}
 
@@ -59,8 +61,15 @@ public class ScoreboardTournament extends Tournament {
 	}
 
 	public void setNumberOfRounds(int numberOfRounds) {
-		System.out.println("Setting numberOfRounds " + numberOfRounds);
 		this.numberOfRounds = numberOfRounds;
+	}
+	
+	public List<Scorecard> getScorecards() {
+		return scorecards;
+	}
+
+	public void setScorecards(List<Scorecard> scorecards) {
+		this.scorecards = scorecards;
 	}
 
 }

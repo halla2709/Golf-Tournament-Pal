@@ -38,7 +38,6 @@ public class Round {
 	private int[] myScores = {h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,h17,h18};
 	
 	public Round() {
-		System.out.println("Creating Rounds");
 	}
 	
 	public int getTotal() {
@@ -67,11 +66,11 @@ public class Round {
 		h15 = scores[14];
 		h16 = scores[15];
 		h17 = scores[16];
+		h18 = scores[17];
+		total = getTotal();
 	}
 	
 	public int getScore(int i) {
-		System.out.println(h1);
-		System.out.println(myScores[0]);
 		return myScores[i];
 		
 	}

@@ -24,10 +24,10 @@ public class ScoreboardCreator {
 		this.numberOfRounds = numberOfRounds;
 		this.course = course;
 		this.name = name;
-		this.setScorecards(null);
+		this.scorecards = null;
 	}
 	
-	public List<Scorecard> createScorecards() {
+	public void createScorecards() {
 		List<Scorecard> newscorecards = new ArrayList<Scorecard>();
 		for(int i = 0; i <  players.size(); i++) {
 			Scorecard s = new Scorecard(players.get(i), null, course, numberOfRounds);
@@ -35,13 +35,12 @@ public class ScoreboardCreator {
 		}
 		setScorecards(newscorecards);
 		System.out.println("Scorecards created");
-		return newscorecards;
 	}
 	
 	// ra�ir eru skor � leikmann, fyrri talan
 	// d�lkar eru skor � hring, seinni talan
 	// seinasti d�lkurinn er summa fyrir leikmanninn
-	public int[][] createScoreBoard() {
+	public void createScoreboard() {
 		score = new int[players.size()][numberOfRounds+1];
 		
 		for(int i = 0; i < players.size(); i++) {
@@ -54,61 +53,23 @@ public class ScoreboardCreator {
 			score[i][numberOfRounds] = total;
 		}
 		
-		return score;
-	}
-	
-	public void updateStatus() {
-		int[] totalscores = new int[players.size()];
-		for(int i = 0; i < players.size(); i++) {
-			totalscores[i] = score[i][numberOfRounds];
-		}
-		
-		ArrayIndexComparator comparator = new ArrayIndexComparator(totalscores);
-		Integer[] indexes = comparator.createIndexArray();
-		Arrays.sort(indexes, comparator);
-		Arrays.sort(totalscores);
-
-		List<Golfer> newplayers = new ArrayList<Golfer>();
-		int[][] newscores = new int[players.size()][numberOfRounds + 1];
-		
-		for(int i = 0; i < players.size(); i++) {
-			newplayers.add(players.get((int) indexes[i])); 
-			newscores[i] = score[(int) indexes[i]];
-		}
-		
-		players = newplayers;
-		score = newscores;
-	}
-	
-	private int[] findMinScore() {
-		int min = numberOfRounds*150;
-		int location = 0;
-		for(int i = 0; i < players.size(); i++) {
-			if(score[i][numberOfRounds] < min) {
-				min = score[i][numberOfRounds];
-				location = i;
-			}			
-		}
-		
-		int[] ret = {location, min};
-		return ret;
 	}
 	
 	public ScoreboardTournament createTournament() { 
 		
-		scorecards = createScorecards();
-		score = createScoreBoard();
+		createScorecards();
+		createScoreboard();
 		
-		return new ScoreboardTournament(course, name, startDate, numberOfRounds, players, score);
+		return new ScoreboardTournament(course, name, startDate, numberOfRounds, players, scorecards, score);
 	}
 	
 	public static void main(String[] args){
-		Golfer halla = new Golfer("Halla", 93939393, 4.3, "hallamammain");
-		Golfer elvar = new Golfer("Elvar", 93939393, 36.0, "ilvar");
-		Golfer mamma = new Golfer("begga", 93939393, 33.4, "hallamammain");
-		Golfer pabbi = new Golfer("raggi", 93939393, 6.8, "ilvar");		
-		Golfer hedda = new Golfer("hedda", 93939393, 12.2, "hallamammain");
-		Golfer brynja = new Golfer("brynja", 93939393, 24.2, "ilvar");
+		Golfer halla = new Golfer("Halla", 888, 4.3, "hallamammain");
+		Golfer elvar = new Golfer("Elvar", 222, 36.0, "ilvar");
+		Golfer mamma = new Golfer("begga", 111, 33.4, "hallamammain");
+		Golfer pabbi = new Golfer("raggi", 444, 6.8, "ilvar");		
+		Golfer hedda = new Golfer("hedda", 333, 12.2, "hallamammain");
+		Golfer brynja = new Golfer("brynja", 555, 24.2, "ilvar");
 		List<Golfer> unsorted = new ArrayList<Golfer>();
 		unsorted.add(brynja);
 		unsorted.add(elvar);
@@ -118,10 +79,60 @@ public class ScoreboardCreator {
 		unsorted.add(hedda);
 		ScoreboardCreator s = new ScoreboardCreator(unsorted, 3, "Grabbi", "BESTAMOTID", new Date());
 		
-		List<Scorecard> wow = s.createScorecards();
-		int[][] scores = s.createScoreBoard();
-		s.updateStatus();
+		ScoreboardTournament tournament = s.createTournament();
+		ScoreboardUpdater updater = new ScoreboardUpdater(tournament);
 		
+		for(int i = 0; i < tournament.getScores().length; i++) {
+			System.out.print(tournament.getPlayers().get(i).getName());
+			for(int j = 0; j < tournament.getScores()[i].length; j++) {
+				System.out.print("  " + tournament.getScores()[i][j]);
+			}
+			System.out.println();
+		}
+		
+		int[] roundscores = {2,3,4,5,4,3,2,3,4,5,4,3,2,3,4,5,6,5};
+		tournament = updater.addScoresForRounds(888, roundscores, 0);
+		
+		for(int i = 0; i < tournament.getScores().length; i++) {
+			System.out.print(tournament.getPlayers().get(i).getName());
+			for(int j = 0; j < tournament.getScores()[i].length; j++) {
+				System.out.print("  " + tournament.getScores()[i][j]);
+			}
+			System.out.println();
+		}
+		
+		int[] roundscores2 = {2,3,4,5,4,3,4,3,4,5,4,3,6,3,4,5,6,5};
+		tournament = updater.addScoresForRounds(222, roundscores2, 0);
+		
+		for(int i = 0; i < tournament.getScores().length; i++) {
+			System.out.print(tournament.getPlayers().get(i).getName());
+			for(int j = 0; j < tournament.getScores()[i].length; j++) {
+				System.out.print("  " + tournament.getScores()[i][j]);
+			}
+			System.out.println();
+		}
+		
+		int[] roundscores3 = {2,3,4,5,4,3,4,3,4,5,4,3,6,3,4,5,6,5};
+		tournament = updater.addScoresForRounds(888, roundscores3, 1);
+		
+		for(int i = 0; i < tournament.getScores().length; i++) {
+			System.out.print(tournament.getPlayers().get(i).getName());
+			for(int j = 0; j < tournament.getScores()[i].length; j++) {
+				System.out.print("  " + tournament.getScores()[i][j]);
+			}
+			System.out.println();
+		}
+		
+		int[] roundscores4 = {2,3,4,5,4,3,4,2,4,5,4,3,6,3,4,5,2,2};
+		tournament = updater.addScoresForRounds(555, roundscores4, 0);
+		
+		for(int i = 0; i < tournament.getScores().length; i++) {
+			System.out.print(tournament.getPlayers().get(i).getName());
+			for(int j = 0; j < tournament.getScores()[i].length; j++) {
+				System.out.print("  " + tournament.getScores()[i][j]);
+			}
+			System.out.println();
+		}
 		
 	}
 

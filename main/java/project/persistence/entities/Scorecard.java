@@ -48,7 +48,6 @@ public class Scorecard {
 		for(int i = 0; i < numberOfRounds; i++) {
 			rounds.add(new Round());
 		}
-		System.out.println(rounds.size());
 	}
 		
 	public Scorecard() {
@@ -65,7 +64,6 @@ public class Scorecard {
 	
 	public static void main(String[] args){
 		Scorecard scorecard = new Scorecard(null, null, "Grabbi", 3);
-		System.out.println(scorecard.course);
 	}
 
 	public Golfer getPlayer() {
@@ -82,6 +80,10 @@ public class Scorecard {
 
 	public void setNumberOfRounds(int numberOfRounds) {
 		this.numberOfRounds = numberOfRounds;
+	}
+	
+	public void setRound(int roundNumber, int[] scores) {
+		rounds.get(roundNumber).setScore(scores);
 	}
 
 }
