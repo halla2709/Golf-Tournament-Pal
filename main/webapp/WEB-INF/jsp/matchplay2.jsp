@@ -174,6 +174,20 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
+		
+		<!-- PLAYOFFTREE -->
+		
+		<div class="chart" id="OrganiseChart-simple">
+	</div>
+	
+	<script src="/raphael.js"></script>
+	<script src="/Treant.js"></script>
+	<script src="super-simple.js"></script>
+
+	<script>
+		new Treant( simple_chart_config );
+	</script>
+		
 	</div>
 	<hr>
 
