@@ -1,18 +1,13 @@
 package project.service.Implementation;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import project.persistence.entities.Golfer;
-import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.ScoreboardTournament;
 import project.persistence.repositories.ScoreboardCreatorRepository;
-import project.service.MatchPlayCreator;
-import project.service.MatchPlayService;
 import project.service.ScoreboardCreator;
 import project.service.ScoreboardService;
 

@@ -18,7 +18,7 @@ public class Match {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     
     @ManyToMany()
     @JoinTable(name="MatchPlayer", joinColumns=@JoinColumn(name="match_id"), inverseJoinColumns=@JoinColumn(name="golfer_id")) 

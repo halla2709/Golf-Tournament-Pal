@@ -42,11 +42,9 @@ public class Tournament {
 	}
 	
 	
-	
 	public Tournament() {
 		super();
 	}
-
 
 
 	public static void main(String[] args) {
@@ -101,7 +99,6 @@ public class Tournament {
 	public Date getStartDate() {
 		return startDate;
 	}
-
 
 
 	public void setStartDate(String startDate) {
