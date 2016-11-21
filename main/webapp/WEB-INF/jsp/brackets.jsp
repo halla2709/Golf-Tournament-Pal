@@ -5,9 +5,9 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<link rel="shortcut icon" href="../images/images.jpg" />
-<link rel="stylesheet" href="../extras/style.css">
-<script src="../extras/functions.js" language="Javascript"
+<link rel="shortcut icon" href="../../../images/images.jpg" />
+<link rel="stylesheet" href="../../../extras/style.css">
+<script src="../../../extras/functions.js" language="Javascript"
 	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -48,49 +48,12 @@
 			</header>
 		</ul>
 	</div>
-	<hr>
 
-	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
-		<h1>Results</h1>
-		<br>
-		<h2>Here we will post results from tournaments.</h2>
-		<br>
-<!-- Will not be used yet-->
-<!-- 		<h3>Find the tournament you are looking for:</h3> -->
-<!-- 		<input id="search" class="w3-input w3-border" type="text" -->
-<!-- 			name="search" placeholder="Search Tournament.."> <br> <br> -->
-		<table class="w3-table-all w3-hoverable">
-			<thead>
-				<tr id="table">
-					<th>Tournament</th>
-					<th>Date</th>
-					<th>Course</th>
-					<th></th>
-				</tr>
-			</thead>
-			<c:choose>
-				<c:when test="${not empty tournaments}">
-					<c:forEach var="tournament" items="${tournaments}">
-							<tr>
-								<td>${tournament.name}</td>
-								<td>${tournament.startDate}</td>
-								<td>${tournament.course}</td>
-								<td><a href="/tournament/${tournament.getid()}/">See more</a>
-							</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="4">No Tournaments!</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</table>
-	</div>
-	<br>
-	<hr>
+		<h1>Brackets</h1>
 
+
+	</div>
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

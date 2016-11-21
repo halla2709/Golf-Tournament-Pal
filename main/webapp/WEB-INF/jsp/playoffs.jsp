@@ -5,9 +5,9 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<link rel="shortcut icon" href="../images/images.jpg" />
-<link rel="stylesheet" href="../extras/style.css">
-<script src="../extras/functions.js" language="Javascript"
+<link rel="shortcut icon" href="../../../images/images.jpg" />
+<link rel="stylesheet" href="../../../extras/style.css">
+<script src="../../../extras/functions.js" language="Javascript"
 	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -48,49 +48,84 @@
 			</header>
 		</ul>
 	</div>
-	<hr>
 
-	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
-		<h1>Results</h1>
-		<br>
-		<h2>Here we will post results from tournaments.</h2>
-		<br>
-<!-- Will not be used yet-->
-<!-- 		<h3>Find the tournament you are looking for:</h3> -->
-<!-- 		<input id="search" class="w3-input w3-border" type="text" -->
-<!-- 			name="search" placeholder="Search Tournament.."> <br> <br> -->
-		<table class="w3-table-all w3-hoverable">
-			<thead>
-				<tr id="table">
-					<th>Tournament</th>
-					<th>Date</th>
-					<th>Course</th>
-					<th></th>
-				</tr>
-			</thead>
-			<c:choose>
-				<c:when test="${not empty tournaments}">
-					<c:forEach var="tournament" items="${tournaments}">
-							<tr>
-								<td>${tournament.name}</td>
-								<td>${tournament.startDate}</td>
-								<td>${tournament.course}</td>
-								<td><a href="/tournament/${tournament.getid()}/">See more</a>
-							</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="4">No Tournaments!</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</table>
-	</div>
-	<br>
-	<hr>
+		<h1>Play Off Tree</h1>
 
+		<c:choose>
+			<c:when test="${ not empty rounds }">
+
+				<table class="w3-table-all w3-hoverable" style="width: 47%">
+					<thead>
+						<tr id="table">
+							<c:forEach var="matchnum" begin="1" end="${numberOfMatches}">
+								<td>Leikur ${matchNum}</td>
+							</c:forEach>
+						</tr>
+					</thead>
+					<c:forEach var="roundnum" begin="0" end="${numberOfRounds-1}">
+						<tr>
+							<c:choose>
+								<c:when test="${not empty rounds.get(roundnum).matches }">
+									<c:forEach var="match" items="${rounds.get(roundnum).matches}">
+										<td colspan="${Math.pow(2,roundnum)}">
+											<table class="w3-table-all">
+												<thead>
+													<tr id="table">
+														<td>Player</td>
+														<td>Handicap</td>
+													</tr>
+												</thead>
+
+												<c:forEach var="player" items="${match.players}">
+
+													<tr>
+														<td>${player.name}</td>
+														<td>${player.handicap}</td>
+													</tr>
+
+												</c:forEach>
+
+
+											</table>
+										</td>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="matchnum" begin="1"
+										end="${numberOfMatches/Math.pow(2,roundnum)}">
+
+
+										<td colspan="${Math.pow(2,roundnum)}">
+											<table class="w3-table-all">
+												<thead>
+													<tr id="table">
+														<td>Next Match</td>
+													</tr>
+												</thead>
+
+												<c:forEach var="player" begin="1" end="2">
+
+													<tr>
+														<td colspan="2">winner ${player}</td>
+													</tr>
+
+												</c:forEach>
+
+
+											</table>
+										</td>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</tr>
+					</c:forEach>
+				</table>
+
+			</c:when>
+		</c:choose>
+
+	</div>
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

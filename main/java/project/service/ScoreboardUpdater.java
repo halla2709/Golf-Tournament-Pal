@@ -16,6 +16,43 @@ public class ScoreboardUpdater {
 	public ScoreboardUpdater(ScoreboardTournament tournament) {
 		this.tournament = tournament;
 		score = new int[tournament.getPlayers().size()][tournament.getNumberOfRounds()+1];
+		createScoreboard();
+		tournament.setScores(score);
+	}
+	
+	public static ScoreboardTournament createScoreboard(ScoreboardTournament tournament) {
+		int[][] score = new int[tournament.getPlayers().size()][tournament.getNumberOfRounds()+1];
+		System.out.println("Players: " + tournament.getPlayers().size() + " and nor: " + tournament.getScorecards().get(0).getTotalForRounds()[0]);
+		
+		for(int i = 0; i < tournament.getPlayers().size(); i++) {
+			int[] scorecardi = tournament.getScorecards().get(i).getTotalForRounds();
+			int total = 0;
+			for(int j = 0; j < tournament.getNumberOfRounds(); j++) {
+				System.out.println("i " + i + " j " + j);
+				score[i][j] = scorecardi[j];
+				total += scorecardi[j];
+			}
+			score[i][tournament.getNumberOfRounds()] = total;
+		}
+		tournament.setScores(score);
+		return tournament;
+	}
+	
+	private void createScoreboard() {
+		score = new int[tournament.getPlayers().size()][tournament.getNumberOfRounds()+1];
+		System.out.println("Players: " + tournament.getPlayers().size() + " and nor: " + tournament.getNumberOfRounds());
+		
+		for(int i = 0; i < tournament.getPlayers().size(); i++) {
+			int[] scorecardi = tournament.getScorecards().get(i).getTotalForRounds();
+			int total = 0;
+			for(int j = 0; j < tournament.getNumberOfRounds(); j++) {
+				System.out.println("i " + i + " j " + j);
+				score[i][j] = scorecardi[j];
+				total += scorecardi[j];
+			}
+			score[i][tournament.getNumberOfRounds()] = total;
+		}
+		
 	}
 	
 	private void updateStatus() {

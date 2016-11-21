@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Scorecard") 
@@ -36,7 +35,6 @@ public class Scorecard {
     
     private String course;
     
-    @Transient()
 	private int numberOfRounds;
 
 	public Scorecard(Golfer player, Team team, String course, int numberOfRounds){

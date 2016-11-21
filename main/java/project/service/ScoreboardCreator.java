@@ -1,7 +1,6 @@
 package project.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -123,8 +122,10 @@ public class ScoreboardCreator {
 			System.out.println();
 		}
 		
+		ScoreboardUpdater updater2 = new ScoreboardUpdater(tournament);
+		
 		int[] roundscores4 = {2,3,4,5,4,3,4,2,4,5,4,3,6,3,4,5,2,2};
-		tournament = updater.addScoresForRounds(555, roundscores4, 0);
+		tournament = updater2.addScoresForRounds(555, roundscores4, 0);
 		
 		for(int i = 0; i < tournament.getScores().length; i++) {
 			System.out.print(tournament.getPlayers().get(i).getName());
@@ -133,6 +134,8 @@ public class ScoreboardCreator {
 			}
 			System.out.println();
 		}
+		
+		
 		
 	}
 

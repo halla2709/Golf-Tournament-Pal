@@ -138,6 +138,10 @@ public class MatchPlayCreator {
 		
 		List<PlayOffRound> rounds = new ArrayList<PlayOffRound>((int) changeToBase2(numIn));
 		// Ef �etta er ekki ri�lam�t �� er h�gt a� stilla upp fyrstu umfer�inni
+		for(int i = 0; i < ((int) changeToBase2(numIn)); i++) {
+			List<Match> emptyMatches = new ArrayList<Match>(numOfMatches/(int) Math.pow(2, i)); 
+			rounds.add(new PlayOffRound(emptyMatches, i+1));
+		}
 		if(!areBrackets) {
 			List<Match> emptyMatches = new ArrayList<Match>(numOfMatches);
 			for(int i = 0; i < numOfMatches; i++) {
@@ -150,7 +154,7 @@ public class MatchPlayCreator {
 				emptyMatches.get(i).setPlayers(playersInMatch);
 			}
 			PlayOffRound p = new PlayOffRound(emptyMatches, 1);
-			rounds.add(p);
+			rounds.set(0,p);
 		}
 		
 		return new PlayOffTree(rounds);

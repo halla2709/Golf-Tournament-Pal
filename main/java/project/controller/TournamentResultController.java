@@ -9,18 +9,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import project.persistence.entities.Bracket;
+import project.persistence.entities.MatchPlayTournament;
+import project.persistence.entities.PlayOffTree;
+import project.persistence.entities.ScoreboardTournament;
 import project.persistence.entities.Tournament;
+import project.service.MatchPlayService;
+import project.service.ScoreboardService;
 import project.service.TournamentService;
 
 @Controller
 public class TournamentResultController {
 	
 	TournamentService tournamentService;
+	MatchPlayService matchPlayService;
+	ScoreboardService scoreboardService;
 	
 	
 	@Autowired
-    public TournamentResultController(TournamentService tournamentService) {
+    public TournamentResultController(TournamentService tournamentService, MatchPlayService matchPlayService, ScoreboardService scoreboardService) {
 		this.tournamentService = tournamentService;
+		this.matchPlayService = matchPlayService;
+		this.scoreboardService = scoreboardService;
 	}
 	
 	@RequestMapping(value = "/results", method = RequestMethod.GET)
@@ -33,14 +43,55 @@ public class TournamentResultController {
     }
 	
 	@RequestMapping(value="/tournament/{id}", method=RequestMethod.GET)
-	public String displayTournament(@PathVariable(value="id") String id,
+	public String displayTournament(@PathVariable(value="id") Long id,
 			Model model) {
-		Tournament tournament = tournamentService.findOne(Long.parseLong(id));
+		Tournament tournament = tournamentService.findOne(id);
 		
 		model.addAttribute("golfers", tournament.getPlayers());
 		model.addAttribute("course", tournament.getCourse());
 		model.addAttribute("name", tournament.getName());
 		model.addAttribute("startdate", tournament.getStartDate());
+		model.addAttribute("id", tournament.getid());
+		
+		if(tournament instanceof MatchPlayTournament) {
+			return "matchPlayTournament";
+		}
+		else if(tournament instanceof ScoreboardTournament) {
+			model.addAttribute("scoreboard", ((ScoreboardTournament) tournament).getScores());
+			model.addAttribute("numberOfRounds", ((ScoreboardTournament) tournament).getNumberOfRounds());
+			return "scoreboardTournament";
+		}
+		
 		return "tournament";
 	}
+	
+	@RequestMapping(value="/tournament/{id}/{social}/{round}", method=RequestMethod.GET)
+	public String addRound(@PathVariable(value="id") Long id, 
+			@PathVariable(value="social") long social,
+			@PathVariable(value="round") int round) {
+		return "roundInsert";
+	}
+	
+	@RequestMapping(value="/tournament/{id}/playofftree", method=RequestMethod.GET)
+	public String displayPlayoffs(@PathVariable(value="id") Long id,
+			Model model) {
+		
+		PlayOffTree playoffs = matchPlayService.getPlayOffTree(id);
+		System.out.println(playoffs.getRounds().size());
+		model.addAttribute("rounds", playoffs.getRounds());
+		model.addAttribute("numberOfRounds", playoffs.getRounds().size());
+		model.addAttribute("numberOfMatches", Math.pow(2, playoffs.getRounds().size()-1));
+		return "playoffs";
+	}
+	
+	@RequestMapping(value="/tournament/{id}/brackets", method=RequestMethod.GET)
+	public String displayBrackets(@PathVariable(value="id") Long id,
+			Model model) {
+		
+		List<Bracket> brackets = matchPlayService.getBrackets(id);
+		model.addAttribute("brackets", brackets);
+		model.addAttribute("numberOfBrackets", brackets.size());
+		return "brackets";
+	}
+	
 }

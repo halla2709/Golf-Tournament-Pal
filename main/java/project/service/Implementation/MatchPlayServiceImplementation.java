@@ -7,8 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import project.persistence.entities.Bracket;
 import project.persistence.entities.Golfer;
 import project.persistence.entities.MatchPlayTournament;
+import project.persistence.entities.PlayOffTree;
 import project.persistence.repositories.MatchPlayCreatorRepository;
 import project.service.MatchPlayCreator;
 import project.service.MatchPlayService;
@@ -50,19 +52,20 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	}
 
 	@Override
-	public List<MatchPlayTournament> findAllReverseOrder() {
-		// Get all the Postit notes
-        List<MatchPlayTournament> postitNotes = repository.findAll();
-
-        // Reverse the list
-        Collections.reverse(postitNotes);
-
-        return postitNotes;
+	public MatchPlayTournament findOne(Long id) {
+		return repository.findOne(id);
 	}
 
 	@Override
-	public MatchPlayTournament findOne(Long id) {
-		return repository.findOne(id);
+	public PlayOffTree getPlayOffTree(Long id) {
+		MatchPlayTournament tournament = findOne(id);
+		return tournament.getPlayOffs();
+	}
+
+	@Override
+	public List<Bracket> getBrackets(Long id) {
+		MatchPlayTournament tournament = findOne(id);
+		return tournament.getBrackets();
 	}
 
 

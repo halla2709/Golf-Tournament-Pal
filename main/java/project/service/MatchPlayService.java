@@ -3,8 +3,10 @@ package project.service;
 import java.util.Date;
 import java.util.List;
 
+import project.persistence.entities.Bracket;
 import project.persistence.entities.Golfer;
 import project.persistence.entities.MatchPlayTournament;
+import project.persistence.entities.PlayOffTree;
 
 public interface MatchPlayService {
 	
@@ -24,17 +26,15 @@ public interface MatchPlayService {
     List<MatchPlayTournament> findAll();
 
     /**
-     * Get all {@link MatchPlayTournament}s in a reverse order
-     * @return A reversed list of {@link MatchPlayTournament}s
-     */
-    List<MatchPlayTournament> findAllReverseOrder();
-
-    /**
      * Find a {@link MatchPlayTournament} based on {@link Long id}
      * @param id {@link Long}
      * @return A {@link MatchPlayTournament} with {@link Long id}
      */
     MatchPlayTournament findOne(Long id);
+
+	PlayOffTree getPlayOffTree(Long id);
+
+	List<Bracket> getBrackets(Long id);
 
 }
 

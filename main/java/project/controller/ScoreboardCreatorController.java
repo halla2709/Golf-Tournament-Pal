@@ -1,17 +1,13 @@
 package project.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import project.persistence.entities.Golfer;
-import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.ScoreboardTournament;
 import project.service.GolferService;
 import project.service.ScoreboardService;
@@ -28,8 +24,9 @@ public class ScoreboardCreatorController {
 	boolean beenhere;
 	
 	@Autowired
-	public ScoreboardCreatorController(GolferService golferService){
+	public ScoreboardCreatorController(GolferService golferService, ScoreboardService scoreboardService){
 		this.golferService = golferService;
+		this.scoreboardService = scoreboardService;
 	}
 	
     @RequestMapping(value = "/scoreboard", method = RequestMethod.GET)
@@ -106,6 +103,7 @@ public class ScoreboardCreatorController {
 		model.addAttribute("course", newtournament.getCourse());
 		model.addAttribute("startdate", newtournament.getStartDate());
 		model.addAttribute("name", newtournament.getName());
+		model.addAttribute("scoreboard", newtournament.getScores());
 		beenhere = false;
 		return "matchplay2";
 	}

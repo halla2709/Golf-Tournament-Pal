@@ -153,7 +153,7 @@
 			</c:when>
 
 			<%--If all tests are false, then do this--%>
-			<c:otherwise>
+			<c:when test="${ not empty playofftree }">
 				<h3>Match Information:</h3>
 				<c:forEach var="match" items="${playofftree.rounds.get(0).matches}">
 					<table class="w3-table-all w3-hoverable" style="width: 47%">
@@ -172,22 +172,47 @@
 						</c:forEach>
 					</table>
 				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-		
-		<!-- PLAYOFFTREE -->
-		
-		<div class="chart" id="OrganiseChart-simple">
-	</div>
-	
-	<script src="/raphael.js"></script>
-	<script src="/Treant.js"></script>
-	<script src="super-simple.js"></script>
+			</c:when>
 
-	<script>
+			<c:when test="${ not empty scoreboard }">
+				<h3>Match Information:</h3>
+
+				<table class="w3-table-all w3-hoverable" style="width: 47%">
+					<thead>
+						<tr id="table">
+							<th>Player</th>
+							<c:forEach var="num" begin="1" end="${numberOfRounds+1}">
+								<th>Hringur ${num}</th>
+							</c:forEach>
+						</tr>
+					</thead>
+
+					<c:forEach var="row" begin="0" end="${golfers.size()-1}">
+						<tr>
+							<td>${golfers.get(row).getName()}</td>
+							<c:forEach var="column" begin="0" end="${numberOfRounds }">
+								<td>${scoreboard[row][column]}</td>
+							</c:forEach>
+						</tr>
+					</c:forEach>
+				</table>
+
+			</c:when>
+
+		</c:choose>
+
+		<!-- PLAYOFFTREE -->
+
+		<div class="chart" id="OrganiseChart-simple"></div>
+
+		<script src="/raphael.js"></script>
+		<script src="/Treant.js"></script>
+		<script src="super-simple.js"></script>
+
+		<script>
 		new Treant( simple_chart_config );
 	</script>
-		
+
 	</div>
 	<hr>
 

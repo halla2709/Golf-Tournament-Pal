@@ -68,3 +68,9 @@ ul {
 #hidden {
 	display: none;
 }
+
+.seeButton {
+	width: 42%;
+	margin: 2%;
+	padding: 1%;
+}
