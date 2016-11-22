@@ -4,6 +4,22 @@
 	background-color: #001A85;
 }
 
+.w3-theme2 {
+	color: #ffffff;
+	background-color: #001A85;
+	opacity: 0.3;
+}
+
+.w3-theme3 {
+	background-color: #ffffff;
+}
+
+.w3-theme4 {
+	background-color: #ffffff;
+	color: #001A85;
+}
+
+
 .theme {
 	color: #ffffff;
 	opacity: 1;
@@ -38,7 +54,18 @@ ul {
 	padding: 2em;
 	margin-bottom: 7em;
 	z-index: 0;
-	"
+	min-height: 32em;
+	
+}
+
+#main2 {
+	position: relative;
+	top: 8em;
+	padding: 2em;
+	margin-bottom: 7em;
+	z-index: 0;
+	min-height:200%;
+	
 }
 
 #golferimg {
@@ -47,9 +74,9 @@ ul {
 }
 
 #footer {
-	width: 100%;
-	bottom: 0px;
-	position: relative;
+	position:relative;
+   bottom:0;
+   width:100%;
 }
 
 #footer1, #footer2, #footer3 {
@@ -68,6 +95,17 @@ ul {
 #hidden {
 	display: none;
 }
+
+#bigbutton {
+	height:3em;
+	background-color: #001A85;
+}
+
+#normalbutton {
+	height:3em;
+	background-color: #001A85;
+}
+
 
 .seeButton {
 	width: 42%;

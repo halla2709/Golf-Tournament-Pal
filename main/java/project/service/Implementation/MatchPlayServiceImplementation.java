@@ -26,8 +26,8 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	}
 	
 	/**
-	 * Miğağ viğ gefnar upplısingar er athugağ hvort hægt sé ağ setja upp mót. Ef şağ er hægt
-	 * er mótiğ vistağ í gagnagrunninn. Annars er skilağ null.
+	 * MiÃ°aÃ° viÃ° gefnar upplÃ½singar er athugaÃ° hvort hÃ¦gt sÃ© aÃ° setja upp mÃ³t. Ef Ã¾aÃ° er hÃ¦gt
+	 * er mÃ³tiÃ° vistaÃ° Ã­ gagnagrunninn. Annars er skilaÃ° null.
 	 */
 	@Override
 	public MatchPlayTournament save(boolean areBrackets, List<Golfer> players, int numInBracket, int numOutOfBrackets, String course, String name, Date startDate) {

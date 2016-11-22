@@ -122,7 +122,7 @@
 		<c:choose>
 			<c:when test="${not empty brackets}">
 				<h3>Brackets Information:</h3>
-				<table class="w3-table-all w3-hoverable" style="width: 47%">
+				<table class="w3-table-all" style="width: 47%">
 					<thead>
 						<tr id="table">
 							<td>Player</td>
@@ -139,12 +139,12 @@
 							<%--it in the singular item var, and then just a dot followed by the attribute name--%>
 
 							<%--Create a link based on the name attribute value--%>
-							<td colspan="2">${bracket.name}</td>
+							<td class="w3-theme2" colspan="2">${bracket.name}</td>
 						</tr>
 						<c:forEach var="player" items="${bracket.players}">
 							<tr>
-								<td>${player.name}</td>
-								<td>${player.handicap}</td>
+								<td class="w3-theme3">${player.name}</td>
+								<td class="w3-theme3">${player.handicap}</td>
 							</tr>
 
 						</c:forEach>
@@ -183,7 +183,9 @@
 							<th>Player</th>
 							<c:forEach var="num" begin="1" end="${numberOfRounds+1}">
 								<th>Hringur ${num}</th>
+								
 							</c:forEach>
+							
 						</tr>
 					</thead>
 
@@ -200,21 +202,13 @@
 			</c:when>
 
 		</c:choose>
-
-		<!-- PLAYOFFTREE -->
-
-		<div class="chart" id="OrganiseChart-simple"></div>
-
-		<script src="/raphael.js"></script>
-		<script src="/Treant.js"></script>
-		<script src="super-simple.js"></script>
-
-		<script>
-		new Treant( simple_chart_config );
-	</script>
-
-	</div>
-	<hr>
+	<br>
+	
+	<a href="/results/${tournament.getid()}">
+		<input id="normalbutton" class="w3-theme w3-center w3-btn w3-col s4 w3-medium" 
+				value="Go to Results"/></a>
+				</div>
+				<hr>
 
 
 	<!-- Footer -->
@@ -254,4 +248,3 @@
 
 </body>
 </html>
-

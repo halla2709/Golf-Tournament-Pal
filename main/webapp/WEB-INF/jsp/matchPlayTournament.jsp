@@ -110,9 +110,19 @@
 			</c:when>
 		</c:choose>
 		
-		<a class="seeButton" href="brackets">See Brackets</a>
-		<a class="seeButton" href="playofftree">See Play Off Tree</a>
+		
+
+			<br>
+		<div class="w3-row">
+			<a class="seeButton" href="brackets">
+				<input id="bigbutton" class="w3-theme w3-center w3-btn w3-col s5 w3-large" value="View Bracket"/></a>
+			<a class="seeButton" href="playofftree">
+				<input id="bigbutton" class="w3-theme w3-center w3-btn w3-col s5 w3-large w3-right w3-border" value="View Play Off Tree"></a>
+		</div>
+
 	</div>
+	<hr>
+
 
 	<!-- Footer -->
 	<div id="footer">

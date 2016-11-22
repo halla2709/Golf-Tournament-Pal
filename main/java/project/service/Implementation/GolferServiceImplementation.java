@@ -27,5 +27,10 @@ public class GolferServiceImplementation implements GolferService{
 	public List<Golfer> findAll() {
 		return repository.findAll();
 	}
+	@Override
+	public Golfer delete(Golfer player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

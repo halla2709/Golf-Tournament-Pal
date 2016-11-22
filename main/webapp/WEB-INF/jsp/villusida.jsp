@@ -52,7 +52,7 @@
 
 	
 	<!-- Main Text -->
-	<div class="w3-row w3-container" id="main">
+	<div class="w3-row w3-container" id="main2">
 		<form method="GET" action="/addplayers">
 			<h1>Something went wrong...</h1>
 			<br>
@@ -60,8 +60,12 @@
 				<p>The number of players must allow for a complete playoff tree to form, i.e. must be a power of 2.</p>
 				<p>If the tournament has brackets then the total number of players fit in the brackets.</p>
 				<p>The number of players that exit the brackets must be a power of 2.</p>
+				<p> Please try again.
 				<br>
-				<input type="submit" class="w3-theme w3-large" type="button" VALUE="Edit Players">
+				<br>
+				<input type="submit" class="w3-center w3-theme w3-large" type="button" VALUE="Edit Players">
+				<br>
+				<br> <img id="golferimg" src="../images/golfer.png" alt="Golfer">
 		</form>
 	</div> 
 	<hr>

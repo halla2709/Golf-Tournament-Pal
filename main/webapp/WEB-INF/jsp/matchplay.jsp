@@ -94,7 +94,7 @@
 			<p>After filling out information about the tournament, it is time
 				to go to the next step and fill out information about the
 				participants.</p>
-			<input class="w3-theme w3-large" type="submit" type="button"
+			<input id="normalbutton" class="w3-theme w3-center w3-btn w3-col s4 w3-medium" type="submit"
 				value="Participant Information">
 			<br>
 

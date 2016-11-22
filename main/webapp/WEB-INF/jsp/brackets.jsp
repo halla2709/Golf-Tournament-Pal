@@ -5,9 +5,9 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<link rel="shortcut icon" href="../../../images/images.jpg" />
-<link rel="stylesheet" href="../../../extras/style.css">
-<script src="../../../extras/functions.js" language="Javascript"
+<link rel="shortcut icon" href="/images/images.jpg" />
+<link rel="stylesheet" href="/extras/style.css">
+<script src="../extras/functions.js" language="Javascript"
 	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -48,12 +48,48 @@
 			</header>
 		</ul>
 	</div>
+	<hr>
 
+	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
 		<h1>Brackets</h1>
+		<br>
+		<c:choose>
+			<c:when test="${not empty brackets}">
+				<h3>Brackets Information:</h3>
+				<c:forEach var="bracket" items="${brackets}">
+				<br>
+					<table class="w3-table-all" style="width: 47%">
 
+						<tr id="table">
+							<td>${bracket.name}</td>
+							<c:forEach var="player" items="${bracket.players}">
+								<td class="w3-theme4">${player.name}</td>
+							</c:forEach>
+						</tr>
+
+						<c:forEach var="player" items="${bracket.players}">
+							<tr>
+								<td class="w3-theme4">${player.name}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</c:forEach>
+			</c:when>
+		
+		<%--If all tests are false, then do this--%>
+			<c:otherwise>
+				<h3>We are sorry, there are no brackets for this tournament!</h3>
+				<p>Please Go back to Results</p>
+				<p>Or check out the playofftree</p>
+	
+			</c:otherwise>
+		</c:choose>
 
 	</div>
+	<hr>
+
+
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

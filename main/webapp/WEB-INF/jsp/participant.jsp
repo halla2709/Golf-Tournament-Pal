@@ -74,11 +74,11 @@
 									type="number" step="0.1" class="w3-input " style="width:30%" /></td>
 						</tr>
 						<tr>
+							
 							<td>Social:</td>
-							<%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
 							<td><sf:input id="ssn" required="required" path="social"
-									type="text" name="ssn" class="w3-input" style="width:60%"
-									min="0" /></td>
+									type="text" name="ssn" class="w3-input" style="width:60%" placeholder="xxxxxxxxxx" pattern="\d{10}" value=" "
+									/></td>
 						</tr>
 						<tr>
 							<td>Email:</td>
@@ -151,14 +151,17 @@
 					tournament!</p>
 				<br>
 				<form method="POST" action="/matchplay2">
-					<input class="w3-theme w3-large" type="submit" type="button"
-						value="Create Tournament" /><br>
+
+
+					<input id="normalbutton"
+						class="w3-theme w3-center w3-btn w3-col s4 w3-medium"
+						type="submit" value="Create Tournament" /> <br>
 				</form>
 			</div>
 		</div>
-		<hr>
 	</div>
-	
+	<hr>
+
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

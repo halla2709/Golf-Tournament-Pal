@@ -10,4 +10,7 @@ public interface GolferService {
 
 	List<Golfer> findAll();
 	
+	Golfer delete(Golfer player);
+	
 }	
+

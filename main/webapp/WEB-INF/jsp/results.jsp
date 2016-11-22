@@ -76,7 +76,7 @@
 								<td>${tournament.name}</td>
 								<td>${tournament.startDate}</td>
 								<td>${tournament.course}</td>
-								<td><a href="/tournament/${tournament.getid()}/">See more</a>
+								<td><a href="/tournament/${tournament.getid()}/">View Tournament</a>
 							</tr>
 					</c:forEach>
 				</c:when>

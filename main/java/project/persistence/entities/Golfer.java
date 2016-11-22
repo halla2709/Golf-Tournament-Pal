@@ -36,6 +36,7 @@ public class Golfer implements Comparable<Golfer> {
 	
 	public Golfer() {
 		super();
+		
 	}
 
 

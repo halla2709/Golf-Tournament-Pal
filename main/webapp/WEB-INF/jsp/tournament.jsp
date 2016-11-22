@@ -5,9 +5,9 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<link rel="shortcut icon" href="../images/images.jpg" />
-<link rel="stylesheet" href="../extras/style.css">
-<script src="../extras/functions.js" language="Javascript"
+<link rel="shortcut icon" href="/images/images.jpg" />
+<link rel="stylesheet" href="/extras/style.css">
+<script src="/extras/functions.js" language="Javascript"
 	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -149,4 +149,3 @@
 
 </body>
 </html>
-

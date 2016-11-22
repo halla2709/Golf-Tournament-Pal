@@ -151,13 +151,13 @@
 					tournament!</p>
 				<br>
 				<form method="POST" action="/scoreboard2">
-					<input class="w3-theme w3-large" type="submit" type="button"
-						value="Create Tournament" /><br>
+					<input id="normalbutton" class="w3-theme w3-center w3-btn w3-col s4 w3-medium" type="submit"
+				value="Create Tournament"/><br>
 				</form>
 			</div>
 		</div>
-		<hr>
 	</div>
+	<hr>
 	
 	<!-- Footer -->
 	<div id="footer">
