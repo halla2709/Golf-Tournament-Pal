@@ -42,6 +42,11 @@ public class PlayOffTree {
 		System.out.println("ddd");
 		return "aaa";
 	}
+
+	public void setRound(int roundNum, PlayOffRound rounds2) {
+		this.rounds.set(roundNum, rounds2);
+		
+	}
 }
 
 

@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import project.persistence.entities.Bracket;
+import project.persistence.entities.Golfer;
 import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.PlayOffTree;
 import project.persistence.entities.ScoreboardTournament;
@@ -36,8 +38,8 @@ public class TournamentResultController {
 	@RequestMapping(value = "/results", method = RequestMethod.GET)
     public String results(Model model){
     	List<Tournament> tournaments = tournamentService.findAll();
-    	System.out.println(tournaments.get(0).getid());
-    	model.addAttribute("tournaments", tournaments);
+    	if(tournaments == null) model.addAttribute("tournaents", null);
+    	else model.addAttribute("tournaments", tournaments);
     	
         return "results";
     }
@@ -77,7 +79,21 @@ public class TournamentResultController {
 			Model model) {
 		
 		PlayOffTree playoffs = matchPlayService.getPlayOffTree(id);
-		System.out.println(playoffs.getRounds().size());
+		
+		model.addAttribute("rounds", playoffs.getRounds());
+		model.addAttribute("numberOfRounds", playoffs.getRounds().size());
+		model.addAttribute("numberOfMatches", Math.pow(2, playoffs.getRounds().size()-1));
+		return "playoffs";
+	}
+	
+	@RequestMapping(value="/tournament/{id}/playofftree", method=RequestMethod.POST)
+	public String addPlayoffResults(@PathVariable(value="id") Long id,
+			@RequestParam(value = "player", required=false) Long player,
+			@RequestParam(value = "roundNum", required=false) Integer roundNum,
+			Model model) {
+		
+		PlayOffTree playoffs = matchPlayService.addPlayoffMatchResults(id, player, roundNum);
+		
 		model.addAttribute("rounds", playoffs.getRounds());
 		model.addAttribute("numberOfRounds", playoffs.getRounds().size());
 		model.addAttribute("numberOfMatches", Math.pow(2, playoffs.getRounds().size()-1));

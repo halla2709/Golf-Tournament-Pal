@@ -45,12 +45,13 @@ public class MatchPlayCreator {
 		unsorted.add(elvar);
 		unsorted.add(halla);
 		unsorted.add(pabbi);
-		unsorted.add(mamma);
-		unsorted.add(hedda);
-		MatchPlayCreator headOnCreator = new MatchPlayCreator(true, unsorted, 3, 2);
+		//unsorted.add(mamma);
+		//unsorted.add(hedda);
+		MatchPlayCreator headOnCreator = new MatchPlayCreator(false, unsorted, 0, 0);
+		MatchPlayTournament tournament = headOnCreator.createTournament("Korpa", "Mja", new Date());
 		
-		
-		System.out.println(headOnCreator.numOfBrackets);
+		System.out.println(tournament.getPlayOffs().getRounds().get(1).getMatches().size());
+		System.out.println(tournament.getPlayOffs().getRounds().get(1).getMatches().get(0).getPlayers().size());
 	}
 
 	private void sortByHandicap(List<Golfer> unsorted) {
@@ -139,7 +140,11 @@ public class MatchPlayCreator {
 		List<PlayOffRound> rounds = new ArrayList<PlayOffRound>((int) changeToBase2(numIn));
 		// Ef �etta er ekki ri�lam�t �� er h�gt a� stilla upp fyrstu umfer�inni
 		for(int i = 0; i < ((int) changeToBase2(numIn)); i++) {
+			System.out.println("adding round " + i + " with matchnumber " + numOfMatches/(int) Math.pow(2, i));
 			List<Match> emptyMatches = new ArrayList<Match>(numOfMatches/(int) Math.pow(2, i)); 
+			for(int j = 0; j < numOfMatches/(int) Math.pow(2, i); j++) {
+				emptyMatches.add(new Match(null, "np", null));
+			}
 			rounds.add(new PlayOffRound(emptyMatches, i+1));
 		}
 		if(!areBrackets) {

@@ -36,5 +36,7 @@ public interface MatchPlayService {
 
 	List<Bracket> getBrackets(Long id);
 
+	PlayOffTree addPlayoffMatchResults(Long id, Long playerSocial, Integer roundNum);
+
 }
 

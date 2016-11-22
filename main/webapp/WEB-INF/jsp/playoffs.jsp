@@ -5,9 +5,9 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<link rel="shortcut icon" href="../../../images/images.jpg" />
-<link rel="stylesheet" href="../../../extras/style.css">
-<script src="../../../extras/functions.js" language="Javascript"
+<link rel="shortcut icon" href="/images/images.jpg" />
+<link rel="stylesheet" href="/extras/style.css">
+<script src="/extras/functions.js" language="Javascript"
 	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -55,69 +55,80 @@
 		<c:choose>
 			<c:when test="${ not empty rounds }">
 
-				<table class="w3-table-all w3-hoverable">
-					<thead>
-						<tr id="table">
-							<c:forEach var="matchnum" begin="1" end="${numberOfMatches}">
-								<td>Leikur ${matchNum}</td>
-							</c:forEach>
-						</tr>
-					</thead>
+				<table class="w3-table">
 					<c:forEach var="roundnum" begin="0" end="${numberOfRounds-1}">
 						<tr>
 							<c:choose>
 								<c:when test="${not empty rounds.get(roundnum).matches }">
 									<c:forEach var="match" items="${rounds.get(roundnum).matches}">
-										<td colspan="${Math.pow(2,roundnum)}">
-											<table class="w3-table-all">
-												<thead>
-													<tr id="table">
-														<td>Player</td>
-														<td>Handicap</td>
-													</tr>
-												</thead>
+										<c:choose>
+											<c:when test="${match.results eq 'np'}">
+												<td colspan="${Math.pow(2,roundnum)}">
+													<table class="w3-table-all">
+														<thead>
+															<tr id="table">
+																<td>Next Match</td>
+															</tr>
+														</thead>
 
-												<c:forEach var="player" items="${match.players}">
+														<c:forEach var="player" begin="1" end="2">
 
-													<tr>
-														<td>${player.name}</td>
-														<td>${player.handicap}</td>
-													</tr>
+															<tr>
+																<td colspan="2">winner ${player}</td>
+															</tr>
 
-												</c:forEach>
+														</c:forEach>
 
 
-											</table>
-										</td>
+													</table>
+												</td>
+											</c:when>
+
+											<c:otherwise>
+												<td colspan="${Math.pow(2,roundnum)}">
+													<table class="w3-table-all">
+														<thead>
+															<tr id="table">
+																<td>Player</td>
+																<td>Handicap</td>
+																<td></td>
+															</tr>
+														</thead>
+
+														<c:forEach var="player" items="${match.players}">
+
+															<tr>
+																<c:choose>
+																	<c:when test="${not empty player }">
+																		<td>${player.name}</td>
+																		<td>${player.handicap}</td>
+																		<td><sf:form action="" method="post">
+																				<input type="hidden" name="roundNum"
+																					value="${roundnum }" />
+																				<input type="hidden" name="player"
+																					value="${player.social }" />
+																				<input type="submit" value="Winner" />
+																			</sf:form></td>
+																	</c:when>
+																	<c:otherwise>
+																		<td>winner</td>
+																		<td></td>
+																		<td></td>
+																	</c:otherwise>
+																</c:choose>
+															</tr>
+
+														</c:forEach>
+													</table>
+												</td>
+											</c:otherwise>
+
+										</c:choose>
 									</c:forEach>
 								</c:when>
-								<c:otherwise>
-									<c:forEach var="matchnum" begin="1"
-										end="${numberOfMatches/Math.pow(2,roundnum)}">
-
-
-										<td colspan="${Math.pow(2,roundnum)}">
-											<table class="w3-table-all">
-												<thead>
-													<tr id="table">
-														<td>Next Match</td>
-													</tr>
-												</thead>
-
-												<c:forEach var="player" begin="1" end="2">
-
-													<tr>
-														<td colspan="2">winner ${player}</td>
-													</tr>
-
-												</c:forEach>
-
-
-											</table>
-										</td>
-									</c:forEach>
-								</c:otherwise>
 							</c:choose>
+
+
 						</tr>
 					</c:forEach>
 				</table>

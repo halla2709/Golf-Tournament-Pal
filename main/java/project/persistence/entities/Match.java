@@ -69,4 +69,11 @@ public class Match {
 		this.date = date;
 	}
 
+	public Long getid() { 
+		return (Long) id;
+	}
+	public String toString() {
+		return this.players.toString();
+	}
 }
+
