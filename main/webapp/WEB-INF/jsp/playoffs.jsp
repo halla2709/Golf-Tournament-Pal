@@ -55,7 +55,7 @@
 		<c:choose>
 			<c:when test="${ not empty rounds }">
 
-				<table class="w3-table-all w3-hoverable" style="width: 47%">
+				<table class="w3-table-all w3-hoverable">
 					<thead>
 						<tr id="table">
 							<c:forEach var="matchnum" begin="1" end="${numberOfMatches}">

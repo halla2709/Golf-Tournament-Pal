@@ -52,9 +52,9 @@
 
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
-		<h1>Your Matchplay Tournament Information</h1>
+		<h1>Your Tournament Information</h1>
 		<br>
-		<p>Your just successfully created a Matchplay Tournament! This is
+		<p>Your just successfully created a Tournament! This is
 			how it looks:</p>
 
 
