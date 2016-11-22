@@ -63,7 +63,8 @@
 				<p> Please try again.
 				<br>
 				<br>
-				<input type="submit" class="w3-center w3-theme w3-large" type="button" VALUE="Edit Players">
+				<input id="normalbutton" class="w3-theme w3-btn" type="submit"
+				VALUE="Edit Players">
 				<br>
 				<br> <img id="golferimg" src="../images/golfer.png" alt="Golfer">
 		</form>

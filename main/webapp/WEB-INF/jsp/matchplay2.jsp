@@ -5,9 +5,9 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<link rel="shortcut icon" href="../images/images.jpg" />
-<link rel="stylesheet" href="../extras/style.css">
-<script src="../extras/functions.js" language="Javascript"
+<link rel="shortcut icon" href="/images/images.jpg" />
+<link rel="stylesheet" href="/extras/style.css">
+<script src="/extras/functions.js" language="Javascript"
 	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -54,8 +54,8 @@
 	<div class="w3-row w3-container" id="main">
 		<h1>Your Tournament Information</h1>
 		<br>
-		<p>Your just successfully created a Tournament! This is
-			how it looks:</p>
+		<p>Your just successfully created a Tournament! This is how it
+			looks:</p>
 
 
 		<h3>Tournament Information:</h3>
@@ -76,11 +76,8 @@
 
 		<br>
 		<h3>Participants Information:</h3>
-		<%--Choose what code to generate based on tests that we implement--%>
 		<c:choose>
-			<%--If the model has an attribute with the name `postitNotes`--%>
 			<c:when test="${not empty golfers}">
-				<%--Create a table for the Postit Notes--%>
 				<table class="w3-table-all w3-hoverable">
 					<thead>
 						<tr id="table">
@@ -91,17 +88,8 @@
 
 						</tr>
 					</thead>
-
-
-					<%--For each postit note, that is in the list that was passed in the model--%>
-					<%--generate a row in the table--%>
-					<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
 					<c:forEach var="golfer" items="${golfers}">
 						<tr>
-							<%--We can reference attributes of the Entity by just entering the name we gave--%>
-							<%--it in the singular item var, and then just a dot followed by the attribute name--%>
-
-							<%--Create a link based on the name attribute value--%>
 							<td>${golfer.name}</td>
 							<td>${golfer.social}</td>
 							<td>${golfer.email}</td>
@@ -111,14 +99,10 @@
 				</table>
 				<br>
 			</c:when>
-
-			<%--If all tests are false, then do this--%>
 			<c:otherwise>
 				<h3>No notes!</h3>
 			</c:otherwise>
 		</c:choose>
-
-
 		<c:choose>
 			<c:when test="${not empty brackets}">
 				<h3>Brackets Information:</h3>
@@ -127,18 +111,10 @@
 						<tr id="table">
 							<td>Player</td>
 							<td>Handicap</td>
-
 						</tr>
 					</thead>
-					<%--For each postit note, that is in the list that was passed in the model--%>
-					<%--generate a row in the table--%>
-					<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
 					<c:forEach var="bracket" items="${brackets}">
 						<tr>
-							<%--We can reference attributes of the Entity by just entering the name we gave--%>
-							<%--it in the singular item var, and then just a dot followed by the attribute name--%>
-
-							<%--Create a link based on the name attribute value--%>
 							<td class="w3-theme2" colspan="2">${bracket.name}</td>
 						</tr>
 						<c:forEach var="player" items="${bracket.players}">
@@ -146,13 +122,10 @@
 								<td class="w3-theme3">${player.name}</td>
 								<td class="w3-theme3">${player.handicap}</td>
 							</tr>
-
 						</c:forEach>
 					</c:forEach>
 				</table>
 			</c:when>
-
-			<%--If all tests are false, then do this--%>
 			<c:when test="${ not empty playofftree }">
 				<h3>Match Information:</h3>
 				<c:forEach var="match" items="${playofftree.rounds.get(0).matches}">
@@ -163,7 +136,6 @@
 								<td>Handicap</td>
 							</tr>
 						</thead>
-
 						<c:forEach var="player" items="${match.players }">
 							<tr>
 								<td>${player.name}</td>
@@ -173,22 +145,17 @@
 					</table>
 				</c:forEach>
 			</c:when>
-
 			<c:when test="${ not empty scoreboard }">
 				<h3>Match Information:</h3>
-
 				<table class="w3-table-all w3-hoverable" style="width: 47%">
 					<thead>
 						<tr id="table">
 							<th>Player</th>
 							<c:forEach var="num" begin="1" end="${numberOfRounds+1}">
 								<th>Hringur ${num}</th>
-								
 							</c:forEach>
-							
 						</tr>
 					</thead>
-
 					<c:forEach var="row" begin="0" end="${golfers.size()-1}">
 						<tr>
 							<td>${golfers.get(row).getName()}</td>
@@ -198,18 +165,14 @@
 						</tr>
 					</c:forEach>
 				</table>
-
 			</c:when>
-
 		</c:choose>
-	<br>
-	
-	<a href="/results/${tournament.getid()}">
-		<input id="normalbutton" class="w3-theme w3-center w3-btn w3-col s4 w3-medium" 
-				value="Go to Results"/></a>
-				</div>
-				<hr>
-
+		<br> <a href="/tournament/${tournament.getid()}/"> <input
+			id="normalbutton"
+			class="w3-theme w3-center w3-btn w3-col s3 w3-medium"
+			value="See Results" /></a>
+	</div>
+	<hr>
 
 	<!-- Footer -->
 	<div id="footer">

@@ -5,9 +5,9 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<link rel="shortcut icon" href="../images/images.jpg" />
-<link rel="stylesheet" href="../extras/style.css">
-<script src="../extras/functions.js" language="Javascript"
+<link rel="shortcut icon" href="/images/images.jpg" />
+<link rel="stylesheet" href="/extras/style.css">
+<script src="/extras/functions.js" language="Javascript"
 	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -54,7 +54,7 @@
 	<div class="w3-row w3-container" id="main">
 		<h1>Results</h1>
 		<br>
-		<h2>Here we will post results from tournaments.</h2>
+		<h2>Here we have results from tournaments:</h2>
 		<br>
 <!-- Will not be used yet-->
 <!-- 		<h3>Find the tournament you are looking for:</h3> -->
@@ -82,7 +82,7 @@
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="4">No Tournaments!</td>
+						<td colspan="4">There are currently no tournaments available</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>

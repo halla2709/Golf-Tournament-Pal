@@ -60,7 +60,7 @@
 			action="/addplayers">
 			<div id="matchplay" class="w3-card-8">
 				<sf:input required="required" path="name" class="w3-input"
-					type="text" style="width: 30%" />
+					type="text" style="width: 30%" autofocus="autofocus" />
 				<label class="w3-label w3-validate w3-border">Name of
 					tournament</label> <br>
 				<sf:input required="required" path="course" class="w3-input"
@@ -94,10 +94,10 @@
 			<p>After filling out information about the tournament, it is time
 				to go to the next step and fill out information about the
 				participants.</p>
-			<input id="normalbutton" class="w3-theme w3-center w3-btn w3-col s4 w3-medium" type="submit"
+			<input id="normalbutton"
+				class="w3-theme w3-center w3-btn w3-col s4 w3-medium" type="submit"
 				value="Participant Information">
 			<br>
-
 			<br>
 		</sf:form>
 	</div>

@@ -65,7 +65,7 @@
 							<td>Name:</td>
 							<%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
 							<td><sf:input required="required" path="name" type="text"
-									placeholder="Enter Name" class="w3-input" /></td>
+									placeholder="Enter Name" class="w3-input" autofocus="autofocus" /></td>
 						</tr>
 						<tr>
 							<td>Handicap:</td>
@@ -88,8 +88,8 @@
 						</tr>
 					</table>
 					<br>
-					<input class="w3-theme w3-medium" type="submit" type="button"
-						VALUE="Add Player" />
+					<input id="normalbutton" class="w3-theme w3-btn" type="submit"
+				VALUE="Add Player">
 				</sf:form>
 			</div>
 
