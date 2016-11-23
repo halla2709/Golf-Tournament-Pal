@@ -5,19 +5,9 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<<<<<<< .mine
 <link rel="shortcut icon" href="/images/images.jpg" />
 <link rel="stylesheet" href="/extras/style.css">
 <script src="/extras/functions.js" language="Javascript"
-||||||| .r76
-<link rel="shortcut icon" href="../../../images/images.jpg" />
-<link rel="stylesheet" href="../../../extras/style.css">
-<script src="../../../extras/functions.js" language="Javascript"
-=======
-<link rel="shortcut icon" href="/images/images.jpg" />
-<link rel="stylesheet" href="/extras/style.css">
-<script src="../extras/functions.js" language="Javascript"
->>>>>>> .r79
 	type="text/javascript"></script>
 <html lang="is">
 <title>Golf-Tournament Pal</title>
@@ -68,31 +58,44 @@
 			<c:when test="${not empty brackets}">
 				<h3>Brackets Information:</h3>
 				<c:forEach var="bracket" items="${brackets}">
-				<br>
+					<br>
 					<table class="w3-table-all" style="width: 47%">
 
 						<tr id="table">
 							<td>${bracket.name}</td>
 							<c:forEach var="player" items="${bracket.players}">
-								<td class="w3-theme4">${player.name}</td>
+								<td>${player.name}</td>
 							</c:forEach>
+							<td>Points</td>
 						</tr>
 
 						<c:forEach var="player" items="${bracket.players}">
 							<tr>
-								<td class="w3-theme4">${player.name}</td>
+								<th>${player.name}</th>
+								<c:forEach var="player2" items="${bracket.players}">
+									<c:choose>
+										<c:when test="${player.name eq player2.name}">
+											<td>-</td>
+										</c:when>
+										<c:otherwise>
+											<td><a href="">Add results</a></td>
+										</c:otherwise>
+									</c:choose>
+
+								</c:forEach>
+								<td>0</td>
 							</tr>
 						</c:forEach>
 					</table>
 				</c:forEach>
 			</c:when>
-		
-		<%--If all tests are false, then do this--%>
+
+			<%--If all tests are false, then do this--%>
 			<c:otherwise>
 				<h3>We are sorry, there are no brackets for this tournament!</h3>
 				<p>Please Go back to Results</p>
 				<p>Or check out the playofftree</p>
-	
+
 			</c:otherwise>
 		</c:choose>
 
