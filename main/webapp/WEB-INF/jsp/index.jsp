@@ -62,41 +62,7 @@
 			tournaments!</p>
 		<p>Nice to see you and Happy Golfing!!!</p>
 		<br> <img id="golferimg" src="../images/golfer.png" alt="Golfer">
-<<<<<<< .mine
-||||||| .r75
 		
-		
-				<!-- PLAYOFFTREE -->
-				<script src="/../raphael.js"></script>
-	<script src="/../Treant.js"></script>
-	<script src="/../super-simple.js"></script>
-		
-		<div class="chart" id="OrganiseChart-simple">
-	</div>
-=======
-		<div class="push"></div>
-		
-	</div>
->>>>>>> .r79
-<<<<<<< .mine
-	
-	</div>
-||||||| .r75
-	
-	<script src="/../raphael.js"></script>
-	<script src="/../Treant.js"></script>
-	<script src="/../super-simple.js"></script>
-
-	<script>
-		new Treant( simple_chart_config );
-	</script>
-		
-	</div>
-=======
->>>>>>> .r79
-	<hr>
-			
-
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"
