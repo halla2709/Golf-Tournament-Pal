@@ -20,6 +20,7 @@ import project.persistence.entities.ScoreboardTournament;
 import project.persistence.entities.Tournament;
 import project.service.MatchPlayService;
 import project.service.ScoreboardService;
+import project.service.ScoreboardUpdater;
 import project.service.TournamentService;
 
 @Controller
@@ -82,8 +83,8 @@ public class TournamentResultController {
 		model.addAttribute("id", tournament.getid());
 		
 	
-		model.addAttribute("scoreboard", ((ScoreboardTournament) tournament).getScores());
-		model.addAttribute("numberOfRounds", ((ScoreboardTournament) tournament).getNumberOfRounds());
+		model.addAttribute("scoreboard", tournament.getScores());
+		model.addAttribute("numberOfRounds", tournament.getNumberOfRounds());
 		
 		return "scoreboardTournament";
 	}
@@ -103,8 +104,10 @@ public class TournamentResultController {
 			return "matchPlayTournament";
 		}
 		else if(tournament instanceof ScoreboardTournament) {
-			model.addAttribute("scoreboard", ((ScoreboardTournament) tournament).getScores());
-			model.addAttribute("numberOfRounds", ((ScoreboardTournament) tournament).getNumberOfRounds());
+			ScoreboardTournament stournament = scoreboardService.findOne(id);
+			
+			model.addAttribute("scoreboard", stournament.getScores());
+			model.addAttribute("numberOfRounds", stournament.getNumberOfRounds());
 			return "scoreboardTournament";
 		}
 		

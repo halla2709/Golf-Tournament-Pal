@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class PlayOffRound {
@@ -17,6 +18,7 @@ public class PlayOffRound {
     private Long id;
 
 	@OneToMany(cascade = CascadeType.ALL)
+	@OrderBy("id ASC")
 	List<Match> matches;
 	
 	int round;

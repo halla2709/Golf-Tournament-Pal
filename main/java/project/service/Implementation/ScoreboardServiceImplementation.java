@@ -53,12 +53,13 @@ public class ScoreboardServiceImplementation implements ScoreboardService {
 
 	@Override
 	public ScoreboardTournament findOne(Long id) {
-		return repository.findOne(id);
+		ScoreboardTournament scoreboard = repository.findOne(id);		
+		return ScoreboardUpdater.createScoreboard(scoreboard);
 	}
 
 	@Override
 	public Round getRound(Long id, long social, int round) {
-		ScoreboardTournament tournament = repository.findOne(id);
+		ScoreboardTournament tournament = findOne(id);
 		List<Scorecard> scorecard = tournament.getScorecards();
 		
 		Round round2 = new Round();
@@ -68,12 +69,13 @@ public class ScoreboardServiceImplementation implements ScoreboardService {
 				break;
 			}
 		}	
+		System.out.println("getting round nr: " + round2.getId());
 		return round2;
 	}
 
 	@Override
 	public ScoreboardTournament addRound(Long id, long social, int round, int[] scores) {
-		ScoreboardTournament tournament = repository.findOne(id);
+		ScoreboardTournament tournament = findOne(id);
 		ScoreboardUpdater updater = new ScoreboardUpdater(tournament);
 		tournament = updater.addScoresForRounds(social, scores, round-1);
 		repository.save(tournament);

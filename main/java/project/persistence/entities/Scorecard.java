@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -23,15 +24,8 @@ public class Scorecard {
     private Long id;
     
     @OneToMany(cascade = CascadeType.ALL)
+    @OrderBy("id ASC")
     private List<Round> rounds;
-    
-    public List<Round> getRounds() {
-		return rounds;
-	}
-
-	public void setRounds(List<Round> rounds) {
-		this.rounds = rounds;
-	}
 
 	@ManyToOne()
     @JoinColumn(name="player")
@@ -46,6 +40,7 @@ public class Scorecard {
 	private int numberOfRounds;
 
 	public Scorecard(Golfer player, Team team, String course, int numberOfRounds){
+		System.out.println("Bua til vitlaust scoreboard");
 		this.player = player;
 		this.team = team;
 		this.numberOfRounds = numberOfRounds;
@@ -55,7 +50,19 @@ public class Scorecard {
 			rounds.add(new Round());
 		}
 	}
-		
+	
+	public Scorecard(Long id, List<Round> rounds, Golfer player, Team team, String course, int numberOfRounds) {
+		super();
+		this.id = id;
+		this.rounds = rounds;
+		this.player = player;
+		this.team = team;
+		this.course = course;
+		this.numberOfRounds = numberOfRounds;
+	}
+
+
+
 	public Scorecard() {
 		super();
 	}
@@ -90,6 +97,14 @@ public class Scorecard {
 	
 	public void setRound(int roundNumber, int[] scores) {
 		rounds.get(roundNumber).setScore(scores);
+	}
+	
+	public List<Round> getRounds() {
+		return rounds;
+	}
+
+	public void setRounds(List<Round> rounds) {
+		this.rounds = rounds;
 	}
 
 }

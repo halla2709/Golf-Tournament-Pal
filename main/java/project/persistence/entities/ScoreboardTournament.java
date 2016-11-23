@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -25,6 +26,7 @@ public class ScoreboardTournament extends Tournament {
 	private int numberOfRounds;
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@OrderBy("id ASC")
 	List<Scorecard> scorecards;
 
 	public ScoreboardTournament(String course, String name, Date startDate, int numberOfRounds, List<Golfer> players, List<Scorecard> scorecards, int[][] scores){

@@ -29,6 +29,7 @@ public class ScoreboardUpdater {
 			int total = 0;
 			for(int j = 0; j < tournament.getNumberOfRounds(); j++) {
 				System.out.println("i " + i + " j " + j);
+				tournament.getScorecards().get(i).getRounds().get(j).setScore();
 				score[i][j] = scorecardi[j];
 				total += scorecardi[j];
 			}
@@ -47,6 +48,7 @@ public class ScoreboardUpdater {
 			int total = 0;
 			for(int j = 0; j < tournament.getNumberOfRounds(); j++) {
 				System.out.println("i " + i + " j " + j);
+				tournament.getScorecards().get(i).getRounds().get(j).setScore();
 				score[i][j] = scorecardi[j];
 				total += scorecardi[j];
 			}
@@ -107,7 +109,7 @@ public class ScoreboardUpdater {
 		}
 		score[index][tournament.getNumberOfRounds()] = total;
 		
-		updateStatus();
+		//updateStatus();
 		
 		return tournament;
 	}

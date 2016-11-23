@@ -135,6 +135,9 @@ public class ScoreboardCreator {
 			System.out.println();
 		}
 		
+		ScoreboardTournament tourn2 = tournament;
+		tourn2.setScores(new int[1][1]);
+		ScoreboardUpdater.createScoreboard(tourn2);
 		
 		
 	}
