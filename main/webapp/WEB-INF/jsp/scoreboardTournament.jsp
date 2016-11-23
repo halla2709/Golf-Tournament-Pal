@@ -121,18 +121,21 @@
 					<thead>
 						<tr id="table">
 							<th>Player</th>
-							<c:forEach var="num" begin="1" end="${numberOfRounds+1}">
-								<th>Hringur ${num}</th>
+							<c:forEach var="num" begin="1" end="${numberOfRounds}">
+								<th>Round ${num}</th>
 							</c:forEach>
+							<th>Total</th>
+	
 						</tr>
 					</thead>
 
 					<c:forEach var="row" begin="0" end="${golfers.size()-1}">
 						<tr>
 							<td>${golfers.get(row).getName()}</td>
-							<c:forEach var="column" begin="0" end="${numberOfRounds}">
+							<c:forEach var="column" begin="0" end="${numberOfRounds-1}">
 								<td><a href="${golfers.get(row).getSocial()}/${column+1}">${scoreboard[row][column]}</a></td>
 							</c:forEach>
+							<td>${scoreboard[row][numberOfRounds]}</td>
 						</tr>
 					</c:forEach>
 				</table>

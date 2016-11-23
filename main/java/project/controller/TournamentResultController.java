@@ -1,5 +1,6 @@
 package project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import project.persistence.entities.Bracket;
 import project.persistence.entities.Golfer;
 import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.PlayOffTree;
+import project.persistence.entities.Round;
 import project.persistence.entities.ScoreboardTournament;
 import project.persistence.entities.Tournament;
 import project.service.MatchPlayService;
@@ -44,6 +46,48 @@ public class TournamentResultController {
         return "results";
     }
 	
+	@RequestMapping(value="/tournament/{id}", method=RequestMethod.POST)
+	public String addRoundToTournament(@PathVariable(value="id") Long id,
+			@RequestParam(value="h1") int h1,
+			@RequestParam(value="h2") int h2,
+			@RequestParam(value="h3") int h3,
+			@RequestParam(value="h4") int h4,
+			@RequestParam(value="h5") int h5,
+			@RequestParam(value="h6") int h6,
+			@RequestParam(value="h7") int h7,
+			@RequestParam(value="h8") int h8,
+			@RequestParam(value="h9") int h9,
+			@RequestParam(value="h10") int h10,
+			@RequestParam(value="h11") int h11,
+			@RequestParam(value="h12") int h12,
+			@RequestParam(value="h13") int h13,
+			@RequestParam(value="h14") int h14,
+			@RequestParam(value="h15") int h15,
+			@RequestParam(value="h16") int h16,
+			@RequestParam(value="h17") int h17,
+			@RequestParam(value="h18") int h18,
+			@RequestParam(value="social") long social,
+			@RequestParam(value="round") int round,
+			Model model
+			){
+		System.out.println("mammain er: " + h18);
+		int[] scores = {h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,h17,h18};
+		
+		ScoreboardTournament tournament = scoreboardService.addRound(id, social, round, scores);
+		
+		model.addAttribute("golfers", tournament.getPlayers());
+		model.addAttribute("course", tournament.getCourse());
+		model.addAttribute("name", tournament.getName());
+		model.addAttribute("startdate", tournament.getStartDate());
+		model.addAttribute("id", tournament.getid());
+		
+	
+		model.addAttribute("scoreboard", ((ScoreboardTournament) tournament).getScores());
+		model.addAttribute("numberOfRounds", ((ScoreboardTournament) tournament).getNumberOfRounds());
+		
+		return "scoreboardTournament";
+	}
+	
 	@RequestMapping(value="/tournament/{id}", method=RequestMethod.GET)
 	public String displayTournament(@PathVariable(value="id") Long id,
 			Model model) {
@@ -67,10 +111,20 @@ public class TournamentResultController {
 		return "tournament";
 	}
 	
+
+	
+	
 	@RequestMapping(value="/tournament/{id}/{social}/{round}", method=RequestMethod.GET)
 	public String addRound(@PathVariable(value="id") Long id, 
 			@PathVariable(value="social") long social,
-			@PathVariable(value="round") int round) {
+			@PathVariable(value="round") int round,
+			Model model) {
+		
+		Round round2= scoreboardService.getRound(id, social, round);
+		model.addAttribute("scores", round2.getMyScores());
+		model.addAttribute("social", social);
+		model.addAttribute("round", round);
+	
 		return "roundInsert";
 	}
 	

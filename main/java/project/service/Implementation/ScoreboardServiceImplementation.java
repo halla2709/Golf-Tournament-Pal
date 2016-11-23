@@ -6,10 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.Golfer;
+import project.persistence.entities.Round;
 import project.persistence.entities.ScoreboardTournament;
+import project.persistence.entities.Scorecard;
+import project.persistence.entities.Tournament;
 import project.persistence.repositories.ScoreboardCreatorRepository;
 import project.service.ScoreboardCreator;
 import project.service.ScoreboardService;
+import project.service.ScoreboardUpdater;
 
 @Service
 public class ScoreboardServiceImplementation implements ScoreboardService {
@@ -50,6 +54,30 @@ public class ScoreboardServiceImplementation implements ScoreboardService {
 	@Override
 	public ScoreboardTournament findOne(Long id) {
 		return repository.findOne(id);
+	}
+
+	@Override
+	public Round getRound(Long id, long social, int round) {
+		ScoreboardTournament tournament = repository.findOne(id);
+		List<Scorecard> scorecard = tournament.getScorecards();
+		
+		Round round2 = new Round();
+		for (int i=0 ; i < scorecard.size() ; i++){
+			if(scorecard.get(i).getPlayer().getSocial() == social) {
+				round2 = scorecard.get(i).getRounds().get(round-1);
+				break;
+			}
+		}	
+		return round2;
+	}
+
+	@Override
+	public ScoreboardTournament addRound(Long id, long social, int round, int[] scores) {
+		ScoreboardTournament tournament = repository.findOne(id);
+		ScoreboardUpdater updater = new ScoreboardUpdater(tournament);
+		tournament = updater.addScoresForRounds(social, scores, round-1);
+		repository.save(tournament);
+		return tournament;
 	}
 
 

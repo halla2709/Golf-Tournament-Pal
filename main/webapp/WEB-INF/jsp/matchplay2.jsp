@@ -152,7 +152,7 @@
 						<tr id="table">
 							<th>Player</th>
 							<c:forEach var="num" begin="1" end="${numberOfRounds+1}">
-								<th>Hringur ${num}</th>
+								<th>Round ${num}</th>
 							</c:forEach>
 						</tr>
 					</thead>

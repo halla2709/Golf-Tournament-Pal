@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import project.persistence.entities.Golfer;
+import project.persistence.entities.Round;
 import project.persistence.entities.ScoreboardTournament;
+import project.persistence.entities.Tournament;
 
 public interface ScoreboardService {
 	
@@ -30,6 +32,10 @@ public interface ScoreboardService {
      * @return A {@link ScoreboardTournament} with {@link Long id}
      */
     ScoreboardTournament findOne(Long id);
+
+	Round getRound(Long id, long social, int round);
+
+	ScoreboardTournament addRound(Long id, long social, int round, int[] scores);
 
 }
 

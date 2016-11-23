@@ -25,7 +25,15 @@ public class Scorecard {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Round> rounds;
     
-    @ManyToOne()
+    public List<Round> getRounds() {
+		return rounds;
+	}
+
+	public void setRounds(List<Round> rounds) {
+		this.rounds = rounds;
+	}
+
+	@ManyToOne()
     @JoinColumn(name="player")
 	private Golfer player;
 	

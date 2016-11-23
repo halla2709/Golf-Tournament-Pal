@@ -72,8 +72,12 @@ public class Round {
 	
 	public int getScore(int i) {
 		return myScores[i];
-		
 	}
+	
+	public int[] getMyScores() {
+		return myScores;
+	}
+	
 	public static void main(String[] args) {
 		Round round = new Round();
 		int[] hallo = new int[18];
