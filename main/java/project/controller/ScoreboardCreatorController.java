@@ -32,9 +32,9 @@ public class ScoreboardCreatorController {
     @RequestMapping(value = "/scoreboard", method = RequestMethod.GET)
     public String postitNoteViewGet(Model model){
 
-        // Add a new Postit Note to the model for the form
-        // If you look at the form in PostitNotes.jsp, you can see that we
-        // reference this attribute there by the name `postitNote`.
+        tournament = null;
+        beenhere = false;
+    	
         model.addAttribute("scoreboardTournament", new ScoreboardTournament());
         
         return "scoreboard";

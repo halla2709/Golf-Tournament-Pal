@@ -23,6 +23,7 @@ public class ScoreboardCreator {
 		this.numberOfRounds = numberOfRounds;
 		this.course = course;
 		this.name = name;
+		this.startDate = startDate;
 		this.scorecards = null;
 	}
 	
