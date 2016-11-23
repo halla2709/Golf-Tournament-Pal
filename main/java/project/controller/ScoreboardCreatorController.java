@@ -104,6 +104,7 @@ public class ScoreboardCreatorController {
 		model.addAttribute("startdate", newtournament.getStartDate());
 		model.addAttribute("name", newtournament.getName());
 		model.addAttribute("scoreboard", newtournament.getScores());
+		model.addAttribute("id", newtournament.getid());
 		beenhere = false;
 		return "matchplay2";
 	}

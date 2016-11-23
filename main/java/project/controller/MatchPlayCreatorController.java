@@ -112,6 +112,7 @@ public class MatchPlayCreatorController {
 		model.addAttribute("course", newtournament.getCourse());
 		model.addAttribute("startdate", newtournament.getStartDate());
 		model.addAttribute("name", newtournament.getName());
+		model.addAttribute("id", newtournament.getid());
 		beenhere = false;
 		return "matchplay2";
 	}

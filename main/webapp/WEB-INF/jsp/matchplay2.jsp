@@ -167,7 +167,7 @@
 				</table>
 			</c:when>
 		</c:choose>
-		<br> <a href="/tournament/${tournament.getid()}/"> <input
+		<br> <a href="/tournament/${id}/"> <input
 			id="normalbutton"
 			class="w3-theme w3-center w3-btn w3-col s3 w3-medium"
 			value="See Results" /></a>
