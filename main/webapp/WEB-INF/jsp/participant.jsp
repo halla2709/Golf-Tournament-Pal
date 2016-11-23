@@ -71,7 +71,7 @@
 							<td>Handicap:</td>
 							<%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
 							<td><sf:input required="required" path="handicap"
-									type="number" step="0.1" class="w3-input " style="width:30%" /></td>
+									type="number" max="54" step="0.1" class="w3-input " style="width:30%" /></td>
 						</tr>
 						<tr>
 							

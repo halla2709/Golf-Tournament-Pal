@@ -67,7 +67,7 @@
 					type="text" style="width: 30%" />
 				<label class="w3-label w3-validate w3-border">Course</label> <br>
 				<sf:input required="required" path="startDate" class="w3-input"
-					type="date" style="width: 10%" />
+					type="date" style="width: 20%" />
 				<label class="w3-label w3-validate w3-border">Date</label> <br>
 				<br>
 				<sf:checkbox path="areBrackets" id="brackets" class="w3-check"

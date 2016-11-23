@@ -48,9 +48,13 @@
 			</header>
 		</ul>
 	</div>
+	<hr>
 
+		<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
 		<h1>Play Off Tree</h1>
+		<br>
+		<div>
 
 		<c:choose>
 			<c:when test="${ not empty rounds }">
@@ -107,7 +111,7 @@
 																					value="${roundnum }" />
 																				<input type="hidden" name="player"
 																					value="${player.social }" />
-																				<input type="submit" value="Winner" />
+																				<input id="normalbutton2" class="w3-theme w3-btn" type="submit" VALUE="Winner"/>
 																			</sf:form></td>
 																	</c:when>
 																	<c:otherwise>
@@ -136,6 +140,7 @@
 			</c:when>
 		</c:choose>
 
+	</div>
 	</div>
 	<!-- Footer -->
 	<div id="footer">

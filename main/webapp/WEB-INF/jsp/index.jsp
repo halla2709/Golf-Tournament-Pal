@@ -62,6 +62,10 @@
 			tournaments!</p>
 		<p>Nice to see you and Happy Golfing!!!</p>
 		<br> <img id="golferimg" src="../images/golfer.png" alt="Golfer">
+		<br>
+		</div>
+		<hr>
+		
 
 	<!-- Footer -->
 	<div id="footer">

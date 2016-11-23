@@ -67,13 +67,14 @@
 					type="text" style="width: 30%" />
 				<label class="w3-label w3-validate w3-border">Course</label> <br>
 				<sf:input required="required" path="startDate" class="w3-input"
-					type="date" style="width: 10%" />
+					type="date" style="width: 20%" />
 				<label class="w3-label w3-validate w3-border">Date</label> <br>
 				<sf:input required="required" path="numberOfRounds" class="w3-input" min="1"
 					type="number" style="width: 10%" />
 				<label class="w3-label w3-validate w3-border">Number of Rounds</label>
 				<br>
 			</div>
+			<br>
 				<p>After filling out information about the tournament, it is
 					time to go to the next step and fill out information about the
 					participants.</p>

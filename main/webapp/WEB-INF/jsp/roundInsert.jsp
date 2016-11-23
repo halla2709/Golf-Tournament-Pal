@@ -53,10 +53,11 @@
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
 		<h1>Your Results</h1>
-
+		<br>
+		<h3>Please put in the scores for the Round:</h3>
 		<br>
 		<form method="POST" action=".././">
-			<table class="w3-table-all w3-hoverable">
+			<table class="w3-table-all">
 				<tr id="table">
 					<th>Hole 1</th>
 					<th>Hole 2</th>
@@ -87,30 +88,11 @@
 			</table>
 			<input type="hidden" name="social" value="${social }">
 			<input type="hidden" name="round" value="${round }">
-			<input type="submit" value="HALLÓ" />
+			<br>
+			<input type="submit" id="normalbutton" class="w3-theme w3-btn"
+				VALUE="Save">
 
 		</form>
-
-
-
-
-		<!-- PLAYOFFTREE -->
-		<script src="/../raphael.js"></script>
-		<script src="/../Treant.js"></script>
-		<script src="/../super-simple.js"></script>
-
-		<div class="chart" id="OrganiseChart-simple"></div>
-
-		<script src="/../raphael.js"></script>
-		<script src="/../Treant.js"></script>
-		<script src="/../super-simple.js"></script>
-
-		<script>
-			new Treant(simple_chart_config);
-		</script>
-
-	</div>
-	<hr>
 
 
 
