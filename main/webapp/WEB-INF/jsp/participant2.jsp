@@ -37,7 +37,6 @@
 			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
 
-
 			<!-- Header(&Navigation) -->
 			<br>
 			<br>
@@ -69,7 +68,8 @@
 						<tr>
 							<td>Handicap:</td>
 							<td><sf:input required="required" path="handicap"
-									type="number" max="54" step="0.1" class="w3-input " style="width:30%" /></td>
+									type="number" max="54" step="0.1" class="w3-input "
+									style="width:30%" /></td>
 						</tr>
 						<tr>
 							<td>Social:</td>
@@ -84,10 +84,10 @@
 						</tr>
 					</table>
 					<br>
-					<input id="normalbutton" class="w3-theme w3-btn" type="submit" VALUE="Add Player"/>
+					<input id="normalbutton" class="w3-theme w3-btn" type="submit"
+						VALUE="Add Player" />
 				</sf:form>
 			</div>
-
 			<div class="w3-card-8 w3-col 18 s6 w3-center">
 				<c:choose>
 					<c:when test="${not empty golfers}">
@@ -101,7 +101,6 @@
 								</tr>
 							</thead>
 							<c:forEach var="golfer" items="${golfers}">
-
 								<tr id="dismiss">
 									<td>${golfer.name}</td>
 									<td>${golfer.social}</td>
@@ -134,14 +133,15 @@
 					tournament!</p>
 				<br>
 				<form method="POST" action="/scoreboard2">
-					<input id="normalbutton" class="w3-theme w3-center w3-btn w3-col s4 w3-medium" type="submit"
-				value="Create Tournament"/><br>
+					<input id="normalbutton"
+						class="w3-theme w3-center w3-btn w3-col s4 w3-medium"
+						type="submit" value="Create Tournament" /><br>
 				</form>
 			</div>
 		</div>
 	</div>
 	<hr>
-	
+
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

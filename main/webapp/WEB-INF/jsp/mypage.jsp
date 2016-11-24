@@ -73,7 +73,6 @@
 			<p>Or Create a new tournament</p>
 		</div>
 	</div>
-	<br>
 	<hr>
 
 	<!-- Footer -->

@@ -37,7 +37,6 @@
 			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
 
-
 			<!-- Header(&Navigation) -->
 			<br>
 			<br>
@@ -50,98 +49,86 @@
 	</div>
 	<hr>
 
-		<!-- Main Text -->
+	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
 		<h1>Play Off Tree</h1>
 		<br>
 		<div>
+			<c:choose>
+				<c:when test="${ not empty rounds }">
 
-		<c:choose>
-			<c:when test="${ not empty rounds }">
-
-				<table class="w3-table">
-					<c:forEach var="roundnum" begin="0" end="${numberOfRounds-1}">
-						<tr>
-							<c:choose>
-								<c:when test="${not empty rounds.get(roundnum).matches }">
-									<c:forEach var="match" items="${rounds.get(roundnum).matches}">
-										<c:choose>
-											<c:when test="${match.results eq 'np'}">
-												<td colspan="${Math.pow(2,roundnum)}">
-													<table class="w3-table-all">
-														<thead>
-															<tr id="table">
-																<td>Next Match</td>
-															</tr>
-														</thead>
-
-														<c:forEach var="player" begin="1" end="2">
-
-															<tr>
-																<td colspan="2">winner ${player}</td>
-															</tr>
-
-														</c:forEach>
-
-
-													</table>
-												</td>
-											</c:when>
-
-											<c:otherwise>
-												<td colspan="${Math.pow(2,roundnum)}">
-													<table class="w3-table-all">
-														<thead>
-															<tr id="table">
-																<td>Player</td>
-																<td>Handicap</td>
-																<td></td>
-															</tr>
-														</thead>
-
-														<c:forEach var="player" items="${match.players}">
-
-															<tr>
-																<c:choose>
-																	<c:when test="${not empty player }">
-																		<td>${player.name}</td>
-																		<td>${player.handicap}</td>
-																		<td><sf:form action="" method="post">
-																				<input type="hidden" name="roundNum"
-																					value="${roundnum }" />
-																				<input type="hidden" name="player"
-																					value="${player.social }" />
-																				<input id="normalbutton2" class="w3-theme w3-btn" type="submit" VALUE="Winner"/>
-																			</sf:form></td>
-																	</c:when>
-																	<c:otherwise>
-																		<td>winner</td>
-																		<td></td>
-																		<td></td>
-																	</c:otherwise>
-																</c:choose>
-															</tr>
-
-														</c:forEach>
-													</table>
-												</td>
-											</c:otherwise>
-
-										</c:choose>
-									</c:forEach>
-								</c:when>
-							</c:choose>
-
-
-						</tr>
-					</c:forEach>
-				</table>
-
-			</c:when>
-		</c:choose>
-
+					<table class="w3-table">
+						<c:forEach var="roundnum" begin="0" end="${numberOfRounds-1}">
+							<tr>
+								<c:choose>
+									<c:when test="${not empty rounds.get(roundnum).matches }">
+										<c:forEach var="match" items="${rounds.get(roundnum).matches}">
+											<c:choose>
+												<c:when test="${match.results eq 'np'}">
+													<td colspan="${Math.pow(2,roundnum)}">
+														<table class="w3-table-all">
+															<thead>
+																<tr id="table">
+																	<td>Next Match</td>
+																</tr>
+															</thead>
+															<c:forEach var="player" begin="1" end="2">
+																<tr>
+																	<td colspan="2">winner ${player}</td>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+												</c:when>
+												<c:otherwise>
+													<td colspan="${Math.pow(2,roundnum)}">
+														<table class="w3-table-all">
+															<thead>
+																<tr id="table">
+																	<td>Player</td>
+																	<td>Handicap</td>
+																	<td></td>
+																</tr>
+															</thead>
+															<c:forEach var="player" items="${match.players}">
+																<tr>
+																	<c:choose>
+																		<c:when test="${not empty player }">
+																			<td>${player.name}</td>
+																			<td>${player.handicap}</td>
+																			<td><sf:form action="" method="post">
+																					<input type="hidden" name="roundNum"
+																						value="${roundnum }" />
+																					<input type="hidden" name="player"
+																						value="${player.social }" />
+																					<input id="normalbutton2" class="w3-theme w3-btn"
+																						type="submit" VALUE="Winner" />
+																				</sf:form></td>
+																		</c:when>
+																		<c:otherwise>
+																			<td>winner</td>
+																			<td></td>
+																			<td></td>
+																		</c:otherwise>
+																	</c:choose>
+																</tr>
+															</c:forEach>
+														</table>
+													</td>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</c:when>
+								</c:choose>
+							</tr>
+						</c:forEach>
+					</table>
+				</c:when>
+			</c:choose>
+		</div>
 	</div>
-	</div>
+	<hr>
+
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

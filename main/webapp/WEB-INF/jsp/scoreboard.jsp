@@ -37,7 +37,6 @@
 			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
 
-
 			<!-- Header(&Navigation) -->
 			<br>
 			<br>
@@ -60,7 +59,7 @@
 			action="/addplayers2">
 			<div id="scoreboard" class="w3-card-8">
 				<sf:input required="required" path="name" class="w3-input"
-					type="text" style="width: 30%" autofocus="autofocus"/>
+					type="text" style="width: 30%" autofocus="autofocus" />
 				<label class="w3-label w3-validate w3-border">Name of
 					tournament</label> <br>
 				<sf:input required="required" path="course" class="w3-input"
@@ -69,16 +68,16 @@
 				<sf:input required="required" path="startDate" class="w3-input"
 					type="date" style="width: 20%" />
 				<label class="w3-label w3-validate w3-border">Date</label> <br>
-				<sf:input required="required" path="numberOfRounds" class="w3-input" min="1"
-					type="number" style="width: 10%" />
-				<label class="w3-label w3-validate w3-border">Number of Rounds</label>
-				<br>
+				<sf:input required="required" path="numberOfRounds" class="w3-input"
+					min="1" type="number" style="width: 10%" />
+				<label class="w3-label w3-validate w3-border">Number of
+					Rounds</label> <br>
 			</div>
 			<br>
-				<p>After filling out information about the tournament, it is
-					time to go to the next step and fill out information about the
-					participants.</p>
-					<input id="normalbutton"
+			<p>After filling out information about the tournament, it is time
+				to go to the next step and fill out information about the
+				participants.</p>
+			<input id="normalbutton"
 				class="w3-theme w3-center w3-btn w3-col s4 w3-medium" type="submit"
 				value="Participant Information">
 		</sf:form>

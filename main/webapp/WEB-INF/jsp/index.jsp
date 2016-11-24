@@ -37,7 +37,6 @@
 			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
 
-
 			<!-- Header(&Navigation) -->
 			<br>
 			<br>
@@ -63,9 +62,9 @@
 		<p>Nice to see you and Happy Golfing!!!</p>
 		<br> <img id="golferimg" src="../images/golfer.png" alt="Golfer">
 		<br>
-		</div>
-		<hr>
-		
+	</div>
+	<hr>
+
 
 	<!-- Footer -->
 	<div id="footer">

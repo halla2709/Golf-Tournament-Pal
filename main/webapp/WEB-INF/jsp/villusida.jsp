@@ -37,7 +37,6 @@
 			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
 
-
 			<!-- Header(&Navigation) -->
 			<br>
 			<br>
@@ -50,25 +49,26 @@
 	</div>
 	<hr>
 
-	
+
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main2">
 		<form method="GET" action="/addplayers">
 			<h1>Something went wrong...</h1>
 			<br>
-				<p>This number of players does not work for this type of tournament.</p>
-				<p>The number of players must allow for a complete playoff tree to form, i.e. must be a power of 2.</p>
-				<p>If the tournament has brackets then the total number of players fit in the brackets.</p>
-				<p>The number of players that exit the brackets must be a power of 2.</p>
-				<p> Please try again.
-				<br>
-				<br>
-				<input id="normalbutton" class="w3-theme w3-btn" type="submit"
-				VALUE="Edit Players">
-				<br>
-				<br> <img id="golferimg" src="../images/golfer.png" alt="Golfer">
+			<p>This number of players does not work for this type of
+				tournament.</p>
+			<p>The number of players must allow for a complete playoff tree
+				to form, i.e. must be a power of 2.</p>
+			<p>If the tournament has brackets then the total number of
+				players fit in the brackets.</p>
+			<p>The number of players that exit the brackets must be a power
+				of 2.</p>
+			<p>Please try again.</p>
+			<br> <br> <input id="normalbutton" class="w3-theme w3-btn"
+				type="submit" VALUE="Edit Players"> <br> <br> <img
+				id="golferimg" src="../images/golfer.png" alt="Golfer">
 		</form>
-	</div> 
+	</div>
 	<hr>
 
 	<!-- Footer -->

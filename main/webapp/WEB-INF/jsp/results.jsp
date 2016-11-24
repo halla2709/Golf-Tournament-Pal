@@ -37,7 +37,6 @@
 			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
 
-
 			<!-- Header(&Navigation) -->
 			<br>
 			<br>
@@ -56,10 +55,10 @@
 		<br>
 		<h2>Here we have results from tournaments:</h2>
 		<br>
-<!-- Will not be used yet-->
-<!-- 		<h3>Find the tournament you are looking for:</h3> -->
-<!-- 		<input id="search" class="w3-input w3-border" type="text" -->
-<!-- 			name="search" placeholder="Search Tournament.."> <br> <br> -->
+		<!-- Will not be used yet - Search properties -->
+		<!-- 		<h3>Find the tournament you are looking for:</h3> -->
+		<!-- 		<input id="search" class="w3-input w3-border" type="text" -->
+		<!-- 			name="search" placeholder="Search Tournament.."> <br> <br> -->
 		<table class="w3-table-all w3-hoverable">
 			<thead>
 				<tr id="table">
@@ -72,12 +71,13 @@
 			<c:choose>
 				<c:when test="${not empty tournaments}">
 					<c:forEach var="tournament" items="${tournaments}">
-							<tr>
-								<td>${tournament.name}</td>
-								<td>${tournament.startDate}</td>
-								<td>${tournament.course}</td>
-								<td><a href="/tournament/${tournament.getid()}/">View Tournament</a>
-							</tr>
+						<tr>
+							<td>${tournament.name}</td>
+							<td>${tournament.startDate}</td>
+							<td>${tournament.course}</td>
+							<td><a href="/tournament/${tournament.getid()}/">View
+									Tournament</a>
+						</tr>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
@@ -88,7 +88,6 @@
 			</c:choose>
 		</table>
 	</div>
-	<br>
 	<hr>
 
 	<!-- Footer -->

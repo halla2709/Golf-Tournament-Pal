@@ -60,7 +60,6 @@
 				<c:forEach var="bracket" items="${brackets}">
 					<br>
 					<table class="w3-table-all" style="width: 47%">
-
 						<tr id="table">
 							<td>${bracket.name}</td>
 							<c:forEach var="player" items="${bracket.players}">
@@ -68,7 +67,6 @@
 							</c:forEach>
 							<td>Points</td>
 						</tr>
-
 						<c:forEach var="player" items="${bracket.players}">
 							<tr>
 								<th>${player.name}</th>
@@ -81,7 +79,6 @@
 											<td><a href="">Add results</a></td>
 										</c:otherwise>
 									</c:choose>
-
 								</c:forEach>
 								<td>0</td>
 							</tr>
@@ -89,8 +86,6 @@
 					</table>
 				</c:forEach>
 			</c:when>
-
-			<%--If all tests are false, then do this--%>
 			<c:otherwise>
 				<h3>We are sorry, there are no brackets for this tournament!</h3>
 				<p>Please Go back to Results</p>
@@ -98,7 +93,6 @@
 
 			</c:otherwise>
 		</c:choose>
-
 	</div>
 	<hr>
 

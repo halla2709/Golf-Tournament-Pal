@@ -70,7 +70,6 @@
 	</div>
 	<hr>
 
-
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

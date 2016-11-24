@@ -58,7 +58,6 @@
 		<table class="w3-table-all w3-hoverable" style="width: 47%">
 			<thead>
 				<tr id="table">
-
 					<td>Tournament name:</td>
 					<td>Course:</td>
 					<td>Start Date:</td>
@@ -73,11 +72,8 @@
 
 		<br>
 		<h3>Participants Information:</h3>
-		<%--Choose what code to generate based on tests that we implement--%>
 		<c:choose>
-			<%--If the model has an attribute with the name `postitNotes`--%>
 			<c:when test="${not empty golfers}">
-				<%--Create a table for the Postit Notes--%>
 				<table class="w3-table-all w3-hoverable">
 					<thead>
 						<tr id="table">
@@ -85,20 +81,10 @@
 							<td>Social Security Number</td>
 							<td>Email</td>
 							<td>Handicap</td>
-
 						</tr>
 					</thead>
-
-
-					<%--For each postit note, that is in the list that was passed in the model--%>
-					<%--generate a row in the table--%>
-					<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
 					<c:forEach var="golfer" items="${golfers}">
 						<tr>
-							<%--We can reference attributes of the Entity by just entering the name we gave--%>
-							<%--it in the singular item var, and then just a dot followed by the attribute name--%>
-
-							<%--Create a link based on the name attribute value--%>
 							<td>${golfer.name}</td>
 							<td>${golfer.social}</td>
 							<td>${golfer.email}</td>
@@ -108,7 +94,6 @@
 				</table>
 				<br>
 			</c:when>
-
 		</c:choose>
 	</div>
 

@@ -83,19 +83,12 @@
 						<td><input type="number" max="15" step="1" min="1"
 							style="width: 80%" value="${scores[i-1]}" name="h${i}" /></td>
 					</c:forEach>
-					
 				</tr>
 			</table>
-			<input type="hidden" name="social" value="${social }">
-			<input type="hidden" name="round" value="${round }">
-			<br>
-			<input type="submit" id="normalbutton" class="w3-theme w3-btn"
-				VALUE="Save">
-
+			<input type="hidden" name="social" value="${social }"> <input
+				type="hidden" name="round" value="${round }"> <br> <input
+				type="submit" id="normalbutton" class="w3-theme w3-btn" VALUE="Save">
 		</form>
-
-
-
 	</div>
 	<hr>
 

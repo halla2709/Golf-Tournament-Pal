@@ -56,8 +56,6 @@
 		<br>
 		<p>Your just successfully created a Tournament! This is how it
 			looks:</p>
-
-
 		<h3>Tournament Information:</h3>
 		<table class="w3-table-all w3-hoverable" style="width: 47%">
 			<thead>
@@ -73,7 +71,6 @@
 				<td>${startdate}</td>
 			</tr>
 		</table>
-
 		<br>
 		<h3>Participants Information:</h3>
 		<c:choose>
@@ -85,7 +82,6 @@
 							<td>Social Security Number</td>
 							<td>Email</td>
 							<td>Handicap</td>
-
 						</tr>
 					</thead>
 					<c:forEach var="golfer" items="${golfers}">
@@ -167,8 +163,7 @@
 				</table>
 			</c:when>
 		</c:choose>
-		<br> <a href="/tournament/${id}/"> <input
-			id="normalbutton"
+		<br> <a href="/tournament/${id}/"> <input id="normalbutton"
 			class="w3-theme w3-center w3-btn w3-col s3 w3-medium"
 			value="See Results" /></a>
 	</div>

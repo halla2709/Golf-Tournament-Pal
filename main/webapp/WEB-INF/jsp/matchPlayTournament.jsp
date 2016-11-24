@@ -37,7 +37,6 @@
 			<!-- Will only be available once login has been created -->
 			<!-- <li id="login"><a class="w3-padding-16 w3-hover-white" href="/login">Login</a></li> -->
 
-
 			<!-- Header(&Navigation) -->
 			<br>
 			<br>
@@ -70,7 +69,6 @@
 				<td>${startdate}</td>
 			</tr>
 		</table>
-
 		<br>
 		<h3>Participants Information:</h3>
 		<%--Choose what code to generate based on tests that we implement--%>
@@ -85,20 +83,10 @@
 							<td>Social Security Number</td>
 							<td>Email</td>
 							<td>Handicap</td>
-
 						</tr>
 					</thead>
-
-
-					<%--For each postit note, that is in the list that was passed in the model--%>
-					<%--generate a row in the table--%>
-					<%--Here we set `postit` as a singular item out of the list `postitNotes`--%>
 					<c:forEach var="golfer" items="${golfers}">
 						<tr>
-							<%--We can reference attributes of the Entity by just entering the name we gave--%>
-							<%--it in the singular item var, and then just a dot followed by the attribute name--%>
-
-							<%--Create a link based on the name attribute value--%>
 							<td>${golfer.name}</td>
 							<td>${golfer.social}</td>
 							<td>${golfer.email}</td>
@@ -109,20 +97,18 @@
 				<br>
 			</c:when>
 		</c:choose>
-		
-		
-
-			<br>
+		<br>
 		<div class="w3-row">
-			<a class="seeButton" href="brackets">
-				<input id="bigbutton" class="w3-theme w3-center w3-btn w3-col s5 w3-large" value="View Bracket"/></a>
-			<a class="seeButton" href="playofftree">
-				<input id="bigbutton" class="w3-theme w3-center w3-btn w3-col s5 w3-large w3-right w3-border" value="View Play Off Tree"></a>
+			<a class="seeButton" href="brackets"> <input id="bigbutton"
+				class="w3-theme w3-center w3-btn w3-col s5 w3-large"
+				value="View Bracket" /></a> <a class="seeButton" href="playofftree">
+				<input id="bigbutton"
+				class="w3-theme w3-center w3-btn w3-col s5 w3-large w3-right w3-border"
+				value="View Play Off Tree">
+			</a>
 		</div>
-
 	</div>
 	<hr>
-
 
 	<!-- Footer -->
 	<div id="footer">
