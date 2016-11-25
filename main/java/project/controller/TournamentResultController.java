@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import project.persistence.entities.Bracket;
+import project.persistence.entities.Golfer;
 import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.PlayOffTree;
 import project.persistence.entities.Round;
@@ -138,6 +139,7 @@ public class TournamentResultController {
 		model.addAttribute("rounds", playoffs.getRounds());
 		model.addAttribute("numberOfRounds", playoffs.getRounds().size());
 		model.addAttribute("numberOfMatches", Math.pow(2, playoffs.getRounds().size()-1));
+		
 		return "playoffs";
 	}
 	
@@ -152,6 +154,10 @@ public class TournamentResultController {
 		model.addAttribute("rounds", playoffs.getRounds());
 		model.addAttribute("numberOfRounds", playoffs.getRounds().size());
 		model.addAttribute("numberOfMatches", Math.pow(2, playoffs.getRounds().size()-1));
+		if(playoffs.getRounds().size() == roundNum+1) {
+			Golfer golfer = matchPlayService.findPlayer(playoffs, player);
+			model.addAttribute("winner", golfer);
+		}
 		return "playoffs";
 	}
 	

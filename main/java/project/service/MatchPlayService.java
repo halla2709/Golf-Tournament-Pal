@@ -38,5 +38,7 @@ public interface MatchPlayService {
 
 	PlayOffTree addPlayoffMatchResults(Long id, Long playerSocial, Integer roundNum);
 
+	Golfer findPlayer(PlayOffTree playoffs, Long player);
+
 }
 

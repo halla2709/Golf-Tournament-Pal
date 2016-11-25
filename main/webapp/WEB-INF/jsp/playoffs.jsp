@@ -125,6 +125,11 @@
 					</table>
 				</c:when>
 			</c:choose>
+			<c:choose>
+				<c:when test="${not empty winner}">
+					<h2 style="text-align: center;">${winner.name } has won the tournament!</h2>
+				</c:when>
+			</c:choose>
 		</div>
 	</div>
 	<hr>

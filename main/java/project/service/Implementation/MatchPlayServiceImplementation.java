@@ -76,6 +76,10 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 		PlayOffTree playoffs = tournament.getPlayOffs();
 		PlayOffRound thisRound = playoffs.getRounds().get((int) roundNum);
 		
+		if(roundNum == playoffs.getRounds().size()-1) {
+			return playoffs;
+		}
+		
 		Golfer golfer = new Golfer();
 		int matchIndex = 0;
 		for(int i = 0; i < thisRound.getMatches().size(); i++) {
@@ -126,6 +130,25 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	        matches.set(k+1, keymatch);
 	    }
 		return matches;
+	}
+	
+	@Override
+	public Golfer findPlayer(PlayOffTree tree, Long social) {
+		PlayOffRound thisRound = tree.getRounds().get(tree.getRounds().size()-1);
+		
+		Golfer golfer = new Golfer();
+		for(int i = 0; i < thisRound.getMatches().size(); i++) {
+			if(thisRound.getMatches().get(i).getPlayers().get(0).getSocial() == (long) social) {
+				golfer = thisRound.getMatches().get(i).getPlayers().get(0);
+				break;
+			}
+			else if(thisRound.getMatches().get(i).getPlayers().get(1).getSocial() == (long) social) {
+				golfer = thisRound.getMatches().get(i).getPlayers().get(1);
+				break;
+			}
+		}
+		
+		return golfer;
 	}
 
 }
