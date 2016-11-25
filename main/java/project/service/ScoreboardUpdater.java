@@ -16,19 +16,19 @@ public class ScoreboardUpdater {
 	public ScoreboardUpdater(ScoreboardTournament tournament) {
 		this.tournament = tournament;
 		score = new int[tournament.getPlayers().size()][tournament.getNumberOfRounds()+1];
+		
 		createScoreboard();
+		updateStatus();
 		tournament.setScores(score);
 	}
 	
 	public static ScoreboardTournament createScoreboard(ScoreboardTournament tournament) {
 		int[][] score = new int[tournament.getPlayers().size()][tournament.getNumberOfRounds()+1];
-		System.out.println("Players: " + tournament.getPlayers().size() + " and nor: " + tournament.getScorecards().get(0).getTotalForRounds()[0]);
 		
 		for(int i = 0; i < tournament.getPlayers().size(); i++) {
 			int[] scorecardi = tournament.getScorecards().get(i).getTotalForRounds();
 			int total = 0;
 			for(int j = 0; j < tournament.getNumberOfRounds(); j++) {
-				System.out.println("i " + i + " j " + j);
 				tournament.getScorecards().get(i).getRounds().get(j).setScore();
 				score[i][j] = scorecardi[j];
 				total += scorecardi[j];
@@ -41,13 +41,11 @@ public class ScoreboardUpdater {
 	
 	private void createScoreboard() {
 		score = new int[tournament.getPlayers().size()][tournament.getNumberOfRounds()+1];
-		System.out.println("Players: " + tournament.getPlayers().size() + " and nor: " + tournament.getNumberOfRounds());
 		
 		for(int i = 0; i < tournament.getPlayers().size(); i++) {
 			int[] scorecardi = tournament.getScorecards().get(i).getTotalForRounds();
 			int total = 0;
 			for(int j = 0; j < tournament.getNumberOfRounds(); j++) {
-				System.out.println("i " + i + " j " + j);
 				tournament.getScorecards().get(i).getRounds().get(j).setScore();
 				score[i][j] = scorecardi[j];
 				total += scorecardi[j];
@@ -95,7 +93,6 @@ public class ScoreboardUpdater {
 			}
 		}
 		
-		System.out.println(index + "  " + tournament.getScorecards().get(index).getPlayer().getName());
 		
 		List<Scorecard> scorecards = tournament.getScorecards();
 		scorecards.get(index).setRound(round, scores);
@@ -109,8 +106,12 @@ public class ScoreboardUpdater {
 		}
 		score[index][tournament.getNumberOfRounds()] = total;
 		
-		//updateStatus();
+		updateStatus();
 		
+		return tournament;
+	}
+	
+	public ScoreboardTournament getTournament() {
 		return tournament;
 	}
 }

@@ -41,13 +41,6 @@ public class Bracket {
 		super();
 	}
 
-
-
-	public static void main(String[] args){
-		Bracket bracket = new Bracket(null, "Halla");
-		System.out.println(bracket);
-	}
-
 	public List<Match> getMatch() {
 		return match;
 	}

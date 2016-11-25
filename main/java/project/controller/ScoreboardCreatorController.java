@@ -80,10 +80,8 @@ public class ScoreboardCreatorController {
 		}
 		
 		else {
-    		System.out.println("Saving golfer " + golfer.getName());
     		tournament.addPlayer(golfer);
     		golferService.save(golfer);
-    		System.out.println(tournament.getPlayers().size());
     	}
     	
     	    	

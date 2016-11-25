@@ -36,11 +36,10 @@ public class Scorecard {
 	private Team team;
     
     private String course;
-    
+
 	private int numberOfRounds;
 
 	public Scorecard(Golfer player, Team team, String course, int numberOfRounds){
-		System.out.println("Bua til vitlaust scoreboard");
 		this.player = player;
 		this.team = team;
 		this.numberOfRounds = numberOfRounds;
@@ -75,10 +74,6 @@ public class Scorecard {
 		return totals;
 	}
 	
-	public static void main(String[] args){
-		Scorecard scorecard = new Scorecard(null, null, "Grabbi", 3);
-	}
-
 	public Golfer getPlayer() {
 		return player;
 	}
@@ -105,6 +100,14 @@ public class Scorecard {
 
 	public void setRounds(List<Round> rounds) {
 		this.rounds = rounds;
+	}
+	
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
 	}
 
 }

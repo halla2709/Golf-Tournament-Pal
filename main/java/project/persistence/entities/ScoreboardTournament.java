@@ -44,12 +44,7 @@ public class ScoreboardTournament extends Tournament {
 		this.setPlayers(new ArrayList<Golfer>());
 		scores = null;
 	}
-
-	public static void main(String[] args){
-		ScoreboardTournament scoreboardTournament = new ScoreboardTournament("vннн", "vuuuu", new Date(), 5, null, null,  null);
-		System.out.println(scoreboardTournament.getCourse());
-	}
-
+	
 	public int[][] getScores() {
 		return scores;
 	}

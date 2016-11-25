@@ -39,11 +39,6 @@ public class Match {
 		this.results = results;
 		this.date = date;
 	}
-	
-	public static void main(String[] args){
-		Match  match = new Match (null, "Halla", new Date());
-		System.out.println(match.results);
-	}
 
 	public List<Golfer> getPlayers() {
 		return players;

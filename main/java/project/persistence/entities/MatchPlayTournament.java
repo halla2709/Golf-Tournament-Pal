@@ -44,11 +44,6 @@ public class MatchPlayTournament extends Tournament{
 		this.playOffs = playOffs;
 	}
 	
-	public static void main(String[] args) {
-		MatchPlayTournament ht = new MatchPlayTournament("mammmaaaaa'in", "vuuuu", new Date(), null, true, null, null);
-		System.out.println(ht.getCourse());
-	}
-
 	@Override
 	public String toString() {
 		return "HeadOnTournament [playOffs=" + playOffs + "]";

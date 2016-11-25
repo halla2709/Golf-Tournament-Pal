@@ -21,14 +21,6 @@ public class TeamScoreboardTournament extends ScoreboardTournament{
 			int[][] scores, Team[] team){
 		super(course, name,  startDate, numberOfRounds, players, scorecards, scores);
 	}
-	
-
-
-	public static void main(String[] args){
-		TeamScoreboardTournament teamScoreboardTournament = new TeamScoreboardTournament("kalli", "vuuu", new Date(), 6,
-				null, null, null, null);
-		System.out.println(teamScoreboardTournament.getCourse());
-	}
 
 	public List<Team> getTeam() {
 		return team;

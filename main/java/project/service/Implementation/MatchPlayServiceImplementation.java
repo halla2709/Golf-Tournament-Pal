@@ -1,7 +1,6 @@
 package project.service.Implementation;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -75,10 +74,7 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	public PlayOffTree addPlayoffMatchResults(Long id, Long playerSocial, Integer roundNum) {
 		MatchPlayTournament tournament = findOne(id);
 		PlayOffTree playoffs = tournament.getPlayOffs();
-		System.out.println("playoffSize: " + playoffs.getRounds().size());
 		PlayOffRound thisRound = playoffs.getRounds().get((int) roundNum);
-		System.out.println("matches in round: " + thisRound.getMatches().size());
-		System.out.println("players in match: " + playoffs.getRounds().get((int) roundNum).getMatches().get(0).getPlayers().size());
 		
 		Golfer golfer = new Golfer();
 		int matchIndex = 0;
@@ -97,12 +93,8 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 		
 		PlayOffRound nextRound = playoffs.getRounds().get((int) (roundNum+1));
 		nextRound.setMatches(sortByID(nextRound.getMatches()));
-		System.out.println("MatchIndex: " + matchIndex);
-		System.out.println("fyrir get: " + nextRound.getMatches().get(0).toString());
-		//System.out.println("fyrir get: " + nextRound.getMatches().get(1).toString());
 		List<Golfer> golfers = nextRound.getMatches().get(matchIndex/2).getPlayers();
 
-		System.out.println("fyrir add: " + nextRound.getMatches().get(0).toString());
 		
 		if(golfers == null) golfers = new ArrayList<Golfer>(2);
 		if(golfers.size() < 2) {
@@ -110,19 +102,12 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 			Match newMatch = nextRound.getMatches().get(matchIndex/2);
 			newMatch.setPlayers(golfers);
 			newMatch.setResults("ongoing");
-			
-			System.out.println("Golfers in match " + matchIndex/2 + " in round " + (int) (roundNum+1) + " are:");
-			System.out.println(golfers);
-			
-			System.out.println("fyrir set: " + nextRound.getMatches().get(0).toString());
 			nextRound.setMatch(matchIndex/2, newMatch);
-			System.out.println("eftir set: " + nextRound.getMatches().get(0).toString());
 			playoffs.setRound(roundNum+1, nextRound);
 			tournament.setPlayOffs(playoffs);
 			
 			tournament = repository.save(tournament);
 			
-			System.out.println(tournament.getPlayOffs().getRounds().get(1).getMatches().get(0).getPlayers());
 		}
 		
 		return playoffs;

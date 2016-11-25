@@ -129,11 +129,11 @@
 						</tr>
 					</thead>
 
-					<c:forEach var="row" begin="0" end="${golfers.size()-1}">
+					<c:forEach var="row" begin="0" end="${scorecards.size()-1}">
 						<tr>
-							<td>${golfers.get(row).getName()}</td>
+							<td>${scorecards.get(row).getPlayer().getName()}</td>
 							<c:forEach var="column" begin="0" end="${numberOfRounds-1}">
-								<td><a href="${golfers.get(row).getSocial()}/${column+1}">${scoreboard[row][column]}</a></td>
+								<td><a href="${scorecards.get(row).getPlayer().getSocial()}/${column+1}">${scoreboard[row][column]}</a></td>
 							</c:forEach>
 							<td>${scoreboard[row][numberOfRounds]}</td>
 						</tr>

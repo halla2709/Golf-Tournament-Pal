@@ -37,13 +37,11 @@ public class TournamentServiceImplementation implements TournamentService {
 		
 		Tournament tournament = scoreRepository.findOne(id);
 		if(tournament != null) {
-			System.out.println("Scoreboard");
 			ScoreboardTournament stournament = (ScoreboardTournament) tournament;
 			tournament = ScoreboardUpdater.createScoreboard(stournament);
 			return stournament;
 		}
 		else {
-			System.out.println("MatchPlay");
 			tournament = matchRepository.findOne(id);
 		}
 		return tournament;

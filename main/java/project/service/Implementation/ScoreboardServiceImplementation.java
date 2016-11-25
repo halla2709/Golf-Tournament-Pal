@@ -9,7 +9,6 @@ import project.persistence.entities.Golfer;
 import project.persistence.entities.Round;
 import project.persistence.entities.ScoreboardTournament;
 import project.persistence.entities.Scorecard;
-import project.persistence.entities.Tournament;
 import project.persistence.repositories.ScoreboardCreatorRepository;
 import project.service.ScoreboardCreator;
 import project.service.ScoreboardService;
@@ -53,8 +52,9 @@ public class ScoreboardServiceImplementation implements ScoreboardService {
 
 	@Override
 	public ScoreboardTournament findOne(Long id) {
-		ScoreboardTournament scoreboard = repository.findOne(id);		
-		return ScoreboardUpdater.createScoreboard(scoreboard);
+		ScoreboardTournament scoreboard = repository.findOne(id);
+		ScoreboardUpdater updater = new ScoreboardUpdater(scoreboard);
+		return updater.getTournament();
 	}
 
 	@Override
@@ -69,7 +69,6 @@ public class ScoreboardServiceImplementation implements ScoreboardService {
 				break;
 			}
 		}	
-		System.out.println("getting round nr: " + round2.getId());
 		return round2;
 	}
 

@@ -26,12 +26,6 @@ public class TeamMatchPlayTournament extends MatchPlayTournament {
 		super(course, name, startDate, players);
 	}
 
-	public static void main(String[] args){
-		TeamMatchPlayTournament teamHeadOnTournament = new TeamMatchPlayTournament("Flottasti völlurinn", "vuuuu", new Date(), 3,
-				null, true, null, null);
-		System.out.println(teamHeadOnTournament.getCourse());
-	}
-
 	public List<Team> getTeams() {
 		return teams;
 	}

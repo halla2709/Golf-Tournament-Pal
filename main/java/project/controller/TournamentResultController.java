@@ -1,6 +1,5 @@
 package project.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import project.persistence.entities.Bracket;
-import project.persistence.entities.Golfer;
 import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.PlayOffTree;
 import project.persistence.entities.Round;
@@ -20,7 +18,6 @@ import project.persistence.entities.ScoreboardTournament;
 import project.persistence.entities.Tournament;
 import project.service.MatchPlayService;
 import project.service.ScoreboardService;
-import project.service.ScoreboardUpdater;
 import project.service.TournamentService;
 
 @Controller
@@ -71,7 +68,6 @@ public class TournamentResultController {
 			@RequestParam(value="round") int round,
 			Model model
 			){
-		System.out.println("mammain er: " + h18);
 		int[] scores = {h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,h17,h18};
 		
 		ScoreboardTournament tournament = scoreboardService.addRound(id, social, round, scores);
@@ -85,6 +81,7 @@ public class TournamentResultController {
 	
 		model.addAttribute("scoreboard", tournament.getScores());
 		model.addAttribute("numberOfRounds", tournament.getNumberOfRounds());
+		model.addAttribute("scorecards", tournament.getScorecards());
 		
 		return "scoreboardTournament";
 	}
@@ -108,6 +105,7 @@ public class TournamentResultController {
 			
 			model.addAttribute("scoreboard", stournament.getScores());
 			model.addAttribute("numberOfRounds", stournament.getNumberOfRounds());
+			model.addAttribute("scorecards", stournament.getScorecards());
 			return "scoreboardTournament";
 		}
 		

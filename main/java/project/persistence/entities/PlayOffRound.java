@@ -50,8 +50,6 @@ public class PlayOffRound {
 
 	public void setMatch(int matchIndex, Match newMatch) {
 		this.matches.set(matchIndex, newMatch);
-		System.out.println("MatchIndex: " + matchIndex );
-		System.out.println("Number of matches: " + this.matches.size());
 	}
 
 	

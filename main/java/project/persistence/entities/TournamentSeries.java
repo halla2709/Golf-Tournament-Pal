@@ -25,10 +25,6 @@ public class TournamentSeries{
 	public TournamentSeries(String name, List<Tournament> tournament){
 		this.name = name;
 	}
-	public static void main(String[] args){
-		TournamentSeries besta = new TournamentSeries("BESTA",null);
-		System.out.println(besta.getName());
-	}
 	
 	@Column(name="tournamentSeries_name")
 	public String getName(){

@@ -31,28 +31,6 @@ public class MatchPlayCreator {
 		else numOutOfBrackets = 0;
 		sortByHandicap(players);
 	}
-	
-	public static void main(String[] args){
-		
-		Golfer halla = new Golfer("Halla", 93939393, 4.3, "hallamammain");
-		Golfer elvar = new Golfer("Elvar", 93939393, 36.0, "ilvar");
-		Golfer mamma = new Golfer("begga", 93939393, 33.4, "hallamammain");
-		Golfer pabbi = new Golfer("raggi", 93939393, 6.8, "ilvar");		
-		Golfer hedda = new Golfer("hedda", 93939393, 12.2, "hallamammain");
-		Golfer brynja = new Golfer("brynja", 93939393, 24.2, "ilvar");
-		List<Golfer> unsorted = new ArrayList<Golfer>();
-		unsorted.add(brynja);
-		unsorted.add(elvar);
-		unsorted.add(halla);
-		unsorted.add(pabbi);
-		//unsorted.add(mamma);
-		//unsorted.add(hedda);
-		MatchPlayCreator headOnCreator = new MatchPlayCreator(false, unsorted, 0, 0);
-		MatchPlayTournament tournament = headOnCreator.createTournament("Korpa", "Mja", new Date());
-		
-		System.out.println(tournament.getPlayOffs().getRounds().get(1).getMatches().size());
-		System.out.println(tournament.getPlayOffs().getRounds().get(1).getMatches().get(0).getPlayers().size());
-	}
 
 	private void sortByHandicap(List<Golfer> unsorted) {
 		Collections.sort(unsorted);
@@ -140,7 +118,6 @@ public class MatchPlayCreator {
 		List<PlayOffRound> rounds = new ArrayList<PlayOffRound>((int) changeToBase2(numIn));
 		// Ef �etta er ekki ri�lam�t �� er h�gt a� stilla upp fyrstu umfer�inni
 		for(int i = 0; i < ((int) changeToBase2(numIn)); i++) {
-			System.out.println("adding round " + i + " with matchnumber " + numOfMatches/(int) Math.pow(2, i));
 			List<Match> emptyMatches = new ArrayList<Match>(numOfMatches/(int) Math.pow(2, i)); 
 			for(int j = 0; j < numOfMatches/(int) Math.pow(2, i); j++) {
 				emptyMatches.add(new Match(null, "np", null));

@@ -46,14 +46,6 @@ public class Tournament {
 		super();
 	}
 
-
-	public static void main(String[] args) {
-		Tournament tour = new Tournament("mamma'in", "vuuu",  new Date(), null);
-		
-		System.out.println(tour.getCourse());
-	}
-
-
 	public void addPlayer(Golfer golfer) {
 		if(players == null) players = new ArrayList<Golfer>();
 		players.add(golfer);
@@ -78,7 +70,6 @@ public class Tournament {
 
 
 	public void setCourse(String course) {
-		System.out.println("Setting course " + course);
 		this.course = course;
 	}
 
@@ -107,10 +98,8 @@ public class Tournament {
 		try {
 			result = df.parse(startDate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		System.out.println("Setting startDate " + startDate.toString());
 		this.startDate = result;
 	}
 

@@ -57,8 +57,6 @@ public class MatchPlayCreatorController {
 											@RequestParam(value = "numberInBrackets", required=false) Integer numberInBrackets,
 											Model model) {
 		
-		System.out.println("numoob " + numOutOfBrackets);
-		System.out.println("number in brackets " + numberInBrackets);
 		if(!beenhere) {
 			tournament = headOnTournament;
 			this.numOutOfBrackets = numOutOfBrackets;
@@ -67,10 +65,8 @@ public class MatchPlayCreatorController {
 		}
 		
 		else {
-    		System.out.println("Saving golfer " + golfer.getName());
     		tournament.addPlayer(golfer);
     		golferService.save(golfer);
-    		System.out.println(tournament.getPlayers().size());
     	}
     	
     	    	
@@ -83,7 +79,6 @@ public class MatchPlayCreatorController {
 	@RequestMapping(value="/addplayers", method = RequestMethod.GET) 
 	public String backFromErrorPage(Model model){
 		
-		System.out.println(tournament.getPlayers().size());
 		model.addAttribute("golfer", new Golfer());
     	model.addAttribute("golfers", tournament.getPlayers());
 		
@@ -105,7 +100,6 @@ public class MatchPlayCreatorController {
 			
 		if(newtournament == null) return "villusida";
 		
-		System.out.println(newtournament.getPlayOffs().getRounds().get(0).getMatches().size());
 		model.addAttribute("golfers", newtournament.getPlayers());
 		model.addAttribute("brackets", newtournament.getBrackets());
 		model.addAttribute("playofftree", newtournament.getPlayOffs());

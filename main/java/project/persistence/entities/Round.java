@@ -25,8 +25,6 @@ public class Round {
 	private int h8;
 	private int h9;
 	private int h10;
-
-
 	private int h11;
 	private int h12;
 	private int h13;
@@ -42,8 +40,6 @@ public class Round {
 	
 	public Round() {
 		setScore();
-		System.out.println("Scores set");
-		System.out.println("Score 2 " + myScores[1] + " score 6" + myScores[5]);
 	}
 	
 	public int getTotal() {
@@ -131,7 +127,6 @@ public class Round {
 	}
 
 	public void setH2(int h2) {
-		System.out.println("?");
 		this.h2 = h2;
 		setScore();
 	}
@@ -162,7 +157,6 @@ public class Round {
 	}
 
 	public void setH5(int h5) {
-		System.out.println("Setting?");
 		this.h5 = h5;
 		setScore();
 	}
@@ -213,7 +207,6 @@ public class Round {
 	}
 
 	public void setH10(int h10) {
-		System.out.println("Setting 10");
 		this.h10 = h10;
 		setScore();
 	}
@@ -283,7 +276,6 @@ public class Round {
 	}
 
 	public void setH17(int h17) {
-		System.out.println("Setting 17");
 		this.h17 = h17;
 		setScore();
 	}
@@ -294,7 +286,6 @@ public class Round {
 	}
 
 	public void setH18(int h18) {
-		System.out.println("Setting 18");
 		this.h18 = h18;
 		setScore();
 	}
@@ -307,13 +298,4 @@ public class Round {
 		this.myScores = myScores;
 	}
 	
-	public static void main(String[] args) {
-		Round round = new Round();
-		int[] hallo = new int[18];
-		hallo[0] = 5;
-		hallo[3] = 8;
-		round.setScore(hallo);
-		System.out.println(round.getScore(0));
-		
-	}
 }

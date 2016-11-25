@@ -6,7 +6,6 @@ import java.util.List;
 import project.persistence.entities.Golfer;
 import project.persistence.entities.Round;
 import project.persistence.entities.ScoreboardTournament;
-import project.persistence.entities.Tournament;
 
 public interface ScoreboardService {
 	

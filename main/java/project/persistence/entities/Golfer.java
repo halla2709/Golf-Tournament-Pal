@@ -1,8 +1,5 @@
 package project.persistence.entities;
 
-import java.util.Arrays;
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,13 +9,6 @@ import javax.persistence.Table;
 @Table(name = "Golfer") 
 public class Golfer implements Comparable<Golfer> {
 	
-	/**
-	 * 
-	 */
-	//private static final long serialVersionUID = 436502358235599004L;
-
-	//private static final long serialVersionUID = 8509943069522870963L;
-
 	private String name;
 	
     @Id
@@ -38,24 +28,13 @@ public class Golfer implements Comparable<Golfer> {
 		super();
 		
 	}
-
-
-
-	public static void main(String[] args) {
-		Golfer halla = new Golfer("Halla", 93939393, 4.3, "hallamammain");
-		Golfer Elvar = new Golfer("Elvar", 93939393, 5.0, "ilvar");
-		Golfer[] golfers = {Elvar, halla};
-		Arrays.sort(golfers);	
-		System.out.println(golfers[0].getName() + " " + golfers[1].getName());
-	}
-
+	
 	@Column(name="golfer_name")
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
-		System.out.println("setting name " + name);
 		this.name = name;
 	}
 
@@ -64,7 +43,6 @@ public class Golfer implements Comparable<Golfer> {
 	}
 
 	public void setSocial(long social) {
-		System.out.println("setting social " + social);
 		this.social = social;
 	}
 
@@ -73,7 +51,6 @@ public class Golfer implements Comparable<Golfer> {
 	}
 
 	public void setHandicap(double handicap) {
-		System.out.println("setting hcp " + handicap);
 		this.handicap = handicap;
 	}
 
@@ -82,7 +59,6 @@ public class Golfer implements Comparable<Golfer> {
 	}
 
 	public void setEmail(String email) {
-		System.out.println("setting email " + email);
 		this.email = email;
 	}
 

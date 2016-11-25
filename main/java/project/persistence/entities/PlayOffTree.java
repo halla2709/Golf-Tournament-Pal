@@ -39,12 +39,6 @@ public class PlayOffTree {
 		this.rounds = rounds;
 	}
 
-	@Override
-	public String toString() {
-		System.out.println("ddd");
-		return "aaa";
-	}
-
 	public void setRound(int roundNum, PlayOffRound rounds2) {
 		this.rounds.set(roundNum, rounds2);
 		
