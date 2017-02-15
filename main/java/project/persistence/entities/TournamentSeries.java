@@ -19,10 +19,10 @@ public class TournamentSeries{
 	private String name;
  
 	@OneToMany(cascade = CascadeType.ALL)
-	List<Tournament> tournament;
+	List<Tournament> tournaments;
 	
 	
-	public TournamentSeries(String name, List<Tournament> tournament){
+	public TournamentSeries(String name, List<Tournament> tournaments){
 		this.name = name;
 	}
 	
@@ -36,10 +36,10 @@ public class TournamentSeries{
 	}
 	
 	public List<Tournament> getTournament(){
-		return tournament;
+		return tournaments;
 	}
 
 	public void setTournament(List<Tournament> tournament){
-		this.tournament = tournament;
+		this.tournaments = tournament;
 	}
 }
