@@ -62,7 +62,7 @@ public class ScoreboardCreator {
 		return new ScoreboardTournament(course, name, startDate, numberOfRounds, players, scorecards, score);
 	}
 	
-	public List<Golfer >getPlayers() {
+	public List<Golfer>getPlayers() {
 		return players;
 	}
 

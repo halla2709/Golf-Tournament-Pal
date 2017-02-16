@@ -19,8 +19,6 @@ public class ScoreboardCreatorController {
 	ScoreboardService scoreboardService;
 	
 	ScoreboardTournament tournament;
-	Integer numOutOfBrackets;
-	Integer numberInBrackets;
 	boolean beenhere;
 	
 	@Autowired
@@ -30,7 +28,7 @@ public class ScoreboardCreatorController {
 	}
 	
     @RequestMapping(value = "/scoreboard", method = RequestMethod.GET)
-    public String postitNoteViewGet(Model model){
+    public String scoreboardViewGet(Model model){
 
         tournament = null;
         beenhere = false;
@@ -41,7 +39,7 @@ public class ScoreboardCreatorController {
     }
     
     @RequestMapping(value = "/prufaprufa", method = RequestMethod.POST)
-    public String postitNoteViewPost(@ModelAttribute("golfer") Golfer golfer,
+    public String scoreboardViewPost(@ModelAttribute("golfer") Golfer golfer,
                                      Model model){
 
         // Save the Postit Note that we received from the form
