@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import project.persistence.entities.Golfer;
 import project.persistence.entities.MatchPlayTournament;
+import project.persistence.entities.UserInfo;
 import project.service.GolferService;
 import project.service.MatchPlayService;
 
@@ -42,6 +43,9 @@ public class MatchPlayCreatorController {
 		numOutOfBrackets = 0;
 		numberInBrackets = 0;
 		beenhere = false;
+		
+		//UserInfo prufa = new UserInfo(2709942619L, "blabla");
+		//golferService.save(prufa);
 		
 		return "matchplay";
 	}

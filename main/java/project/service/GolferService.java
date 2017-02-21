@@ -3,6 +3,7 @@ package project.service;
 import java.util.List;
 
 import project.persistence.entities.Golfer;
+import project.persistence.entities.UserInfo;
 
 public interface GolferService {
 	
@@ -11,6 +12,10 @@ public interface GolferService {
 	List<Golfer> findAll();
 	
 	Golfer delete(Golfer player);
+	
+	UserInfo save(UserInfo user);
+	
+	UserInfo findOne(long social);
 	
 }	
 
