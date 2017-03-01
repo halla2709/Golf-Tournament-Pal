@@ -1,8 +1,14 @@
 package project.persistence.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,11 +23,19 @@ public class Golfer implements Comparable<Golfer> {
 	private double handicap;
 	private String email;
 	
-	public Golfer(String name, long social, double handicap, String email) {
+	@ManyToMany()
+	@JoinTable(name="Friendship", joinColumns=@JoinColumn(name="golfer_id"), inverseJoinColumns=@JoinColumn(name="friend_id")) 
+	private List<Golfer> friends;
+	
+
+	public Golfer(String name, long social, double handicap, String email, List<Golfer> friends) {
 		this.name = name;
 		this.social = social;
 		this.handicap = handicap;
 		this.email = email;
+		if(friends == null)
+			this.friends = new ArrayList<Golfer>();
+		else this.friends = friends;
 	}
 	
 	public Golfer() {
@@ -61,7 +75,19 @@ public class Golfer implements Comparable<Golfer> {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void addFriend(Golfer friend) {
+		friends.add(friend);
+	}
 
+	public List<Golfer> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<Golfer> friends) {
+		this.friends = friends;
+	}
+	
 	@Override
 	public int compareTo(Golfer g1) {
 		Double handicap = (Double) this.getHandicap();

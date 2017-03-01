@@ -45,5 +45,11 @@ public class GolferServiceImplementation implements GolferService{
 	public UserInfo findOne(long social) {
 		return uRepository.findOne(social);
 	}
+	
+	public Golfer addFriendForGolfer(Golfer golfer, Golfer friend) {
+		golfer.addFriend(friend);
+		save(friend);
+		return save(golfer);
+	}
 
 }

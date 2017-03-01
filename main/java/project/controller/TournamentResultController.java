@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import project.persistence.entities.Bracket;
 import project.persistence.entities.Golfer;
@@ -36,13 +37,22 @@ public class TournamentResultController {
 		this.scoreboardService = scoreboardService;
 	}
 	
-	@RequestMapping(value = "/results", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/results", method = RequestMethod.GET)
     public String results(Model model){
     	List<Tournament> tournaments = tournamentService.findAll();
     	if(tournaments == null) model.addAttribute("tournaents", null);
     	else model.addAttribute("tournaments", tournaments);
     	
         return "results";
+    }*/
+	
+	@RequestMapping(value = "/results", method = RequestMethod.GET)
+    public @ResponseBody List<Tournament> results(Model model){
+    	List<Tournament> tournaments = tournamentService.findAll();
+    	//if(tournaments == null) model.addAttribute("tournaents", null);
+    	//else model.addAttribute("tournaments", tournaments);
+    	
+        return tournaments;
     }
 	
 	@RequestMapping(value="/tournament/{id}", method=RequestMethod.POST)

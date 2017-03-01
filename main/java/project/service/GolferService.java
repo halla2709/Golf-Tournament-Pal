@@ -17,5 +17,7 @@ public interface GolferService {
 	
 	UserInfo findOne(long social);
 	
+	Golfer addFriendForGolfer(Golfer golfer, Golfer friend);
+	
 }	
 
