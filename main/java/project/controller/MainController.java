@@ -1,7 +1,10 @@
 package project.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import project.persistence.entities.Golfer;
+import project.persistence.entities.Tournament;
 import project.persistence.entities.UserInfo;
 import project.service.GolferService;
 import project.service.Password;
@@ -63,8 +67,8 @@ public class MainController {
     	golferService.save(userinfo);
     }
     
-    @RequestMapping(value="/jsonprufa", method = RequestMethod.GET)
-	public @ResponseBody Golfer getShopInJSON() {
+    @RequestMapping(value="/json/golfer", method = RequestMethod.GET)
+	public @ResponseBody Golfer getGolfer() {
 
     	
 		Golfer golfer = new Golfer("Halla", 2709942619L, 23.9, "gmail.com", null);
