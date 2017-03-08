@@ -37,23 +37,29 @@ public class TournamentResultController {
 		this.scoreboardService = scoreboardService;
 	}
 	
-	/*@RequestMapping(value = "/results", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/results", method = RequestMethod.GET)
     public String results(Model model){
     	List<Tournament> tournaments = tournamentService.findAll();
     	if(tournaments == null) model.addAttribute("tournaents", null);
     	else model.addAttribute("tournaments", tournaments);
     	
         return "results";
-    }*/
+    }
 	
-	@RequestMapping(value = "/results", method = RequestMethod.GET)
-    public @ResponseBody List<Tournament> results(Model model){
+	
+	@RequestMapping(value = "/json/results", method = RequestMethod.GET)
+    public @ResponseBody List<Tournament> resultsjson(Model model){
     	List<Tournament> tournaments = tournamentService.findAll();
-    	//if(tournaments == null) model.addAttribute("tournaents", null);
-    	//else model.addAttribute("tournaments", tournaments);
     	
         return tournaments;
     }
+	
+	@RequestMapping(value="/json/sendayfir", method=RequestMethod.GET)
+	public @ResponseBody String yfir(@RequestParam(value="nafn") String nafn) {
+		System.out.println(nafn);
+		return nafn;
+	}
 	
 	@RequestMapping(value="/tournament/{id}", method=RequestMethod.POST)
 	public String addRoundToTournament(@PathVariable(value="id") Long id,
