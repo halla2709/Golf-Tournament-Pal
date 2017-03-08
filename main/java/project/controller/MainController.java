@@ -5,10 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import project.persistence.entities.Golfer;
+import project.persistence.entities.UserInfo;
 import project.service.GolferService;
+import project.service.Password;
 
 
 /**
@@ -51,14 +54,22 @@ public class MainController {
         return "about";
     }
     
+    @RequestMapping(value = "/json/registerUser", method = RequestMethod.GET)
+    public @ResponseBody void UserInfo(@RequestParam(value = "social") Long social,
+    					 @RequestParam(value = "password") String password){
+    	
+    	UserInfo userinfo = new UserInfo(social, "blabla");
+    	userinfo.setPassword(Password.md5(userinfo.getPassword()));
+    	golferService.save(userinfo);
+    }
+    
     @RequestMapping(value="/jsonprufa", method = RequestMethod.GET)
 	public @ResponseBody Golfer getShopInJSON() {
 
     	
 		Golfer golfer = new Golfer("Halla", 2709942619L, 23.9, "gmail.com", null);
 		golferService.addFriendForGolfer(golfer, new Golfer("Unnur", 1911932819L, 12.2, "unns.com", null));
-
-		return golfer;
+    	return golfer;
 
 	}
 

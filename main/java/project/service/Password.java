@@ -8,16 +8,16 @@ public class Password {
 
 	public static void main(String[] args) {
 
-			//String password = "hallo";
-			//System.out.println("MD5 in hex: " + md5(password));
-			//System.out.println("MD5 in hex: " + md5(null));
+		//	String password = "hallo";
+		//	System.out.println("MD5 in hex: " + md5(password));
+		//	System.out.println("MD5 in hex: " + md5(null));
 		
 			//= d41d8cd98f00b204e9800998ecf8427e
 			
 			
-			//System.out.println("MD5 in hex: " 
-			//	+ md5("The quick brown fox jumps over the lazy dog"));
-		
+		//	System.out.println("MD5 in hex: " 
+		//		+ md5("The quick brown fox jumps over the lazy dog"));
+		//
 			//= 9e107d9d372bb6826bd81d3542a419d6
 	}
 	
