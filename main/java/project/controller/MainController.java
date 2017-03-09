@@ -62,9 +62,10 @@ public class MainController {
     public @ResponseBody void UserInfo(@RequestParam(value = "social") Long social,
     					 @RequestParam(value = "password") String password){
     	
-    	UserInfo userinfo = new UserInfo(social, "blabla");
+    	UserInfo userinfo = new UserInfo(social, password);
     	userinfo.setPassword(Password.md5(userinfo.getPassword()));
     	golferService.save(userinfo);
+    	
     }
     
     @RequestMapping(value="/json/golfer", method = RequestMethod.GET)
@@ -76,5 +77,17 @@ public class MainController {
     	return golfer;
 
 	}
+    
+    @RequestMapping(value="json/loginuser", method = RequestMethod.GET)
+    public @ResponseBody Golfer loginUser(@RequestParam(value = "social") Long social,
+    					 @RequestParam(value = "password") String password) {
+    	
+    	UserInfo user = golferService.findOneUser(social);
+    	if(user.getPassword().equals(Password.md5(password))) {
+    		return golferService.findOne(social);
+    	}
+    	else return null;
+    	
+    }
 
 }
