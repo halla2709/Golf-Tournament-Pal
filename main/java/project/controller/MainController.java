@@ -1,5 +1,6 @@
 package project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,13 +60,22 @@ public class MainController {
     }
     
     @RequestMapping(value = "/json/registerUser", method = RequestMethod.GET)
-    public @ResponseBody void UserInfo(@RequestParam(value = "social") Long social,
-    					 @RequestParam(value = "password") String password){
-    	
+    public @ResponseBody Golfer UserInfo(@RequestParam(value = "social") Long social,
+    					 @RequestParam(value = "password") String password, 
+    					 @RequestParam(value = "email") String email,
+    					 @RequestParam(value = "handicap") Double handicap,
+    					 @RequestParam(value = "name") String name){
+    	//User
     	UserInfo userinfo = new UserInfo(social, password);
     	userinfo.setPassword(Password.md5(userinfo.getPassword()));
     	golferService.save(userinfo);
+    	List<Golfer> friends = new ArrayList<Golfer>();
     	
+    	//Golfer
+    	Golfer golfer = new Golfer(name, social, handicap, email, friends);
+    	golfer = golferService.save(golfer);
+    	
+    	return golfer;
     }
     
     @RequestMapping(value="/json/golfer", method = RequestMethod.GET)
