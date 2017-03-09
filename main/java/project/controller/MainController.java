@@ -68,11 +68,11 @@ public class MainController {
     }
     
     @RequestMapping(value="/json/golfer", method = RequestMethod.GET)
-	public @ResponseBody Golfer getGolfer() {
+	public @ResponseBody Golfer getGolfer(@RequestParam(value = "social") Long social) {
 
-    	
-		Golfer golfer = new Golfer("Halla", 2709942619L, 23.9, "gmail.com", null);
-		golferService.addFriendForGolfer(golfer, new Golfer("Unnur", 1911932819L, 12.2, "unns.com", null));
+    	Golfer golfer = golferService.findOne(social);
+		/*Golfer golfer = new Golfer("Halla", 2709942619L, 23.9, "gmail.com", null);
+		golferService.addFriendForGolfer(golfer, new Golfer("Unnur", 1911932819L, 12.2, "unns.com", null));*/
     	return golfer;
 
 	}

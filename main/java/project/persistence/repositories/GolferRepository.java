@@ -12,4 +12,6 @@ public interface GolferRepository extends JpaRepository<Golfer, Long>{
 
 	List<Golfer> findAll();
 	
+	Golfer findOne(Long social);
+	
 }

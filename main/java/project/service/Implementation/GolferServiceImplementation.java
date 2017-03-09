@@ -42,7 +42,7 @@ public class GolferServiceImplementation implements GolferService{
 		return uRepository.save(user);
 	}
 	
-	public UserInfo findOne(long social) {
+	public UserInfo findOneUser(long social) {
 		return uRepository.findOne(social);
 	}
 	
@@ -50,6 +50,10 @@ public class GolferServiceImplementation implements GolferService{
 		golfer.addFriend(friend);
 		save(friend);
 		return save(golfer);
+	}
+	
+	public Golfer findOne(long social) {
+		return repository.findOne(social);
 	}
 
 }
