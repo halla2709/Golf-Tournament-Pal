@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import project.persistence.entities.Golfer;
 import project.persistence.entities.MatchPlayTournament;
@@ -113,5 +115,11 @@ public class MatchPlayCreatorController {
 		model.addAttribute("id", newtournament.getid());
 		beenhere = false;
 		return "matchplay2";
+	}
+	
+	@RequestMapping(value="/json/matchplay", method = RequestMethod.POST)
+	public @ResponseBody MatchPlayTournament saveTournamentFromServer(@RequestBody MatchPlayTournament tournament) {
+		System.out.println(tournament.getName());
+		return tournament;
 	}
 }

@@ -83,7 +83,10 @@ public class MainController {
 
     	Golfer golfer = golferService.findOne(social);
 		/*Golfer golfer = new Golfer("Halla", 2709942619L, 23.9, "gmail.com", null);
-		golferService.addFriendForGolfer(golfer, new Golfer("Unnur", 1911932819L, 12.2, "unns.com", null));*/
+		golferService.addFriendForGolfer(golfer, new Golfer("Linda", 222222222L, 12.2, "linds.com", null));
+		golferService.addFriendForGolfer(golfer, new Golfer("Unnur", 191919191L, 13.2, "unns.com", null));
+		golferService.addFriendForGolfer(golfer, new Golfer("Hafrun", 221514236L, 12.2, "haffa.com", null));*/
+		
     	return golfer;
 
 	}
