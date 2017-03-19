@@ -94,11 +94,16 @@ public class Tournament {
 
 	public void setStartDate(String startDate) {
 	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	    DateFormat ndf = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
 	    Date result = null;
 		try {
 			result = df.parse(startDate);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			try {
+				result = ndf.parse(startDate);
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
 		} 
 		this.startDate = result;
 	}
