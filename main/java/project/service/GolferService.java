@@ -21,5 +21,6 @@ public interface GolferService {
 	
 	Golfer findOne(long social);
 	
+	boolean areFriends(Golfer golfer, Golfer friend);
 }	
 

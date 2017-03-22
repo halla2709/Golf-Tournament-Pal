@@ -86,6 +86,7 @@ public class MainController {
 		golferService.addFriendForGolfer(golfer, new Golfer("Linda", 222222222L, 12.2, "linds.com", null));
 		golferService.addFriendForGolfer(golfer, new Golfer("Unnur", 191919191L, 13.2, "unns.com", null));
 		golferService.addFriendForGolfer(golfer, new Golfer("Hafrun", 221514236L, 12.2, "haffa.com", null));*/
+    	System.out.println(golfer == null);
 		
     	return golfer;
 
