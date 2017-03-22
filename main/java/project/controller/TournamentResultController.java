@@ -197,4 +197,12 @@ public class TournamentResultController {
 		return "brackets";
 	}
 	
+	@RequestMapping(value = "/json/search")
+	public @ResponseBody List<Tournament> searchByName(@RequestParam String searchName) {
+		if(searchName == null) {
+			return tournamentService.findAll();
+		}
+		return tournamentService.findByName(searchName);
+	}
+	
 }

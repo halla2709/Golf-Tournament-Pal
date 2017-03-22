@@ -18,6 +18,8 @@ public interface TournamentService {
      * @return A {@link MatchPlayTournament} with {@link Long id}
      */
     Tournament findOne(Long id);
+    
+    List<Tournament> findByName(String name);
 
 }
 
