@@ -78,6 +78,16 @@ public class MainController {
     	return golfer;
     }
     
+    @RequestMapping(value="/json/updateHandicap", method = RequestMethod.GET)
+	public @ResponseBody void updateHandicap(@RequestParam(value = "social") long social, 
+											 @RequestParam(value = "handicap") double handicap) {
+
+    	Golfer golfer = golferService.findOne(social);
+    	golfer.setHandicap(handicap);
+    	System.out.println("Updated handicap =" + golfer.getHandicap());
+
+	}
+    
     @RequestMapping(value="/json/golfer", method = RequestMethod.GET)
 	public @ResponseBody Golfer getGolfer(@RequestParam(value = "social") Long social) {
 
