@@ -205,4 +205,8 @@ public class TournamentResultController {
 		return tournamentService.findByName(searchName);
 	}
 	
+	@RequestMapping(value = "/json/getTournament", method = RequestMethod.GET)
+	public @ResponseBody Tournament searchByID(@RequestParam Long id) {
+		return tournamentService.findOne(id);
+	}
 }
