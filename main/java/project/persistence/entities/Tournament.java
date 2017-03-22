@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -93,8 +94,8 @@ public class Tournament {
 
 
 	public void setStartDate(String startDate) {
-	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-	    DateFormat ndf = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
+	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+	    DateFormat ndf = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
 	    Date result = null;
 		try {
 			result = df.parse(startDate);

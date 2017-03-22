@@ -1,5 +1,8 @@
 package project.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -121,6 +124,20 @@ public class MatchPlayCreatorController {
 	public @ResponseBody MatchPlayTournament saveTournamentFromServer(@RequestBody MatchPlayTournament sentTournament,
 								@RequestParam int nIBrackets, @RequestParam int nOOBrackets) {
 		System.out.println(sentTournament.getName());
+		int playerNum = sentTournament.getPlayers().size();
+		
+		// Adda playerum í gagnagrunn og sem vin. 
+		for(int i = 0; i < playerNum; i++) {
+			Golfer golfer = sentTournament.getPlayers().get(i);
+			golferService.save(golfer);
+			
+			/*List<Golfer> friendList = golfer.getFriends();
+			for(int j = 0; j < friendList.size(); j++) {
+				Golfer friend = friendList.get(i);
+				golferService.addFriendForGolfer(golfer, friend);
+			}*/
+		}
+		
 		MatchPlayTournament newTournament = headOnService.save(sentTournament.isAreBrackets(), sentTournament.getPlayers(),
 				nIBrackets, nOOBrackets, sentTournament.getCourse(), sentTournament.getName(), sentTournament.getStartDate());
 		return newTournament;
