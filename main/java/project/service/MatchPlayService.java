@@ -6,6 +6,7 @@ import java.util.List;
 
 import project.persistence.entities.Bracket;
 import project.persistence.entities.Golfer;
+import project.persistence.entities.Match;
 import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.PlayOffTree;
 
@@ -41,9 +42,13 @@ public interface MatchPlayService {
 
 	Golfer findPlayer(PlayOffTree playoffs, Long player);
 	
-	HashMap<Long, Integer> getBracketResults(List<Bracket> brackets);
+	String[][] getBracketResults(List<Bracket> brackets, int numberOfPlayers);
 	
 	MatchPlayTournament save(MatchPlayTournament tournament);
+
+	HashMap<Long, Integer> getPlayerPoints(List<Bracket> brackets);
+
+	List<Match> getPlayersToPlayOffTree(List<Bracket> brackets, int playersInTree);
 
 
 }

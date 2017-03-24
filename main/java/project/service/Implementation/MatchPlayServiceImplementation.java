@@ -158,7 +158,7 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	 * Ef engin niðurstaða hefur verið skáð er results np
 	 */
 	@Override
-	public HashMap<Long, Integer> getBracketResults(List<Bracket> brackets) {
+	public HashMap<Long, Integer> getPlayerPoints(List<Bracket> brackets) {
 		HashMap<Long, Integer> points = new HashMap<Long, Integer>();
 		
 		for(Bracket bracket : brackets) {
@@ -184,4 +184,79 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 		return repository.save(tournament);
 	}
 
+	@Override
+	public String[][] getBracketResults(List<Bracket> brackets, int numberOfPlayers) {
+		String[][] resultTable = new String[brackets.get(0).getPlayers().size()*brackets.size()][brackets.get(0).getPlayers().size()];
+		int bracketNum = 0;
+		for(Bracket bracket : brackets) {
+			int numberOfPlayersInBracket = bracket.getPlayers().size();
+			for(int i = 0; i < numberOfPlayersInBracket; i++) {
+				for(int j = i+1; j < numberOfPlayersInBracket; j++) {
+					for(Match match : bracket.getMatch()) {
+						if((match.getPlayers().get(0).getSocial() == bracket.getPlayers().get(i).getSocial()
+								&& match.getPlayers().get(1).getSocial() == bracket.getPlayers().get(j).getSocial())
+								||
+								(match.getPlayers().get(0).getSocial() == bracket.getPlayers().get(j).getSocial()
+								&& match.getPlayers().get(1).getSocial() == bracket.getPlayers().get(i).getSocial())) {
+							String matchResults = match.getResults();
+							if(matchResults.equals("np")) {
+								resultTable[i+numberOfPlayersInBracket*bracketNum][j] = "np";
+								resultTable[j+numberOfPlayersInBracket*bracketNum][i] = "np";
+							}
+							else {
+								Long matchWinner = Long.parseLong(matchResults.substring(0,matchResults.indexOf(" ")));
+								String winnerName = "";
+								if(bracket.getPlayers().get(i).getSocial() == matchWinner) winnerName = bracket.getPlayers().get(i).getName();
+								else if(bracket.getPlayers().get(j).getSocial() == matchWinner) winnerName = bracket.getPlayers().get(j).getName();
+								resultTable[i+numberOfPlayersInBracket*bracketNum][j] = winnerName + " won:" + matchResults.substring(matchResults.indexOf(" "));
+								resultTable[j+numberOfPlayersInBracket*bracketNum][i] = winnerName + " won:" + matchResults.substring(matchResults.indexOf(" "));
+							}
+						}						
+					}
+				}				
+			}
+			bracketNum++;
+		}
+		return resultTable;
+	}
+
+	@Override
+	public List<Match> getPlayersToPlayOffTree(List<Bracket> brackets, int playersInTree) {
+		HashMap<Long, Integer> playerPoints = this.getPlayerPoints(brackets);
+		List<Golfer> treePlayers = new ArrayList<>();
+		List<Match> firstRoundMatches = new ArrayList<>();
+		for(Bracket bracket : brackets) {
+			int playersInBracket = bracket.getPlayers().size();
+			int playersFromThisBracket = 0;
+			for(int i = playersInBracket-1; i > 0; i--) {
+				for(Golfer player : bracket.getPlayers()) {
+					if(playerPoints.get(player.getSocial()) == i) {
+						System.out.println("Adding " + player.getName() + " to the playoffs.");
+						treePlayers.add(player);
+						playersFromThisBracket++;
+						if(playersFromThisBracket == playersInTree/brackets.size()) break;
+					}
+					if(playersFromThisBracket == playersInTree/brackets.size()) break;
+				}
+				if(playersFromThisBracket == playersInTree/brackets.size()) break;
+			}
+		}
+		
+		for(int i = 0; i < treePlayers.size(); i += 4) {
+			List<Golfer> inMatch0 = new ArrayList<> ();
+			inMatch0.add(treePlayers.get(i));
+			inMatch0.add(treePlayers.get(i+2));
+			System.out.println(treePlayers.get(i).getName() + " vs " + treePlayers.get(i+2).getName());
+			List<Golfer> inMatch1 = new ArrayList<> ();
+			inMatch1.add(treePlayers.get(i+1));
+			inMatch1.add(treePlayers.get(i+3));
+			System.out.println(treePlayers.get(i+1).getName() + " vs " + treePlayers.get(i+3).getName());
+			Match match0 = new Match(inMatch0, "playoffsnp", null);
+			Match match1 = new Match(inMatch1, "playoffsnp", null);
+			firstRoundMatches.add(match0);
+			firstRoundMatches.add(match1);
+			
+		}
+		return firstRoundMatches;
+	}
 }

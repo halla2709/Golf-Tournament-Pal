@@ -198,11 +198,14 @@ public class TournamentResultController {
 			Model model) {
 		
 		List<Bracket> brackets = matchPlayService.getBrackets(id);
-		HashMap<Long, Integer> bracketResults = matchPlayService.getBracketResults(brackets);
+		HashMap<Long, Integer> bracketResults = matchPlayService.getPlayerPoints(brackets);
+		String[][] resultTable = matchPlayService.getBracketResults(brackets, bracketResults.size());
 		
 		model.addAttribute("brackets", brackets);
 		model.addAttribute("numberOfBrackets", brackets.size());
+		model.addAttribute("numberOfPlayersInBrackets", brackets.get(0).getPlayers().size());
 		model.addAttribute("bracketResults", bracketResults);
+		model.addAttribute("resultTable", resultTable);
 		return "brackets";
 	}
 	
@@ -261,6 +264,21 @@ public class TournamentResultController {
 		matchPlayService.save(tournament);
 		
 		
+		return "redirect:/tournament/"+id+"/brackets";
+	}
+	
+	@RequestMapping(value = "/tournament/{id}/process/playofftree", method=RequestMethod.POST)
+	public String addPlayersToTree(@PathVariable(value="id") Long id) {
+		MatchPlayTournament tournament = matchPlayService.findOne(id);
+		List<Bracket> brackets = tournament.getBrackets();
+		int numberInFirstRound = tournament.getPlayOffs().getRounds().get(0).getMatches().size();
+		List<Match> firstRoundMatches = matchPlayService.getPlayersToPlayOffTree(brackets, numberInFirstRound*2);
+		System.out.println(firstRoundMatches.size() + " to the playoffs");
+		if(firstRoundMatches.size() == tournament.getPlayOffs().getRounds().get(0).getMatches().size()) {
+			tournament.getPlayOffs().getRounds().get(0).setMatches(firstRoundMatches);
+			matchPlayService.save(tournament);
+			return "redirect:/tournament/"+id+"/playofftree";
+		}
 		return "redirect:/tournament/"+id+"/brackets";
 	}
 	

@@ -57,6 +57,7 @@
 		<c:choose>
 			<c:when test="${not empty brackets}">
 				<h3>Brackets Information:</h3>
+				<c:set var="countbrackets" value="0" scope="page"/>
 				<c:forEach var="bracket" items="${brackets}">
 					<br>
 					<table class="w3-table-all" style="width: 47%">
@@ -67,64 +68,43 @@
 							</c:forEach>
 							<td>Points</td>
 						</tr>
+						<c:set var="i" value="${countbrackets}" scope="page"/>
 						<c:forEach var="player" items="${bracket.players}">
 							<tr>
 								<th>${player.name}</th>
+								<c:set var="j" value="0" scope="page"/>
 								<c:forEach var="player2" items="${bracket.players}">
 									<c:choose>
 										<c:when test="${player.name eq player2.name}">
 											<td>-</td>
 										</c:when>
 										<c:otherwise>
-											<c:forEach var="match" items="${bracket.match}">
-												<c:choose>
-													<c:when test="${match.players[0].social eq player.social}">
-														<c:choose>
-															<c:when test="${match.players[1].social eq player2.social}">
-																<c:choose>
-																	<c:when test="${match.results == 'np' }">
-																		<td><a href="./${bracket.id}_${player.social}_${player2.social}">Add results</a></td>
-																	</c:when>
-																	<c:otherwise>
-																		<td>${match.results}</td>
-																	</c:otherwise>
-																</c:choose>
-															</c:when>
-														</c:choose>
-													</c:when>
-													<c:when test="${match.players[0].social eq player2.social}">
-														<c:choose>
-															<c:when test="${match.players[1].social eq player.social}">
-																<c:choose>
-																	<c:when test="${match.results == 'np' }">
-																		<td><a href="./${bracket.id}_${player.social}_${player2.social}">Add results</a></td>
-																	</c:when>
-																	<c:otherwise>
-																		<td>${match.results}</td>
-																	</c:otherwise>
-																</c:choose>
-															</c:when>
-														</c:choose>
-													</c:when>
-													
-												</c:choose>							
-												
-											</c:forEach>
-												
-											
+											<c:choose>
+												<c:when test="${resultTable[i][j] == 'np' }">
+													<td><a href="./${bracket.id}_${player.social}_${player2.social}">Add results</a></td>
+												</c:when>
+												<c:otherwise>
+													<td>${resultTable[i][j]}</td>
+												</c:otherwise>
+											</c:choose>
 										</c:otherwise>
+									
 									</c:choose>
+									<c:set var="j" value="${j + 1}" scope="page"/>
 								</c:forEach>
 								<td>${bracketResults.get(player.social)}</td>
 							</tr>
+							<c:set var="i" value="${i + 1}" scope="page"/>
 						</c:forEach>
 					</table>
+					<c:set var="countbrackets" value="${countbrackets + numberOfPlayersInBrackets}" scope="page"/>
 				</c:forEach>
-				<a class="seeButton" href="./playofftree">
+				<sf:form method="POST" action="./process/playofftree">
 					<input id="bigbutton"
 					class="w3-theme w3-center w3-btn w3-col s5 w3-large w3-right w3-border"
-					value="Create a Playoff tree based on these results">
-				</a>
+					value="Create a Playoff tree based on these results" type="submit">
+				</sf:form>
+				
 			</c:when>
 			<c:otherwise>
 				<h3>We are sorry, there are no brackets for this tournament!</h3>
