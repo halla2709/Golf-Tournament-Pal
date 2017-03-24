@@ -1,6 +1,7 @@
 package project.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import project.persistence.entities.Bracket;
@@ -39,6 +40,11 @@ public interface MatchPlayService {
 	PlayOffTree addPlayoffMatchResults(Long id, Long playerSocial, Integer roundNum);
 
 	Golfer findPlayer(PlayOffTree playoffs, Long player);
+	
+	HashMap<Long, Integer> getBracketResults(List<Bracket> brackets);
+	
+	MatchPlayTournament save(MatchPlayTournament tournament);
+
 
 }
 

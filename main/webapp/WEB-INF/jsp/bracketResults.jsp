@@ -52,91 +52,38 @@
 
 	<!-- Main Text -->
 	<div class="w3-row w3-container" id="main">
-		<h1>Brackets</h1>
+		<h1>How did the match between ${golfer1.name} and ${golfer2.name} go?</h1>
 		<br>
-		<c:choose>
-			<c:when test="${not empty brackets}">
-				<h3>Brackets Information:</h3>
-				<c:forEach var="bracket" items="${brackets}">
-					<br>
-					<table class="w3-table-all" style="width: 47%">
-						<tr id="table">
-							<td>${bracket.name}</td>
-							<c:forEach var="player" items="${bracket.players}">
-								<td>${player.name}</td>
-							</c:forEach>
-							<td>Points</td>
-						</tr>
-						<c:forEach var="player" items="${bracket.players}">
-							<tr>
-								<th>${player.name}</th>
-								<c:forEach var="player2" items="${bracket.players}">
-									<c:choose>
-										<c:when test="${player.name eq player2.name}">
-											<td>-</td>
-										</c:when>
-										<c:otherwise>
-											<c:forEach var="match" items="${bracket.match}">
-												<c:choose>
-													<c:when test="${match.players[0].social eq player.social}">
-														<c:choose>
-															<c:when test="${match.players[1].social eq player2.social}">
-																<c:choose>
-																	<c:when test="${match.results == 'np' }">
-																		<td><a href="./${bracket.id}_${player.social}_${player2.social}">Add results</a></td>
-																	</c:when>
-																	<c:otherwise>
-																		<td>${match.results}</td>
-																	</c:otherwise>
-																</c:choose>
-															</c:when>
-														</c:choose>
-													</c:when>
-													<c:when test="${match.players[0].social eq player2.social}">
-														<c:choose>
-															<c:when test="${match.players[1].social eq player.social}">
-																<c:choose>
-																	<c:when test="${match.results == 'np' }">
-																		<td><a href="./${bracket.id}_${player.social}_${player2.social}">Add results</a></td>
-																	</c:when>
-																	<c:otherwise>
-																		<td>${match.results}</td>
-																	</c:otherwise>
-																</c:choose>
-															</c:when>
-														</c:choose>
-													</c:when>
-													
-												</c:choose>							
-												
-											</c:forEach>
-												
-											
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-								<td>${bracketResults.get(player.social)}</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</c:forEach>
-				<a class="seeButton" href="./playofftree">
-					<input id="bigbutton"
-					class="w3-theme w3-center w3-btn w3-col s5 w3-large w3-right w3-border"
-					value="Create a Playoff tree based on these results">
-				</a>
-			</c:when>
-			<c:otherwise>
-				<h3>We are sorry, there are no brackets for this tournament!</h3>
-				<p>Please Go back to Results</p>
-				<p>Or check out the playofftree</p>
-
-			</c:otherwise>
-		</c:choose>
-	</div>
-	<hr>
-
-
+		
+		
+		<div class="w3-card-8 w3-col l5 s6"
+				style="padding: 2em; margin-right: 2em; margin-bottom: 2em;">
+		<sf:form method="POST" action="">
+			<p style="display: inline; width:50%">${golfer1.name} won with result</p>
+			<input required="required" type="text" name="resulttext" placeholder="for example 2/1 or 22.hole" class="w3-input"
+					style="display: inline; width:40%; margin-left:1em;"/>
+			<input type="hidden" name="winner" value="${golfer1.social}">
+			<br>
+	
+			<input id="normalbutton" class="w3-theme w3-center w3-btn w3-col s4 w3-medium"
+						type="submit" value="Set this result" style="width: 40%; float: right; margin: 1em;" />
+		</sf:form></div>
+		<div class="w3-card-8 w3-col l5 s6"
+				style="padding: 2em; margin-right: 2em; margin-bottom: 2em;">
+		<sf:form method="POST" action="">
+			<p style="display: inline; width:50%">${golfer2.name} won with result</p>
+			<input required="required" type="text" name="resulttext" placeholder="for example 2/1 or 22.hole" class="w3-input"
+				style="display: inline; width:40%; margin-left:1em;"/> 
+			<input type="hidden" name="winner" value="${golfer2.social }"/>
+			<br>
+	
+			<input id="normalbutton" class="w3-theme w3-center w3-btn w3-col s4 w3-medium"
+						type="submit" value="Set this result" style="width: 40%; float: right; margin: 1em;" /> <br>
+		</sf:form>
+		</div>
+		<br>
+		<br>
+		
 	<!-- Footer -->
 	<div id="footer">
 		<div id="footer1"

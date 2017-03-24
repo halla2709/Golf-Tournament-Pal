@@ -69,6 +69,16 @@ public class Bracket {
 		this.name = name;
 	}
 	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String toString() {
 		String s = "Bracket: " + getName();
 		if (players == null) {

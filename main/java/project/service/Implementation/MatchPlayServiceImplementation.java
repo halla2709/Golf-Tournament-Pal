@@ -2,6 +2,7 @@ package project.service.Implementation;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,6 +150,38 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 		}
 		
 		return golfer;
+	}
+
+	/**
+	 * Niðurstaðan mun vera kennitala leikmanns : fjöldi stiga sem leikmaðurinn er með
+	 * Match results er á forminu kt : niðurstaða þar sem kt er kennitala leikmannsins sem sigraði
+	 * Ef engin niðurstaða hefur verið skáð er results np
+	 */
+	@Override
+	public HashMap<Long, Integer> getBracketResults(List<Bracket> brackets) {
+		HashMap<Long, Integer> points = new HashMap<Long, Integer>();
+		
+		for(Bracket bracket : brackets) {
+			for(Golfer player : bracket.getPlayers()) {
+				points.put(player.getSocial(), 0);
+			}
+		}
+		for(Bracket bracket : brackets) {
+			for(Match match : bracket.getMatch()) {
+				String results = match.getResults();
+				if(!results.equals("np")) {
+					Long winnerkt = Long.parseLong(results.substring(0, results.indexOf(" ")));
+					points.put(winnerkt, points.get(winnerkt)+1);
+				}
+			}
+		}
+		return points; 
+	}
+	
+
+	@Override
+	public MatchPlayTournament save(MatchPlayTournament tournament) {
+		return repository.save(tournament);
 	}
 
 }

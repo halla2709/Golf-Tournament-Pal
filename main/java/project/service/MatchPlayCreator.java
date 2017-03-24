@@ -91,15 +91,43 @@ public class MatchPlayCreator {
 				 *   		8		7		6		5
 				 *   		9		10		11		12
 				 *   		16		15		14		13
+				 *   
+				 *   b1		b2
+				 *   0		1
+				 *   3		2
+				 *   4		5
+				 *   7		6
+				 *   8		9
+				 *   11		10
 				 */
 				brackets[i].addPlayer(players.get(j));
-				if(j+2*numOfBrackets-1-i < players.size())
-					brackets[i].addPlayer(players.get(j+2*numOfBrackets-1-i));
+				if(j+2*(numOfBrackets-i)-1 < players.size())
+					brackets[i].addPlayer(players.get(j+2*(numOfBrackets-i)-1));
 			}
 		}
+		brackets = addMatchesToBrackets(brackets);
 		return brackets;
 	}
 
+	private Bracket[] addMatchesToBrackets(Bracket[] brackets) {
+		for(int i = 0; i < brackets.length; i++) {
+			List<Golfer> bracketPlayers = brackets[i].getPlayers();
+			List<Match> matches = new ArrayList<>();
+			for(int j = 0; j < bracketPlayers.size()-1; j++) {
+				for(int k = j+1; k < bracketPlayers.size(); k++) {
+					List<Golfer> matchGolfers = new ArrayList<>();
+					matchGolfers.add(bracketPlayers.get(j));
+					matchGolfers.add(bracketPlayers.get(k));
+					Match newMatch = new Match(matchGolfers, "np", null);
+					matches.add(newMatch);
+				}
+				
+			}
+			brackets[i].setMatch(matches);
+		}
+		return brackets;
+	}
+	
 	private PlayOffTree createPlayOffTree(int numIn) {
 		int numOfMatches = numIn/2;
 		/*

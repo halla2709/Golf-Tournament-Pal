@@ -1,5 +1,6 @@
 package project.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import project.persistence.entities.Bracket;
 import project.persistence.entities.Golfer;
+import project.persistence.entities.Match;
 import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.PlayOffTree;
 import project.persistence.entities.Round;
 import project.persistence.entities.ScoreboardTournament;
 import project.persistence.entities.Tournament;
+import project.service.GolferService;
 import project.service.MatchPlayService;
 import project.service.ScoreboardService;
 import project.service.TournamentService;
@@ -28,13 +31,16 @@ public class TournamentResultController {
 	TournamentService tournamentService;
 	MatchPlayService matchPlayService;
 	ScoreboardService scoreboardService;
+	GolferService golferService;
 	
 	
 	@Autowired
-    public TournamentResultController(TournamentService tournamentService, MatchPlayService matchPlayService, ScoreboardService scoreboardService) {
+    public TournamentResultController(TournamentService tournamentService, MatchPlayService matchPlayService, ScoreboardService scoreboardService,
+    		GolferService golferService) {
 		this.tournamentService = tournamentService;
 		this.matchPlayService = matchPlayService;
 		this.scoreboardService = scoreboardService;
+		this.golferService = golferService;
 	}
 	
 	
@@ -192,9 +198,70 @@ public class TournamentResultController {
 			Model model) {
 		
 		List<Bracket> brackets = matchPlayService.getBrackets(id);
+		HashMap<Long, Integer> bracketResults = matchPlayService.getBracketResults(brackets);
+		
 		model.addAttribute("brackets", brackets);
 		model.addAttribute("numberOfBrackets", brackets.size());
+		model.addAttribute("bracketResults", bracketResults);
 		return "brackets";
+	}
+	
+	@RequestMapping(value = "/tournament/{id}/{bracketID}_{player1social}_{player2social}", method=RequestMethod.GET)
+	public String addBracketResults(@PathVariable(value="id") Long id,
+			@PathVariable(value="bracketID") Long bracketID,
+			@PathVariable(value="player1social") Long player1Social,
+			@PathVariable(value="player2social") Long player2Social,
+			Model model) {
+		
+		Golfer golfer1 = golferService.findOne(player1Social);
+		Golfer golfer2 = golferService.findOne(player2Social);
+		
+		model.addAttribute("golfer1", golfer1);
+		model.addAttribute("golfer2", golfer2);
+		model.addAttribute("tournamentid", id);
+		model.addAttribute("bracketId", bracketID);
+		
+		return "bracketResults";
+	}
+	
+	@RequestMapping(value = "/tournament/{id}/{bracketID}_{player1social}_{player2social}", method=RequestMethod.POST)
+	public String setBracketResults(@PathVariable(value="id") Long id,
+			@PathVariable(value="bracketID") Long bracketID,
+			@PathVariable(value="player1social") Long player1Social,
+			@PathVariable(value="player2social") Long player2Social,
+			@RequestParam(value="resulttext") String resulttext,
+			@RequestParam(value="winner") Long winner) {
+		
+		MatchPlayTournament tournament = matchPlayService.findOne(id);
+		List<Bracket> brackets = tournament.getBrackets();
+		Bracket bracket = null;
+		Match match = null;
+		for(Bracket bracketi : brackets) {
+			if(bracketi.getId() == bracketID) {
+				bracket = bracketi;
+				break;
+			}
+		}
+		for(Match matchi : bracket.getMatch()) {
+			if(matchi.getPlayers().get(0).getSocial() == player1Social) {
+				if(matchi.getPlayers().get(1).getSocial() == player2Social) {
+					match = matchi;
+					break;
+				}
+			}
+			else if(matchi.getPlayers().get(0).getSocial() == player2Social) {
+				if(matchi.getPlayers().get(1).getSocial() == player1Social) {
+					match = matchi;
+					break;
+				}
+			}
+		}
+		
+		match.setResults(winner + " " + resulttext);
+		matchPlayService.save(tournament);
+		
+		
+		return "redirect:/tournament/"+id+"/brackets";
 	}
 	
 	@RequestMapping(value = "/json/search")
