@@ -307,4 +307,9 @@ public class TournamentResultController {
 		return toReturn;
 		
 	}
+	
+	@RequestMapping(value = "/json/getTournamentByGolfer", method = RequestMethod.GET)
+	public @ResponseBody List<Tournament> tournamentByGolfer(@RequestParam Long golferSocial) {
+		return tournamentService.findByGolfer(golferSocial);
+	}
 }
