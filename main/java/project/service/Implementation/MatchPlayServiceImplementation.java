@@ -228,8 +228,6 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	@Override
 	public List<Match> getPlayersToPlayOffTree(List<Bracket> brackets, int playersInTree) {
 		HashMap<Long, Integer> playerPoints = this.getPlayerPoints(brackets);
-		List<Golfer> treePlayers = new ArrayList<>();
-		List<Match> firstRoundMatches = new ArrayList<>();
 		List<Golfer> treePlayers = new ArrayList<Golfer>();
 		List<Match> firstRoundMatches = new ArrayList<Match>();
 		for(Bracket bracket : brackets) {
@@ -250,12 +248,10 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 		}
 		
 		for(int i = 0; i < treePlayers.size(); i += 4) {
-			List<Golfer> inMatch0 = new ArrayList<> ();
 			List<Golfer> inMatch0 = new ArrayList<Golfer> ();
 			inMatch0.add(treePlayers.get(i));
 			inMatch0.add(treePlayers.get(i+2));
 			System.out.println(treePlayers.get(i).getName() + " vs " + treePlayers.get(i+2).getName());
-			List<Golfer> inMatch1 = new ArrayList<> ();
 			List<Golfer> inMatch1 = new ArrayList<Golfer> ();
 			inMatch1.add(treePlayers.get(i+1));
 			inMatch1.add(treePlayers.get(i+3));
