@@ -151,11 +151,4 @@ public class MatchPlayCreatorController {
 		return newTournament;
 	}
 	
-	@RequestMapping(value="/json/matchplay", method = RequestMethod.GET)
-	public void testingGet(@RequestParam int nIBrackets, @RequestParam int nOOBrackets) {
-		System.out.println("got it " + nIBrackets);
-		//MatchPlayTournament newTournament = headOnService.save(sentTournament.isAreBrackets(), sentTournament.getPlayers(),
-		//		nIBrackets, nOOBrackets, sentTournament.getCourse(), sentTournament.getName(), sentTournament.getStartDate());
-		
-	}
 }

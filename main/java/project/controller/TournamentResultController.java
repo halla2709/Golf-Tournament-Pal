@@ -294,4 +294,17 @@ public class TournamentResultController {
 	public @ResponseBody Tournament searchByID(@RequestParam Long id) {
 		return tournamentService.findOne(id);
 	}
+	
+	@RequestMapping(value = "/json/tournament/{id}/brackets", method=RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> getBracketResultsjson(@PathVariable(value="id") Long id) {
+		List<Bracket> brackets = matchPlayService.getBrackets(id);
+		HashMap<Long, Integer> bracketResults = matchPlayService.getPlayerPoints(brackets);
+		String[][] resultTable = matchPlayService.getBracketResults(brackets, bracketResults.size());
+		
+		HashMap<String, Object> toReturn = new HashMap<String, Object>();
+		toReturn.put("bracketResults", bracketResults);
+		toReturn.put("resultTable", resultTable);
+		return toReturn;
+		
+	}
 }
