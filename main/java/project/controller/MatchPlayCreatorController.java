@@ -125,26 +125,9 @@ public class MatchPlayCreatorController {
 								@RequestParam Long hostSocial, @RequestParam int nIBrackets, @RequestParam int nOOBrackets) {
 		System.out.println(sentTournament.getName());
 		Golfer host = golferService.findOne(hostSocial);
-		int playerNum = sentTournament.getPlayers().size();
 		
 		// Adda playerum í gagnagrunn og sem vin. 
-		for(int i = 0; i < playerNum; i++) {
-			Golfer golfer = sentTournament.getPlayers().get(i);
-			if(host.getSocial() != golfer.getSocial()) {
-				Golfer dataGolfer = golferService.findOne(golfer.getSocial());
-				if(dataGolfer != null) {
-					golfer = dataGolfer;
-					if(!golferService.areFriends(host, golfer)) {
-						golferService.addFriendForGolfer(host, golfer);
-					}
-				}
-				else {
-					golferService.save(golfer);
-					golferService.addFriendForGolfer(host, golfer);
-				}
-			}		
-			
-		}
+		golferService.addParticipantsFriendsForGolfer(host, sentTournament.getPlayers());
 		
 		MatchPlayTournament newTournament = headOnService.save(sentTournament.isAreBrackets(), sentTournament.getPlayers(),
 				nIBrackets, nOOBrackets, sentTournament.getCourse(), sentTournament.getName(), sentTournament.getStartDate());
