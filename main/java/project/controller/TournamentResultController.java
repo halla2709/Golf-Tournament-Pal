@@ -367,4 +367,29 @@ public class TournamentResultController {
 		match.setResults(winner + " " + resulttext);
 		return matchPlayService.save(tournament);
 	}
+	
+	@RequestMapping(value = "/json/createPlayOffTree/{id}", method=RequestMethod.GET)
+	public @ResponseBody MatchPlayTournament createTree(@PathVariable(value="id") Long id) {
+		MatchPlayTournament tournament = matchPlayService.findOne(id);
+		List<Bracket> brackets = tournament.getBrackets();
+		int numberInFirstRound = tournament.getPlayOffs().getRounds().get(0).getMatches().size();
+		List<Match> firstRoundMatches = matchPlayService.getPlayersToPlayOffTree(brackets, numberInFirstRound*2);
+		System.out.println(firstRoundMatches.size() + " to the playoffs");
+		if(firstRoundMatches.size() == tournament.getPlayOffs().getRounds().get(0).getMatches().size()) {
+			tournament.getPlayOffs().getRounds().get(0).setMatches(firstRoundMatches);
+			return matchPlayService.save(tournament);
+		}
+		return tournament;
+	}
+	
+	@RequestMapping(value="/json/addResultsToPlayoff/{id}", method=RequestMethod.GET)
+	public @ResponseBody MatchPlayTournament jsonAddPlayoffResults(@PathVariable(value="id") Long id,
+			@RequestParam(value = "player", required=false) Long player,
+			@RequestParam(value = "roundNum", required=false) Integer roundNum,
+			Model model) {
+		
+		matchPlayService.addPlayoffMatchResults(id, player, roundNum);
+		
+		return matchPlayService.findOne(id);
+	}
 }
