@@ -109,6 +109,37 @@ public class TournamentResultController {
 		return "scoreboardTournament";
 	}
 	
+
+	
+	@RequestMapping(value="/json/rounds/{id}", method=RequestMethod.GET)
+	public @ResponseBody ScoreboardTournament setRound(@PathVariable(value="id") Long id,
+										@RequestParam(value="social") Long social,
+										@RequestParam(value="round") int round,
+										@RequestParam(value="h1") int h1,
+										@RequestParam(value="h2") int h2,
+										@RequestParam(value="h3") int h3,
+										@RequestParam(value="h4") int h4,
+										@RequestParam(value="h5") int h5,
+										@RequestParam(value="h6") int h6,
+										@RequestParam(value="h7") int h7,
+										@RequestParam(value="h8") int h8,
+										@RequestParam(value="h9") int h9,
+										@RequestParam(value="h10") int h10,
+										@RequestParam(value="h11") int h11,
+										@RequestParam(value="h12") int h12,
+										@RequestParam(value="h13") int h13,
+										@RequestParam(value="h14") int h14,
+										@RequestParam(value="h15") int h15,
+										@RequestParam(value="h16") int h16,
+										@RequestParam(value="h17") int h17,
+										@RequestParam(value="h18") int h18) {
+	
+		int[] scores = {h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,h17,h18};
+		
+		ScoreboardTournament tournament = scoreboardService.addRound(id, social, round, scores);
+		return tournament;
+	}
+	
 	@RequestMapping(value="/tournament/{id}", method=RequestMethod.GET)
 	public String displayTournament(@PathVariable(value="id") Long id,
 			Model model) {
