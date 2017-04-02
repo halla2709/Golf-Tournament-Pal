@@ -176,9 +176,6 @@ public class TournamentResultController {
 		return tournament;
 	}
 	
-
-	
-	
 	@RequestMapping(value="/tournament/{id}/{social}/{round}", method=RequestMethod.GET)
 	public String addRound(@PathVariable(value="id") Long id, 
 			@PathVariable(value="social") long social,
@@ -342,5 +339,32 @@ public class TournamentResultController {
 	@RequestMapping(value = "/json/getTournamentByGolfer", method = RequestMethod.GET)
 	public @ResponseBody List<Tournament> tournamentByGolfer(@RequestParam Long golferSocial) {
 		return tournamentService.findByGolfer(golferSocial);
+	}
+	
+	@RequestMapping(value = "/json/addResultsToBracket/{id}", method=RequestMethod.GET)
+	public @ResponseBody MatchPlayTournament addResultsBrackets(@PathVariable(value="id") Long id,
+			@RequestParam(value="bracketID") Long bracketID,
+			@RequestParam(value="matchID") Long matchID,
+			@RequestParam(value="winner") Long winner,
+			@RequestParam(value="resulttext") String resulttext) {
+		MatchPlayTournament tournament = matchPlayService.findOne(id);
+		List<Bracket> brackets = tournament.getBrackets();
+		Bracket bracket = null;
+		Match match = null;
+		for(Bracket bracketi : brackets) {
+			if(bracketi.getId() == bracketID) {
+				bracket = bracketi;
+				break;
+			}
+		}
+		for(Match matchi : bracket.getMatch()) {
+			if(matchi.getid() == matchID) {
+				match = matchi;
+				break;
+			}
+		}
+		
+		match.setResults(winner + " " + resulttext);
+		return matchPlayService.save(tournament);
 	}
 }
