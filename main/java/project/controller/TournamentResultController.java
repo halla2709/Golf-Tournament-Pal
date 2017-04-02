@@ -384,9 +384,8 @@ public class TournamentResultController {
 	
 	@RequestMapping(value="/json/addResultsToPlayoff/{id}", method=RequestMethod.GET)
 	public @ResponseBody MatchPlayTournament jsonAddPlayoffResults(@PathVariable(value="id") Long id,
-			@RequestParam(value = "player", required=false) Long player,
-			@RequestParam(value = "roundNum", required=false) Integer roundNum,
-			Model model) {
+			@RequestParam(value = "winner", required=false) Long player,
+			@RequestParam(value = "roundNum", required=false) Integer roundNum) {
 		
 		matchPlayService.addPlayoffMatchResults(id, player, roundNum);
 		

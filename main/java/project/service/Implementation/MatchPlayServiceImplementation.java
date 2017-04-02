@@ -247,21 +247,32 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 			}
 		}
 		
-		for(int i = 0; i < treePlayers.size(); i += 4) {
+		if(playersInTree == 2) {
 			List<Golfer> inMatch0 = new ArrayList<Golfer> ();
-			inMatch0.add(treePlayers.get(i));
-			inMatch0.add(treePlayers.get(i+2));
-			System.out.println(treePlayers.get(i).getName() + " vs " + treePlayers.get(i+2).getName());
-			List<Golfer> inMatch1 = new ArrayList<Golfer> ();
-			inMatch1.add(treePlayers.get(i+1));
-			inMatch1.add(treePlayers.get(i+3));
-			System.out.println(treePlayers.get(i+1).getName() + " vs " + treePlayers.get(i+3).getName());
+			inMatch0.add(treePlayers.get(0));
+			inMatch0.add(treePlayers.get(1));
 			Match match0 = new Match(inMatch0, "playoffsnp", null);
-			Match match1 = new Match(inMatch1, "playoffsnp", null);
 			firstRoundMatches.add(match0);
-			firstRoundMatches.add(match1);
-			
 		}
+		
+		else {
+			for(int i = 0; i < treePlayers.size(); i += 4) {
+				List<Golfer> inMatch0 = new ArrayList<Golfer> ();
+				inMatch0.add(treePlayers.get(i));
+				inMatch0.add(treePlayers.get(i+2));
+				System.out.println(treePlayers.get(i).getName() + " vs " + treePlayers.get(i+2).getName());
+				List<Golfer> inMatch1 = new ArrayList<Golfer> ();
+				inMatch1.add(treePlayers.get(i+1));
+				inMatch1.add(treePlayers.get(i+3));
+				System.out.println(treePlayers.get(i+1).getName() + " vs " + treePlayers.get(i+3).getName());
+				Match match0 = new Match(inMatch0, "playoffsnp", null);
+				Match match1 = new Match(inMatch1, "playoffsnp", null);
+				firstRoundMatches.add(match0);
+				firstRoundMatches.add(match1);
+				
+			}
+		}
+		
 		return firstRoundMatches;
 	}
 }
