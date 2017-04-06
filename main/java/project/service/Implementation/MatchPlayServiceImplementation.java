@@ -79,10 +79,6 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 		PlayOffTree playoffs = tournament.getPlayOffs();
 		PlayOffRound thisRound = playoffs.getRounds().get((int) roundNum);
 		
-		if(roundNum == playoffs.getRounds().size()-1) {
-			return playoffs;
-		}
-		
 		Golfer golfer = new Golfer();
 		int matchIndex = 0;
 		for(int i = 0; i < thisRound.getMatches().size(); i++) {
@@ -97,6 +93,15 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 				break;
 			}
 		}
+
+		thisRound.getMatches().get(matchIndex).setResults(Long.toString(playerSocial));
+		
+		if(roundNum == playoffs.getRounds().size()-1) {
+			repository.save(tournament);
+			return playoffs;
+		}
+		
+		
 		
 		PlayOffRound nextRound = playoffs.getRounds().get((int) (roundNum+1));
 		nextRound.setMatches(sortByID(nextRound.getMatches()));
