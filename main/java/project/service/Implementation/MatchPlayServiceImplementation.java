@@ -113,7 +113,7 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 			golfers.add(golfer);
 			Match newMatch = nextRound.getMatches().get(matchIndex/2);
 			newMatch.setPlayers(golfers);
-			newMatch.setResults("ongoing");
+			newMatch.setResults("playoffsnp");
 			nextRound.setMatch(matchIndex/2, newMatch);
 			playoffs.setRound(roundNum+1, nextRound);
 			tournament.setPlayOffs(playoffs);
